@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/7_automovel/7_automovel.iml" filepath="$PROJECT_DIR$/7_automovel/7_automovel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercicio.8/Exercicio.8.iml" filepath="$PROJECT_DIR$/Exercicio.8/Exercicio.8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercicio.9/Exercicio.9.iml" filepath="$PROJECT_DIR$/Exercicio.9/Exercicio.9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercicio_02/Exercicio_02.iml" filepath="$PROJECT_DIR$/Exercicio_02/Exercicio_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PL02.iml" filepath="$PROJECT_DIR$/.idea/PL02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/area_triangulo/area_triangulo.iml" filepath="$PROJECT_DIR$/area_triangulo/area_triangulo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/diferenca/diferenca.iml" filepath="$PROJECT_DIR$/diferenca/diferenca.iml" />
+      <module fileurl="file://$PROJECT_DIR$/soma/soma.iml" filepath="$PROJECT_DIR$/soma/soma.iml" />
+      <module fileurl="file://$PROJECT_DIR$/valor_quilo/valor_quilo.iml" filepath="$PROJECT_DIR$/valor_quilo/valor_quilo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/venda_produto/venda_produto.iml" filepath="$PROJECT_DIR$/venda_produto/venda_produto.iml" />
+    </modules>
+  </component>
+</project>
