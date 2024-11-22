@@ -14,7 +14,7 @@ public class ex14 {
         while (i <= 50){
             System.out.println("Insira um número:");
             numero = in.nextInt();
-            contador = contador + numero;
+            contador = contador + numero; //contador += numero;
             i++;
         }
         double media = (double)contador / 50;
