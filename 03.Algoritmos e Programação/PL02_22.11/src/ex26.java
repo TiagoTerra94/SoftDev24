@@ -10,9 +10,15 @@ public class ex26 {
 
         int decimal = 0;
 
-        for(int i=0; binario > 0; i++){
+        for(int i=0; binario > 0; i++){//while(binario > 0)
+
+            if ((binario % 10) != 0 && (binario % 10) != 1){
+                System.out.println("Valor introduzido inválido.");
+                return;//break;
+            }
+
             decimal = decimal + (int) (Math.pow(2,i) * (binario % 10));//% busca o resto, o ultimo
-            binario = binario / 10;//descarta o resto e busca o próximo numero
+            binario = binario / 10;//descarta o resto e busca o próximo numero do binario
             System.out.println(binario);
         }
 

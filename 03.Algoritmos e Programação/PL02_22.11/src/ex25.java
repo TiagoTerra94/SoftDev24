@@ -8,10 +8,10 @@ public class ex25 {
         System.out.println("Insira o ano: ");
         int ano = in.nextInt();
 
-        if (ano % 4 != 0){
-            System.out.println("Ano não é bissexto.");
+        if ((ano % 400 == 0) || ((ano % 4 ==0) && (ano % 100 != 0))){
+            System.out.println("Ano é bissexto.");
         }else{
-            System.out.println("Ano bissexto.");
+            System.out.println("Ano " + ano + " não é bissexto.");
         }
 
     }

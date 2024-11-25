@@ -8,9 +8,9 @@ public class ex22 {
         System.out.println("Insira um valor de bytes: ");
         int megabytes = in.nextInt();
 
-        int value_Byte = 1000000;
+        int value_Byte = 1000000;// 1024 * 1024 (mb * kb)
 
-        int ConvertToByte = megabytes * value_Byte;
+        int ConvertToByte = megabytes * value_Byte;// megabytes * 1000000
 
         System.out.println("A conversão de " + megabytes + " em bits é: " + ConvertToByte);
     }

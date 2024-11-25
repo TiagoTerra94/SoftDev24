@@ -10,7 +10,7 @@ public class ex21 {
 
         int bit = 8;
 
-        int Convert_Byte = bytes * bit;
+        int Convert_Byte = bytes * bit; // int bits = bytes * 8; é mais otimizado
 
         System.out.println("A conversão de " + bytes + " em bits é: " + Convert_Byte);
 
