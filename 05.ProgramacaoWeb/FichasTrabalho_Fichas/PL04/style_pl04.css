@@ -1,0 +1,54 @@
+body{
+    background-color: lightgrey;
+    padding: 20px;;
+}
+
+h1{
+    text-align:center;
+    color: rgb(0,255,0);
+}
+
+.alinhaCentro{
+    text-align: center;
+}
+
+h1,h2,h3,p{
+    text-align: center;
+}
+
+#alinhaEsquerda{
+    text-align: left;
+    color: red;
+    background-color: lightseagreen;
+    border: 2px solid black;
+}
+
+#alinhaDireita{
+    text-align: right;
+    color: #00F;
+}
+
+header h1{
+    color: red;
+}
+main h1{
+    color: blue
+}
+
+.margin{
+    background-color: blue;
+    border: 2px solid red;
+    color: white;
+    margin: 20px;
+}
+
+.cinzento{
+    background-color: grey;
+}
+
+.metade{
+    width:50%;
+    background-color: lightblue;
+}
+
+

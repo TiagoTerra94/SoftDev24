@@ -1,0 +1,32 @@
+body{
+    background-color: bisque;
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.nav{
+    background-color: rgb(180, 180, 180);
+    padding: 5px;
+    margin: 10px;
+}
+
+footer{
+    background-color: rgb(180, 180, 180);
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+.escala_img{
+    text-align: center;
+    width: 50%;
+}
+
+.link_color{
+    color: white;
+}
+
+p{
+    text-align: justify;
+}
