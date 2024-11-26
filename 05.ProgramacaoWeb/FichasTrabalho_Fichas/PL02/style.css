@@ -1,6 +1,6 @@
 body{
     background-color: bisque;
-    padding: 20px;
+    margin: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -29,4 +29,9 @@ footer{
 
 p{
     text-align: justify;
+}
+h5{
+    border-style: outset;
+    padding: 5px;
+    margin: 10px;
 }
