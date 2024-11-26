@@ -71,6 +71,7 @@ public class PL_03 {
                     break;
                 case 4:
                     Dividir();
+                    break;
                 default:
                     System.out.println("Opção inválida!");;
                     break;
@@ -83,6 +84,14 @@ public class PL_03 {
         int a = in.nextInt();
         System.out.println("Insira o último número da lista: ");
         int b = in.nextInt();
+
+        // para trocar de valores, assim basta um ciclo
+        //if(b > a){
+        //   temp = a;
+        //   a = b;
+        //   b = temp;
+        //}
+
 
         //processo entre a e b, onde imprime o número a seguir
         if(a > b) {
@@ -98,31 +107,44 @@ public class PL_03 {
 
     private static void Calendario() {
         //saber se o ano é bissexto ou nao
-        System.out.println("Insira o ano: ");
-        int ano = in.nextInt();
+        int op = 1;
+        do{
+            System.out.println("Aplicação 3: Calendário" +
+                    "\n1 - Ano Bissexto" +
+                    "\n2 - Conversor Dias" +
+                    "\n0 - Voltar ao menu anterior");
 
-        if ((ano % 400 == 0) || ((ano % 4 ==0) && (ano % 100 != 0))){
-            System.out.println("Ano é bissexto.");
-        }else{
-            System.out.println("Ano " + ano + " não é bissexto.");
+        } while(op != 0);
+        op = in.nextInt();
+
+        if (op == 1) {
+            System.out.println("Insira o ano: ");
+            int ano = in.nextInt();
+
+            if ((ano % 400 == 0) || ((ano % 4 == 0) && (ano % 100 != 0))) {
+                System.out.println("Ano é bissexto.");
+            } else {
+                System.out.println("Ano " + ano + " não é bissexto.");
+            }
         }
+        if (op == 2) {
+            //transformar conjunto de dias, em ano, semanas e dias
+            System.out.println("Insira o número de dias que quer converter: ");
+            int total_dias = in.nextInt();
 
-        //transformar conjunto de dias, em ano, semanas e dias
-        System.out.println("Insira o número de dias que quer converter: ");
-        int total_dias = in.nextInt();
+            int anos = total_dias / 365;
+            int resto = total_dias % 365;
+            int semanas = resto / 7;
+            int dias = resto % 7;
 
-        int anos = total_dias/365;
-        int resto = total_dias % 365;
-        int semanas = resto/7;
-        int dias = resto % 7;
-
-        System.out.println(total_dias + "são" + anos + " anos," + semanas + " semanas, " + dias + " dias." );
+            System.out.println(total_dias + " são " + anos + " anos," + semanas + " semanas, " + dias + " dias.");
+        }
     }
 
     private static void Conversor_Temp() {
-        System.out.println("Que tipo de temperatura quer converter?" +
-                "\n1- Celsius" +
-                "\n2- Farhrenheit");
+        System.out.println("Aplicação 4: Conversão Temperatura" +
+                "\n1- Celsius a Farhenheit" +
+                "\n2- Farhrenheit a Celsius");
         int option = in.nextInt();
 
         if (option == 0){
