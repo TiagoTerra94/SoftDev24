@@ -14,6 +14,6 @@ public class ex23 {
             multiply = multiply + n1;
         }
 
-        System.out.println("Multiplicado: " + multiply);
+        System.out.println(n1 + " x " + n2 " = " + multiply );
     }
 }

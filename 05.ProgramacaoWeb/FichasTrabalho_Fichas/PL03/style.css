@@ -1,0 +1,26 @@
+h1{
+    color:blue;
+    font-size: 150px;
+}
+
+.paragrafos_pp{
+    color:aqua;
+    background-color: blue;
+}
+
+p{
+    color: bisque;
+    background-color: blueviolet;
+}
+
+#primeiro_paragrafo{
+    color: aquamarine;
+    background-color: rgb(85, 46, 46);
+    font-family: "Edu AU VIC WA NT Pre", cursive;
+  font-optical-sizing: auto;
+}
+
+#segundo_paragrafo{
+    color: aquamarine;
+    background-color: black;
+}
