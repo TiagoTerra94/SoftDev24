@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Cesae</title>
+    <link rel="stylesheet" href="style_form.css">
 </head>
 <body>
+    <header>
+        <img src="logo_cesae-cores_horizontal_header_site.png" width="500px"><br>
+    </header>
+    <fieldset>
+        <legend>Formulário de Contacto do CESAE</legend>
     <form action="processa.php" method="POST">
         <label for="nome" required>Nome: </label>
-        <input type = "text" id="nome" name = "nome"><br><br>
+        <input type = "text" id="nome" name = "nome" placeholder = "Insira o nome aqui"><br>
 
         <label for="email" required>E-mail:</label>
-        <input type="email" id="email" name="email" name="email"><br><br>
+        <input type="email" id="email" name="email" name="email" placeholder = "Insira o e-mail aqui"><br><br>
 
         <label for="genero"> Genero: </label><br>
         <input type="radio" name ="genero" value="feminino"> Feminino <br>
@@ -21,8 +27,19 @@
         <input type="date"><br>
 
         <label for="turma">Turma: </label>
-        <input type="checkbox"> Web Developer & Mobile
-        <input type="checkbox">Software Developer
+        <select for="turma">Turma: 
+        <option>Web Developer & Mobile</option>
+        <option>Software Developer</option>
+    </select><br><br>
+    <label for="mensagem">Mensagem: </label>
+    <textarea rows="3" cols="30" >    
+
+    </textarea>
+    <br>
+    <br>
+    <button type="reset">Limpar</button>
+    <button type="submit">Enviar</button>
     </form>
+</fieldset>
 </body>
 </html>
