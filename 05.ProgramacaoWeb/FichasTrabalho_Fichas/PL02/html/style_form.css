@@ -1,0 +1,22 @@
+body{
+    background-color: whitesmoke;
+}
+
+#form{
+ display: flex;
+ flex-direction:column;
+ justify-items: center;
+ align-items: center;
+}
+
+#header{
+    text-align: center;
+}
+
+#nav{
+    text-align: center;
+}
+
+#footer{
+    text-align: center;
+}
