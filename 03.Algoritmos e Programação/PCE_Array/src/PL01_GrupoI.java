@@ -1,8 +1,12 @@
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-public class PL01 {
+import static java.lang.System.in;
+
+public class PL01_GrupoI {
     static Scanner in = new Scanner(System.in);
     static Random rnd = new Random();
     static int op = 1;
@@ -47,7 +51,28 @@ public class PL01 {
                 case 7:
                     ex07();
                     break;
+                case 8:
+                    ex08();
+                    break;
 
+            }
+        }
+
+
+    }
+
+    private static void ex08() {//por fazer
+        System.out.println("Quantos nomes vai inserir?");
+        int N = in.nextInt();
+        String primeiraLetra;
+        String[] nomes = new String[N];
+
+        for(int i = 0; i<N;i++){
+            System.out.println("Insira o " + (i+1) + "º nome: ");
+            nomes[i]= in.next();
+            for(int j=0; j<1;j++){
+                primeiraLetra = String.valueOf(nomes[i].charAt(0));
+                System.out.println(primeiraLetra);
             }
         }
 
@@ -58,11 +83,16 @@ public class PL01 {
 
         System.out.println("Quantos nomes vai inserir?");
         int N = in.nextInt();
+        String primeiraLetra;
         String[] nomes = new String[N];
 
         for(int i = 0; i<N;i++){
-            System.out.println("Insira um nome: ");
+            System.out.println("Insira o " + (i+1) + "º nome: ");
             nomes[i]= in.next();
+            for(int j=0; j<1;j++){
+                primeiraLetra = String.valueOf(nomes[i].charAt(0));
+                System.out.println(primeiraLetra);
+            }
         }
 
     }
@@ -81,18 +111,19 @@ public class PL01 {
 
 
     private static void ex05() {
-        int[] vet = new int[10];
+        Integer [] vet = new Integer[10];
 
         for(int i = 0; i<vet.length;i++){
             System.out.println("Insira o seu numero: ");
             vet[i] = in.nextInt();
         }
 
+        //ordenar crescente
         int n = vet.length;
         int temp = 0;
         for(int i=0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
-                if (vet[j - 1] > vet[j]) {
+                if (vet[j - 1] > vet[j]) {//vet[j - 1] < vet[j] - decrescente
                     //troca elementos
                     temp = vet[j - 1];
                     vet[j - 1] = vet[j];
@@ -106,6 +137,10 @@ public class PL01 {
         for(int i = 0; i< vet.length; i++){
             System.out.println(vet[i]);
         }
+        //outra forma de reordenaçao
+        Arrays.sort(vet);
+        Arrays.sort(vet,Collections.reverseOrder());
+
     }
 
     private static void ex04() {
@@ -167,12 +202,13 @@ public class PL01 {
         System.out.println("Qual o número de aluno que procura?");
         int n = in.nextInt();
 
-        if(n < 0){
+        if(n < 0 && n > nomes.length){
             System.out.println("Numero inválido!");
-        }else {
-            System.out.println("Numero aluno" + n + ": " + nomes[n]);
+        }else if (n == 0) {
+            return;
+        }else
+            System.out.println("Numero aluno " + (n-1) + ": " + nomes[n]);
         }
-    }
 
     private static void ex01() {
         double[] notas = new double[3];
