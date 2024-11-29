@@ -1,5 +1,5 @@
 body{
-    background-color: bisque;
+    background-color: whitesmoke;
     margin: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -25,6 +25,7 @@ footer{
 
 .link_color{
     color: white;
+    background-color: black;
 }
 
 p{
