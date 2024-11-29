@@ -7,6 +7,19 @@ public class jogoFosforos {
         Random rnd = new Random();
 
         String nome1, nome2;
+        int option = 0;
+
+
+        do{
+        System.out.println("Bem-vindo ao Jogo dos Fosforos!\n" +
+                "Deseja jogar contra um jogador ou contra o PC?\N" +
+                "1- Contra um Jogador\n" +
+                "2- Contra o PC");
+
+
+
+        }(while option != 0);
+
 
 
         System.out.println("Nome do Jogador 1: ");

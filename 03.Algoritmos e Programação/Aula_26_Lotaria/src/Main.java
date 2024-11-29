@@ -18,7 +18,8 @@ public class Main {
         nome = in.nextLine();
 
         do {
-            System.out.println("Bem-vindo " + nome + ("!") +
+            System.out.println("Bem-vindo " + nome + ("!\n"
+                    + "Saldo:") + saldo +
                     "\n" +
                     "Qual é a sua opçao?\n" +
                     "1- Lotaria\n" +
@@ -63,6 +64,7 @@ public class Main {
         int option = in.nextInt();
         int valorDeposito = 0;
 
+        //falta validar montantes negativos e 0
         if(option == 0) {
             return;
         } else if (option == 1) {
@@ -84,9 +86,11 @@ public class Main {
         int valorLevantamento = 0;
         int subtracao;
 
+        //falta validar montantes negativos e 0
         if(option == 0) {
             return;
         } else if (option == 1) {
+            System.out.println("O seu saldo:" + saldo);
                 System.out.println("Qual o montante a levantar?");
                 valorLevantamento = in.nextInt();
         }else {
@@ -125,7 +129,13 @@ public class Main {
     }
 
     private static void Raspadinhas_2() {
-        saldo = saldo - 2;
+        if(saldo - 2 < 0){
+            System.out.println("Saldo insuficiente carregue para jogar.");
+            return;
+        }else{
+            saldo = saldo - 2;
+        }
+
         int num_principal = rnd.nextInt(1, 11);
         int counter = 0;
         int premio = 0;
@@ -135,7 +145,7 @@ public class Main {
         //ciclo para generar números e valores atribuidos
         for(int i = 0; i < 10; i++){
             int n = rnd.nextInt(1, 11);
-            int valor_raspadinha = rnd.nextInt(1, 11);
+            int valor_raspadinha = rnd.nextInt(1, 101);
 
             System.out.println(n + "(" + valor_raspadinha + "€)");
 
@@ -146,7 +156,7 @@ public class Main {
         }
 
         //contador, para saber se ganhou
-        if(counter >= 3){
+        if(counter == 3){
             System.out.println("Prémio: " + premio + "€");
             saldo += premio;
         }else {
@@ -173,7 +183,13 @@ public class Main {
     }
 
     private static void Raspadinhas_1() {
-        saldo = saldo - 2;
+        if(saldo - 2 < 0){
+            System.out.println("Saldo insuficiente carregue para jogar.");
+            return;
+        }else{
+            saldo = saldo - 2;
+        }
+
         int num_principal = rnd.nextInt(1, 11);
         int premio = 0;
         System.out.println("Numero principal: " + num_principal);
@@ -215,7 +231,12 @@ public class Main {
     }
 
     private static void Lotaria() {
-        saldo = saldo - 5;
+        if(saldo - 5 < 0){
+            System.out.println("Saldo insuficiente carregue para jogar.");
+            return;
+        }else{
+            saldo = saldo - 5;
+        }
         int n_premio = rnd.nextInt(1000, 10000);
         //System.out.println("Numero premiado: " + n_premio);
         int premio_1 = n_premio;
@@ -237,18 +258,17 @@ public class Main {
             //sorteio
             if (num_sorteado == premio_1) {
                 System.out.println("Parabéns! Você ganhou o 1º prémio!");
+                saldo = saldo + 1000;
             } else if (num_sorteado % 1000 == premio_2) {
                 System.out.println("Parabéns! Você ganhou o 2º prémio!");
+                saldo = saldo + 100;
             } else if (num_sorteado % 100 == premio_3) {
                 System.out.println("Parabéns! Você ganhou o 3º prémio!");
+                saldo = saldo + 10;
             } else {
                 System.out.println("Azar! Tente novamente na próxima!");
             }
 
-    }
-
-    private static void Saldo() {
-        System.out.println("O seu saldo é: " + saldo + "€");
     }
 
     private static void verSaldo(){
