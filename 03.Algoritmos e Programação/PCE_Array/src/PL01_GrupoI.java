@@ -62,39 +62,100 @@ public class PL01_GrupoI {
     }
 
     private static void ex08() {//por fazer
-        System.out.println("Quantos nomes vai inserir?");
-        int N = in.nextInt();
-        String primeiraLetra;
-        String[] nomes = new String[N];
+        int op;
 
-        for(int i = 0; i<N;i++){
-            System.out.println("Insira o " + (i+1) + "º nome: ");
-            nomes[i]= in.next();
-            for(int j=0; j<1;j++){
-                primeiraLetra = String.valueOf(nomes[i].charAt(0));
-                System.out.println(primeiraLetra);
+        do{
+            System.out.println("1-Preencher arrays\n" +
+                    "2- Mostrar Nomes\n" +
+                    "3- Mostrar Letras\n" +
+                    "4- Ordenar" +
+                    "0- Sair");
+            op = in.nextInt();
+
+            switch (op){
+                case 0:
+                    break;
+                case 1:
+                    preencherArrays();
+                    break;
+                case 2:
+                    mostrar(ex07_nomes);
+                    break;
+                case 3:
+                    mostrar(ex07_letras);
+                    break;
+                case 4:
+                    ordernar();
+                default:
+                    System.out.println("Opçao Inválida!");
             }
-        }
+
+        }while (op !=0 );
+
 
 
     }
 
+    private static void ordernar() {
+        //ver soluçoes
+    }
+
+    static String[] ex07_nomes;
+    static String[] ex07_letras;
+
     private static void ex07() {
 
-        System.out.println("Quantos nomes vai inserir?");
-        int N = in.nextInt();
-        String primeiraLetra;
-        String[] nomes = new String[N];
 
-        for(int i = 0; i<N;i++){
-            System.out.println("Insira o " + (i+1) + "º nome: ");
-            nomes[i]= in.next();
-            for(int j=0; j<1;j++){
-                primeiraLetra = String.valueOf(nomes[i].charAt(0));
-                System.out.println(primeiraLetra);
+        int op;
+
+        do{
+            System.out.println("1-Preencher arrays\n" +
+                    "2- Mostrar Nomes\n" +
+                    "3- Mostrar Letras\n" +
+                    "0- Sair");
+            op = in.nextInt();
+
+            switch (op){
+                case 0:
+                    break;
+                case 1:
+                    preencherArrays();
+                    break;
+                case 2:
+                    mostrar(ex07_nomes);
+                    break;
+                case 3:
+                    mostrar(ex07_letras);
+                    break;
+                default:
+                    System.out.println("Opçao Inválida!");
             }
-        }
 
+        }while (op !=0 );
+
+
+    }
+
+    private static void mostrar(String[] dados) {
+        for(int i = 0; i < dados.length; i++){
+            System.out.println("O nome da posição " + (i + 1) + "º é: "+ dados[i]);
+        }
+    }
+
+
+    private static void preencherArrays() {
+        System.out.println("Quantos nomes vai inserir?");
+        int quant = in.nextInt();
+
+        in = new Scanner(System.in);
+        ex07_nomes = new String[quant];
+        ex07_letras = new String[quant];
+
+        for(int i = 0; i < quant; i++){
+            System.out.println("Qual o " + (i+1) + " nome?");
+            ex07_nomes[i] = in.nextLine();
+            ex07_letras = new String[]{String.valueOf(ex07_nomes[i].charAt(0))};
+        }
     }
 
     private static void ex06() {
@@ -105,7 +166,7 @@ public class PL01_GrupoI {
             System.out.println("Insira um nome: ");
             nomes[i]= in.next();
         }
-        pos = rnd.nextInt(0,5);
+        pos = rnd.nextInt(0,5);//ate a ultima pos do array
         System.out.println("O nome da posição " + (pos + 1) + "º é: "+ nomes[pos]);
     }
 
