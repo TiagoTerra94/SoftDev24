@@ -37,8 +37,53 @@ public class PL01_Grupo_II {
                 case 5:
                     ex005();
                     break;
+                case 6:
+                    ex005_alt();
+                    break;
             }
         }while (op !=0);
+    }
+
+    private static void ex005_alt() {
+        int colunas = in.nextInt();
+        int linhas = in.nextInt();
+
+        int[][] nums = new int[linhas][colunas];
+        int[] somaL = new int[linhas];
+        int[] somaC = new int[colunas];
+
+        int somaTotal = 0;
+
+        //preenchimento do array
+        for(int i = 0; i < linhas; i++){
+            for (int j = 0; j< colunas; j++){
+                System.out.println("Qual o valor da pos (" + i + "," + j + "): ");
+                nums[i][j] = in.nextInt();
+                somaL[i] += nums[i][j];
+                somaC[j] += nums[i][j];
+                somaTotal += nums[i][j];
+            }
+        }
+
+        //apresentaçao array
+        for(int i=0;i< linhas;i++){
+            for(int j=0; j< colunas;j++) {
+                System.out.print(nums[i][j] + "\t ");
+            }System.out.println(" | " + somaL[i] + "\t" + (somaL[i] / colunas));
+        }
+        System.out.println("----------------");
+        for(int i = 0; i<colunas; i++){
+            System.out.println(somaC[i] + "\t");
+        }
+        for(int i = 0; i<colunas; i++){
+            System.out.println((somaC[i] /linhas) + "\t");
+        }
+
+        double mediaTotal = (double)somaTotal /(linhas*colunas);
+
+        System.out.println("A soma total: " + somaTotal);
+        System.out.println("A media total: " + mediaTotal);
+
     }
 
     private static void ex005() {
@@ -84,13 +129,13 @@ public class PL01_Grupo_II {
 
 
         double media_total = soma_total / (N*M);
-        System.out.println("A media total dos numero é: " + media_total);
+        System.out.println("A media total dos numeros é: " + media_total);
     }
 
     private static void ex004() {
-        System.out.println("Quantas linhas?");
+        System.out.println("Quantas linhas terá o array?");
         int N = in.nextInt();
-        System.out.println("Quantas colunas?");
+        System.out.println("Quantas colunas terá o array?");
         int M = in.nextInt();
         int[][] vet = new int[N][M];
 
@@ -100,17 +145,37 @@ public class PL01_Grupo_II {
                 vet[i][j] = in.nextInt();
             }
         }
+
+        for(int i=0;i< N;i++){
+            for(int j=0; j< M;j++) {
+                System.out.print(vet[i][j] + " ");
+            }
+        }
+        //este espaço é para que cada ciclo da coluna J ele dá um println para começar outro vetor
+        System.out.println();
+
+
     }
 
     private static void ex003() {
         int[][] vet = new int[3][3];
 
+        //introduçao dos numeros no array
         for(int i=0;i< vet.length;i++){
             for(int j=0; j< vet.length;j++) {
                 System.out.println("Insira o número do vetor [" + i + "]" + "[" + j +"]");
                 vet[i][j] = in.nextInt();
             }
         }
+
+        //apresentaçao dos numeros do array
+        for(int i=0;i< vet.length;i++){
+            for(int j=0; j< vet.length;j++) {
+                System.out.print(vet[i][j] + " ");
+            }
+        }
+        //este espaço é para que cada ciclo da coluna J ele dá um println para começar outro vetor
+        System.out.println();
 
     }
 
