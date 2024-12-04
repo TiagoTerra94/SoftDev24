@@ -45,6 +45,9 @@ public class PL01_GrupoIII {
                 case 6:
                     adicionarPos();
                     break;
+                case 7:
+                    eliminarElemento();
+                    break;
                 default:
                     System.out.println("Opção Inválidas");
                     break;
@@ -55,6 +58,10 @@ public class PL01_GrupoIII {
 
     }
 
+    private static void eliminarElemento() {
+
+
+    }
 
 
     private static void adicionarPos() {
@@ -88,14 +95,14 @@ public class PL01_GrupoIII {
 
     private static void substituirElemento() {
         int[] temp = new int[numeros.length];
+        int valor;
 
         //ciclo para preencher o array temp
         for (int i =0; i < numeros.length; i++){
             temp[i] = numeros[i];
         }
 
-        System.out.println("Qual o valor a inserir?");
-        int valor = in.nextInt();
+        imprimirArray();
 
         System.out.println("Em que posição inserir?");
         int pos = in.nextInt();
@@ -104,15 +111,18 @@ public class PL01_GrupoIII {
         if (pos < 0 || pos > numeros.length) {
             System.out.println("Posição inválida, valor não adicionado");
             return;
+        }else {
+            System.out.println("Qual o valor a inserir?");
+            valor = in.nextInt();
         }
 
         //copia todos os elementos do array até à posiçao
         for(int i = 0; i< pos; i++){
-            temp[i] = numeros[i];
+            temp[i] = numeros[i];//ver soluçao
         }
 
         //aplica o valor à posição inserida
-        temp[pos-1] = valor;
+        temp[pos] = valor;
 
 
         numeros = temp;
