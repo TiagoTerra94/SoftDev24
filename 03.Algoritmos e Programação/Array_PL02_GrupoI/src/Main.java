@@ -1,6 +1,10 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +20,7 @@ public class Main {
                 "3- Escrever texto num ficheiro\n" +
                 "4- Criar Array String e grava num ficheiro\n" +
                 "5- Ler e Trocar Conteudo\n" +
+                "6- Lertrocaalt" +
                 "0- Sair");
 
         op = in.nextInt();
@@ -38,11 +43,18 @@ public class Main {
                 case 5:
                 lerTrocar();
                  break;
+            case 6:
+                lerTrocaralt();
+                break;
             default:
                 System.out.println("Opção Inválida!");
 
         }
         }while(op !=0);
+    }
+
+    private static void lerTrocaralt() {
+
     }
 
     private static void lerTrocar() {
@@ -135,7 +147,7 @@ public class Main {
             lista2.add(in.nextLine());
         }
 
-        try (BufferedWriter escrita = new BufferedWriter(new FileWriter("ficheiro.txt", true))){
+        try (BufferedWriter escrita = new BufferedWriter(new FileWriter("ficheiro.txt"))){
             for(String nome: lista2) {
                 escrita.write(nome);
                 escrita.newLine();
@@ -157,13 +169,13 @@ public class Main {
 
     private static void escreverFicheiro() {
         System.out.println("O que quer adicionar ao ficheiro?");
-        try (BufferedWriter escrita = new BufferedWriter(new FileWriter("ficheiro.txt", true))){
+        try (BufferedWriter escrita = new BufferedWriter(new FileWriter("ficheiro.txt", true))){ //true: pega no que existe e add
             escrita.write(in.nextLine());
             escrita.newLine();
             escrita.write(in.nextLine());
             escrita.close();
         } catch (IOException e) {
-            System.out.println("Erro ao escrever o ficheiro");
+            System.out.println("Erro ao escrever o ficheiro" + e.getMessage());
         }
     }
 
@@ -177,23 +189,26 @@ public class Main {
             while((linha = br.readLine()) != null){
                 lista1.add(linha);
             }
+            for(int i = 0;i<lista1.size();i++) {
+                System.out.println("Conteudo do Array : " + lista1.get(i));
+            }
         } catch (IOException e) {
             System.out.println("Erro ao ler o ficheiro");
         }
 
-        System.out.println("Conteudo do Array : " + lista1 );
 
     }
 
     private static void lerFicheiro() {
-
+        //ler ficheiro para String
         try (BufferedReader br = new BufferedReader(new FileReader("ficheiro.txt"))){
-            String linha;
+            String linha = "", texto = "";
             while((linha = br.readLine()) != null){
-                System.out.println(linha);
-            }
+                texto += linha + "\n";
+
+            }System.out.println(texto);
         } catch (IOException e) {
-            System.out.println("Erro ao ler o ficheiro");
+            System.out.println("Erro ao ler o ficheiro" + e.getMessage());
         }
     }
 }
