@@ -11,4 +11,18 @@
     -moz-border-radius: 0px;
     border-radius: 0px; 
  } 
-  
+
+ #paragrafo{
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 10px;
+  padding: 5px;
+ }
+
+ .modal-header{
+  background-color: rgb(0, 0, 0);
+}
+
+.h1{
+  text-decoration: underline;
+}
