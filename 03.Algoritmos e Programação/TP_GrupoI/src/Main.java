@@ -9,10 +9,11 @@ public class Main {
     static ArrayList<Integer> boletimStars = new ArrayList<>();
     static ArrayList<Integer> chaveNums = new ArrayList<>();
     static ArrayList<Integer> chaveStars = new ArrayList<>();
+    static int op = 1;
     public static void main(String[] args) {
-        int op = 1;
-        do{
-            System.out.println("Bem-vindo ao Euromilhões\n" +
+
+        do {
+            System.out.println("Bem-vindo ao **Euromilhões**\n" +
                     "MENU\n" +
                     "1- Simular Sorteio\n" +
                     "2- Criar Boletim Manual\n" +
@@ -22,7 +23,7 @@ public class Main {
 
             op = in.nextInt();
 
-            switch (op){
+            switch (op) {
                 case 0:
                     break;
                 case 1:
@@ -40,37 +41,139 @@ public class Main {
 
             }
 
-        }while(op!=0);
+        } while (op != 0);
 
 
-        }
+    }
 
     private static void simularSorteio2() {
+        int tryCount= 0;
+
+        System.out.println("Tipo de Boletim:\n" +
+                "1- Manual\n" +
+                "2- Aleatório\n" +
+                "0- Sair");
+
+        op =in.nextInt();
+
+        switch (op){
+            case 0:
+                break;
+            case 1:
+                chaveManual();
+                break;
+            case 2:
+                chaveAleatoria();
+                break;
+            default:
+                System.out.println("Opção Inválida");
+                break;
+        }
+
+        //Simular e Tentativas
+        for(int i=0; i < 100000000; i++){
+            simularSorteio1();
+            tryCount++;
+            if(chaveNums == boletimNums && chaveStars == boletimStars){
+                System.out.println("Ganhou o primeiro prémio! Tentativas: " + tryCount);
+                return;
+            }
+        }
+        System.out.println("Sem Prémio!");
+
     }
 
+    //CRIAÇÃO CHAVE ALEATORIA
     private static void criarBoletim2() {
+        simularSorteio1();
+
+        //LIMPEZA DE ARRAYS
+        boletimNums.clear();
+        boletimStars.clear();
+
+        int n = rnd.nextInt(1,5);
+
+        System.out.println("CHAVES CRIADAS: " + n);
+
+
+        //criação boletim e comparaçao
+        for (int i = 0; i < n; i++) {
+            System.out.println("Chave " + (i + 1) + " :");
+            chaveAleatoria();
+            compararChave();
+        }
     }
 
-    private static void compararChave(){
+    //CRIAÇAO DE CHAVE ALEATORIA
+    private static void chaveAleatoria() {
+        int nums = 0;
+        int stars = 0;
 
-        for(int i = chaveNums.size(); i > 0; i--){
-            for(int j = chaveNums.size()-1; j > 0 ;j--){
-                if(chaveNums.get(j) == boletimNums.get(i)) {
-                    System.out.println("Parabéns,ganhou o 13ª prémio");
+        //numeros gerados
+        while(boletimNums.size()<5) {
+            nums = rnd.nextInt(1, 50);
+            if (!boletimNums.contains(nums)) {
+                boletimNums.add(nums);
+            }
+        }
+
+        //estrelas geradas
+        while(boletimStars.size()<2) {
+            stars = rnd.nextInt(1,12);;
+            if (!boletimStars.contains(nums)) {
+                boletimStars.add(stars);
+            }
+        }
+
+        Collections.sort(boletimNums);
+        Collections.sort(boletimStars);
+        System.out.println(boletimNums);
+        System.out.println(boletimStars);
+    }
+
+    //COMPARAR CHAVE COM CHAVE VENCEDORA
+    private static void compararChave() {
+        int counterNum = 0;
+        int counterStar = 0;
+
+        for (int i = chaveNums.size() - 1; i >= 0; i--) {
+            for (int j = boletimNums.size() - 1; j >= 0; j--) {
+                if (chaveNums.get(i) == boletimNums.get(j)) {
+                    counterNum++;
                 }
             }
         }
 
+        for (int i = chaveStars.size() - 1; i >= 0; i--) {
+            for (int j = boletimStars.size() - 1; j >= 0; j--) {
+                if (chaveStars.get(i) == boletimStars.get(j)) {
+                    counterStar++;
+                }
+            }
+        }
+
+
+        //imprimir resultado
+        if (counterNum == 5 && counterStar == 2) System.out.println("Parabéns, ganhou o primeiro prémio");
+        if (counterNum == 5 && counterStar == 1) System.out.println("Parabéns, ganhou o segundo prémio");
+        if (counterNum == 5 && counterStar == 0) System.out.println("Parabéns, ganhou o terceiro prémio");
+        if (counterNum == 4 && counterStar == 2) System.out.println("Parabéns, ganhou o quarto prémio");
+        if (counterNum == 2 && counterStar == 2) System.out.println("Parabéns, ganhou o quinto prémio");
+        if (counterNum == 2) System.out.println("Parabéns, ganhou o sexto");
+        else {
+            System.out.println("Não ganhou nada");
+        }
     }
 
-    private static void criarChave(){
+    //CRIAÇAO DE CHAVE MANUAL
+    private static void chaveManual() {
 
         int nums = 0;
         int stars = 0;
 
         System.out.println("Quais são os números que quer sortear? (de 1 a 50)");
 
-        for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < 5; i++) {
             nums = in.nextInt();
             if (nums < 0 || nums > 50) {
                 System.out.println("Numero Inválido!");
@@ -86,9 +189,9 @@ public class Main {
 
         System.out.println("Quais são as estrelas que quer sortear? (de 1 a 12)");
 
-        for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 2; i++) {
             stars = in.nextInt();
-            if (nums < 0 || nums > 50) {
+            if (stars < 0 || stars > 50) {
                 System.out.println("Numero Inválido!");
                 boletimStars.clear();
                 return;
@@ -104,46 +207,62 @@ public class Main {
         System.out.println(boletimStars);
     }
 
+    //CRIAR BOLETIM MANUAL
     private static void criarBoletim1() {
         simularSorteio1();
 
-        System.out.println("Quantas chaves vai criar?");
+        //LIMPEZA DE ARRAYS
+        boletimNums.clear();
+        boletimStars.clear();
+
+        System.out.println("Quantas chaves vai criar?(De 1 a 5)");
         int n = in.nextInt();
 
+        //validaçao
+        while (n < 0 || n > 5) {
+            System.out.println("Valor Inválido. Quantas chaves vai criar?(De 1 a 5)");
+            n = in.nextInt();
+        }
+
+        //criação boletim e comparaçao
         for (int i = 0; i < n; i++) {
-            System.out.println("Chave " + (i+1) + " :");
-            criarChave();
+            System.out.println("Chave " + (i + 1) + " :");
+            chaveManual();
             compararChave();
         }
 
+        /*imprimir chave
         for(int i = 0; i < n; i++){
             System.out.println("Chave" + (i+1) + ": ");
-        }
-
+        }*/
 
 
     }
 
+    //SIMULAR SORTEIO DE FORMA ORDENADA
     private static void simularSorteio1() {
+        chaveNums.clear();
+        chaveStars.clear();
+
         int nums;
         int stars;
-
 
         System.out.println("Chave:");
 
         //sortear numeros
         System.out.print("Numeros: ");
 
-        while (chaveNums.size() < 5){
-            nums= rnd.nextInt(1,51);
-            if (!chaveNums.contains(nums)){
+        while (chaveNums.size() < 5) {
+            nums = rnd.nextInt(1, 51);
+            if (!chaveNums.contains(nums)) {
                 chaveNums.add(nums);
             }
-
         }
-        while (chaveStars.size() < 2){
-            stars= rnd.nextInt(1,13);
-            if (!chaveStars.contains(stars)){
+
+        System.out.print("Estrelas: ");
+        while (chaveStars.size() < 2) {
+            stars = rnd.nextInt(1, 13);
+            if (!chaveStars.contains(stars)) {
                 chaveStars.add(stars);
             }
 
@@ -154,29 +273,5 @@ public class Main {
         System.out.println(chaveStars);
 
 
-
-
     }
-
-        /*for (int i = chaveNums.size(); i > 0 ; i--){
-            for(int j = (chaveNums.size()); j > 1; j--){
-                if(chaveNums.get(j-1) == chaveNums.get(i)) {
-                    nums = rnd.nextInt(1, 51);
-                    chaveNums.set(i, nums);
-                }
-            }*/
-        }
-
-
-
-
-        //sortear estrelas
-        /*System.out.print("Estrelas: ");
-        for (int i=0; i < 2; i++) {
-            int stars = rnd.nextInt(1, 12);
-            chaveStars.add(stars);
-        }Collections.sort(chaveStars);
-        System.out.println(chaveStars);
-
-    }*/
-
+}
