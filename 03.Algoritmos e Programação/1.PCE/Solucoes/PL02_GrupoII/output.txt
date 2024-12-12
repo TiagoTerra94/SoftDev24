@@ -1,0 +1,18 @@
+Nome do aluno | Classificação
+Ana	Bom
+João	Bom
+Maria	Bom
+Rui	Suficiente
+*********************************************
+MELHOR NOTA FINAL: 15.0
+PIOR NOTA FINAL: 11.6
+PERCENTAGENS DE NOTAS POSITIVAS:  
+ -Trabalho1: 100.0%
+ -Trabalho2: 75.0%
+ -Exame: 100.0%
+ -Final: 100.0%
+MÉDIA DAS NOTAS: 
+ -Trabalho1: 11.25
+ -Trabalho2: 13.75
+ -Exame: 14.75
+0 alunos com classificação MUITO BOM
