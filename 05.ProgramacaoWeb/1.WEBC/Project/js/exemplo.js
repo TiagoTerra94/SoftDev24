@@ -56,11 +56,52 @@ function generateRandomNumbers(number){
 }
 
 generateRandomNumbers(5)
-*/
+
 //Crie uma função que retorne 1 valor numerico gerado valido entre x e y
 
 function valorNumerico(min,max){
     return console.log(Math.floor(Math.random()*(max-min) + (min+1)))
 }
 
-val = numericValueInterval(10, 20)
+
+//exercicio, somar dois numero com prompt
+n1 = parseInt(prompt ("Numero 1: "))
+n2 = parseInt(prompt ("Numero 2: "))
+alert(n1+n2)
+
+//texto e vetores
+let texto = "Vamos programar"
+
+//indice 0 até N-1 (N é o nr de elementos)
+console.log(texto[0])
+console.log(texto.charAt(6))
+console.log(texto.charAt(texto.length-1))
+console.log(texto.indexOf('a'))
+
+//fatiar texto
+let texto = "Vamos programar"
+
+console.log(texto.slice(0,5)) //retorna string
+console.log(texto.slice(-3))//vai à volta
+
+palavras = texto.split(" ")
+console.log(palavras)
+console.log(palavras[1].toLowerCase())
+console.log(palavras[0].toUpperCase())
+*/
+
+//Exercicio, funcao a receber string e retorne todas as vogais em maiusculas
+const text = "Eu sou o maior da minha aldeia"
+    vowels= "aeiou"
+
+function replaceVowels(){
+    temp = ""
+    for (let i = 0; i< text.length; i ++){
+        //busca a vogal no array text e adiciona na temp em maiuscula
+        if(vowels.includes(text[i])) temp += text[i].toUpperCase()
+            else temp += text[i]
+    }
+    return temp
+}
+
+console.log(replaceVowels(text))
