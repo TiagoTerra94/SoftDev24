@@ -19,7 +19,19 @@ public class Main {
                     "4- Simular e tentativas\n" +
                     "0- Sair");
 
-            op = in.nextInt();
+
+            in = new Scanner(System.in);
+            //certifica que o input é um numero
+            while (true) {
+                System.out.print("Que opção deseja:");
+                String option = in.nextLine();
+                try {
+                    op = Integer.parseInt(option);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Insira uma opção válida.");
+                }
+            }
 
             switch (op) {
                 case 0:
@@ -55,7 +67,18 @@ public class Main {
                 "2- Aleatório\n" +
                 "0- Sair");
 
-        op =in.nextInt();
+        in = new Scanner(System.in);
+        //certifica que o input é um numero
+        while (true) {
+            System.out.print("Que opção deseja:");
+            String option = in.nextLine();
+            try {
+                op = Integer.parseInt(option);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Insira uma opção válida.");
+            }
+        }
 
         switch (op){
             case 0:
@@ -71,27 +94,24 @@ public class Main {
                 break;
         }
 
-        //Simular e Tentativas
-        for(int i=0; i < 100000000; i++){
+        //Função para repetir até encontrar uma correspondencia
+        while(!chaveNums.equals(boletimNums) || !chaveStars.equals(boletimStars)){
             simularSorteio1();
             tryCount++;
-            if(chaveNums == boletimNums && chaveStars == boletimStars){
-                System.out.println("Ganhou o primeiro prémio! Tentativas: " + tryCount);
-                return;
-            }
         }
-        System.out.println("***********");
-        System.out.println("Sem Prémio!");
+
+        System.out.println("Ganhou o Euromilhões após " + tryCount + " tentativas.");
+        System.out.println("Chave Vencedora:");
+        System.out.print("Numeros: ");
+        System.out.println(chaveNums);
+        System.out.print("Estrelas: ");
+        System.out.println(chaveStars);
 
     }
 
     //CRIAÇÃO CHAVE ALEATORIA
     private static void criarBoletim2() {
         simularSorteio1();
-
-        /*//LIMPEZA DE ARRAYS
-        boletimNums.clear();
-        boletimStars.clear();*/
 
         int n = rnd.nextInt(1,5);
 
@@ -179,9 +199,11 @@ public class Main {
 
     //CRIAÇAO DE CHAVE MANUAL
     private static void chaveManual() {
-
         int nums = 0;
-        int stars = 0;
+
+        //Limpeza de Array
+        boletimNums.clear();
+        boletimStars.clear();
 
         System.out.println("Quais são os números que quer sortear? (de 1 a 50)");
 
@@ -222,22 +244,35 @@ public class Main {
     //CRIAR BOLETIM MANUAL
     private static void criarBoletim1() {
         simularSorteio1();
+        int tam;
 
         //LIMPEZA DE ARRAYS
         boletimNums.clear();
         boletimStars.clear();
 
-        System.out.println("Quantas chaves vai criar?(De 1 a 5)");
-        int n = in.nextInt();
+        //validaçao inicial para caso o input seja uma string
+        in = new Scanner(System.in);
+        while(true){
+            System.out.println("Quantas chaves vai criar?(De 1 a 5)");
+            String n = in.nextLine();
+            try{
+                tam = Integer.parseInt(n);
+                break;
+            }catch(NumberFormatException e){
+                System.out.println("Insira um valor númerico valido.");
+            }
+        }
 
-        //validaçao
-        while (n < 0 || n > 5) {
+
+        //validaçao de tamanho
+        while (tam < 0 || tam > 5) {
             System.out.println("Valor Inválido. Quantas chaves vai criar?(De 1 a 5)");
-            System.out.println("Nº :");n = in.nextInt();
+            System.out.println("Nº :");
+            tam = in.nextInt();
         }
 
         //criação boletim e comparaçao
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < tam; i++) {
             System.out.println("Chave " + (i + 1) + ":");
             chaveManual();
             compararChave();

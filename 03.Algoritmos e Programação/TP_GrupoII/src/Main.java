@@ -26,15 +26,16 @@ public class Main {
             }
             System.out.println("0- Sair");
 
+            in = new Scanner(System.in);
             //certifica que introduz um numero
             while (true) {
-                System.out.println("Que opção deseja:");
+                System.out.print("Que opção deseja:");
                 String option = in.nextLine();
                 try {
                     op = Integer.parseInt(option);
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.println("Insira um valor numerico valido.");
+                    System.out.println("Insira uma opção válida.");
                 }
             }
 
@@ -67,12 +68,20 @@ public class Main {
 
     }
 
+    //GUARDAR FICHEIRO
     private static void saveFile() {
+        //caso o array estiver vazio, não pode escrever no ficheiro
+        if (ouvintes.isEmpty()) {
+            System.out.println("Erro. Insira ouvintes antes de proceder à gravação.");
+            return;
+        }
+
+        in = new Scanner(System.in);
         String texto = "";
         //Adiciona cada linha de texto à String
-        texto += "Nome Jogador | Nº JOGOS | Nº VITORIAS \n";
+        texto += "JOGADOR | JOGOS | VITORIAS \n";
         for (int i = 0; i < ouvintes.size(); i++) {
-            texto += ouvintes.get(i) + "\t" + nrJogos.get(i) + "\t"+vitorias.get(i)+"\n";
+            texto += ouvintes.get(i) + "\t\t" + nrJogos.get(i) + "\t"+vitorias.get(i)+"\n";
         }
 
         //Guarda a String criada no ficheiro .txt
@@ -84,30 +93,49 @@ public class Main {
         }
     }
 
+    //LER FICHEIRO
     private static void readFile() {
         System.out.println("OPÇÃO 5- LER FICHEIRO");
 
-        //Leitura do ficheiro .txt
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("classificacao.txt"));
+        //ve se o txt está vazio
+        try (BufferedReader br = new BufferedReader(new FileReader("classificacao.txt"))) {
+            if (br.readLine() == null) {
+                System.out.println("Erro. Grave dados no ficheiro antes de proceder à leitura. ");
+                return;
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o ficheiro.");
+        }
+
+        //leitura
+        try (BufferedReader br = new BufferedReader(new FileReader("classificacao.txt"))) {
             String linha;
             while ((linha = br.readLine()) != null) {
                 System.out.println(linha);
             }
         } catch (IOException e) {
-            System.out.println("Erro no ficheiro");
+            System.out.println("Erro ao ler o ficheiro.");
+        }
+
+
+        System.out.println("Dados lidos com sucesso");
+
+        //limpeza após a leitura para voltar a ser preenchida com novos dados
+        try {
+            Files.writeString(Path.of("classificacao.txt"), "");
+        } catch (IOException e) {
+            System.out.println("Erro ao apagar conteúdo do ficheiro txt.");
         }
     }
 
+    //JOGAR
     private static void playGame() {
-        //selecionar ouvintes de forma random e sua ordem
-        //jogador mais proximo do valor do peso do saco, ganha
         ArrayList<String> orderPlayers = new ArrayList<>();
         ArrayList<Integer> menorDiff = new ArrayList<>();
-        int bagWeight = rnd.nextInt(4500, 4751);
-        int bet = 0, min = 151;
+        int bagWeight = rnd.nextInt(4500, 4751);//peso do saco definido
+        int min = 151;
+        int bet;
         String winner = "";
-
 
         System.out.println("OPÇÃO 4- JOGO DO SACO");
         int numRandom;
@@ -124,6 +152,12 @@ public class Main {
                     System.out.println("Qual a aposta do(a) " + ouvintes.get(numRandom) + "?");
                     System.out.print("Aposta: (entre 4500 e 4650) ");
                     bet = in.nextInt();
+                    //certifica que não repete o nr neste jogo
+                    while(apostas.contains(bet)){
+                        System.out.println("Aposta já inserida por outro jogador. Insira outra:");
+                        bet = in.nextInt();
+                    }
+                    //certifica que o nr é válido
                     while (bet<4500 || bet >4650){
                         System.out.println("Número fora do campo estimado. Tente novamente:");
                         bet = in.nextInt();
@@ -152,9 +186,10 @@ public class Main {
             }
         //Busca o nome do vencedor e incrementa +1
         vitorias.set(ouvintes.indexOf(winner), vitorias.get(ouvintes.indexOf(winner)) + 1);
-        System.out.println("O vencedor é: " + winner);
+        System.out.println("O vencedor é " + winner + " com uma diferença de " + min);
 
         //Imprime
+        System.out.println("**Classificação Atual**");
         System.out.println("NOME | Nº JOGOS | Nº VITORIAS ");
         for(int i = 0; i < ouvintes.size(); i++){
             System.out.print(ouvintes.get(i)+"\t\t ");
@@ -163,73 +198,92 @@ public class Main {
         }
     }
 
+    //IMPRIME A TABELA
     private static void ranking() {
         System.out.println("OPÇÃO 3 - RANKING");
 
         //Imprime a Classificação
-        System.out.println("NOME | Nº JOGOS | Nº VITORIAS ");
+        System.out.println("Nº | NOME | Nº JOGOS | Nº VITORIAS ");
         for(int i = 0; i < ouvintes.size(); i++){
+            System.out.print(i+1 + "\t");
             System.out.print(ouvintes.get(i)+"\t\t ");
             System.out.print(nrJogos.get(i)+"\t\t ");
             System.out.println(vitorias.get(i));
         }
     }
 
+    //REMOVE JOGADORES
     private static void removePlayer() {
         System.out.println("OPÇÃO 2- REMOVER OUVINTES");
-        //ver validaçao
+        int pos;
+
+        ranking();
         //Operação para remover jogador
-        System.out.println("Que ouvinte deseja remover?");
-        int pos = in.nextInt()-1;
-            if (pos >= 0 && pos < ouvintes.size()) {
-                ouvintes.remove(pos);
-                apostas.remove(pos);
-            }else {
-                System.out.println("Posição Inválida. Tente novamente.");
+        in = new Scanner(System.in);
+        while (true) {
+            System.out.println("Que ouvinte deseja remover?");
+            String num = in.nextLine();
+            try{
+                pos = Integer.parseInt(num);
+                break;
+            }catch (NumberFormatException e) {
+                System.out.println("Insira um valor númerico válido.");
             }
+
+        }
+
+        //Remove jogador na posição desejada
+        if (pos-1  >= 0 && pos-1 < ouvintes.size()) {
+            ouvintes.remove(pos-1);
+            apostas.remove(pos-1);
+            nrJogos.remove(pos-1);
+            vitorias.remove(pos-1);
+        } else {
+            System.out.println("Posição Inválida. Tente novamente.");
+        }
 
         System.out.println("Ouvinte removido com sucesso!");
 
 
     }
 
+    //ADICIONA JOGADORES
     private static void addPlayer() {
-        int n = 0;
-
+        int num = 0;
         System.out.println("OPÇÃO 1- ADICIONAR OUVINTES");
 
         //validaçao
         while (true) {
             System.out.println("Quantos ouvintes deseja adicionar?");
-            String option = in.nextLine();
+            String n = in.nextLine();
             try {
-                n = Integer.parseInt(option);
+                num = Integer.parseInt(n);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Insira um valor numerico valido.");
+                System.out.println("Insira um valor numerico válido.");
             }
         }
-
         //Adicionar Jogador e Criação de Arrays
-        while(ouvintes.size()<n){
+        for(int i = 0; i < num; i++) {
             in = new Scanner(System.in);
             System.out.print("Nome do ouvinte: ");
             String player = in.next();
-                if(!ouvintes.contains(player)) {
-                    ouvintes.add(player);
-                    apostas.add(0);
-                    nrJogos.add(0);
-                    vitorias.add(0);
-                } else{
+            if(!ouvintes.contains(player)) {
+                ouvintes.add(player);
+                apostas.add(0);
+                nrJogos.add(0);
+                vitorias.add(0);
+            } else{
                 System.out.println("Nome já existe. Tente novamente. ");
-                }
+                i--;//para voltar atras
+            }
         }
 
-        if(n>1) {
-            System.out.println("Foram adicionados " + n + " ouvintes à lista");
+        if(num>1) {
+            System.out.println("Foram adicionados " + num + " ouvintes à lista");
         }
-        if(n == 1){
-            System.out.println("Foi adicionado " + n + " ouvinte à lista");
+        if(num == 1){
+            System.out.println("Foi adicionado " + num + " ouvinte à lista");
         }
         Collections.sort(ouvintes);
 

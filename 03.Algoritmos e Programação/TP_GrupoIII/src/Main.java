@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.SQLOutput;
 import java.util.*;
 
 //Grupo III do Trabalho Prático
@@ -21,6 +20,7 @@ public class Main {
     static ArrayList<Integer> be = new ArrayList<>();
     static ArrayList<Integer> outrosPartidos = new ArrayList<>();
     static ArrayList<Integer> totalVotos = new ArrayList<>();
+    static String vencedor;
     public static void main(String[] args) {
 
 
@@ -39,8 +39,19 @@ public class Main {
             }
             System.out.println("0- Sair");
 
-            System.out.print("Selecionar Opção: ");
-            op = in.nextInt();
+            in = new Scanner(System.in);
+            //certifica que introduz um numero
+            while (true) {
+                System.out.print("Que opção deseja:");
+                String option = in.nextLine();
+                try {
+                    op = Integer.parseInt(option);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Insira uma opção válida.");
+                }
+            }
+
             switch (op){
                 case 0:
                     break;
@@ -69,7 +80,7 @@ public class Main {
                     imprimirEmail();
                     break;
                 case 9:
-                    guardarInfo();
+                    gravarFicheiro();
                     break;
             }
 
@@ -77,7 +88,8 @@ public class Main {
 
     }
 
-    private static void guardarInfo() {
+    //ex10
+    private static void gravarFicheiro() {
         System.out.println("OPÇÃO 9 - GRAVAR PARA FICHEIRO");
         String texto = "";
         //preenche o String texto
@@ -108,11 +120,11 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Erro ao gravar ficheiro");
         }
-    }//ficheiro substituir
+    }
 
+    //ex09
     private static void imprimirEmail() {
-        int maximoInvalidos = 0;
-        String email = "";
+        System.out.println("OPÇÃO 8 - IMPRIMIR EMAIL");
 
         ArrayList<Integer> invalidos = new ArrayList<>();
         ArrayList<String> listInvalidos = new ArrayList<>();
@@ -136,25 +148,23 @@ public class Main {
         //Endereço de email do distrito com mais votos inválidos
         for(int i = 0;i<listInvalidos.size();i++){
             String distrito = listInvalidos.get(i);
-            email = distrito.substring(0, 1).toLowerCase() +
-                    distrito.substring(1, 2).toLowerCase() +
-                    distrito.substring(distrito.length() - 2, distrito.length() - 1).toLowerCase() +
-                    distrito.substring(distrito.length() - 1).toLowerCase() + "@ine.pt";
+            String email = ("" + distrito.charAt(0) + distrito.charAt(1) + distrito.charAt(distrito.length() - 2) +
+                    distrito.charAt(distrito.length()-1) + "@ine.pt").toLowerCase();
             System.out.println("Distrito: " + listInvalidos.get(i) + " Email: " + email);
         }
     }
 
+    //ex08
     private static void atualizarDados() {
         System.out.println("OPÇÃO 7- ATUALIZAR DADOS DO DISTRITO");
 
+        in = new Scanner(System.in);
         System.out.println("Que distrito quer fazer a alterar?");
-            in.nextLine();
             String distrito = in.nextLine();
             while(!distritos.contains(distrito)){
                 System.out.println("Distrito não encontrado. Tente Novamente: ");
                 distrito = in.nextLine();
             }
-            System.out.println(distrito);
 
             for(int i = 0; i < distritos.size(); i++){
                 if(Objects.equals(distrito, distritos.get(i))){
@@ -172,9 +182,21 @@ public class Main {
                         System.out.println("10 - Outros");
                     }
 
-                    System.out.print("Opção:");
-                    int option = in.nextInt();
-                    while(option <0 || option >10){
+                    int option;
+                    in = new Scanner(System.in);
+                    //certifica que introduz um numero
+                    while (true) {
+                        System.out.print("Opção:");
+                        String opt = in.nextLine();
+                        try {
+                            option = Integer.parseInt(opt);
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Insira uma opção válida.");
+                        }
+                    }
+
+                    while(option < 0 || option >10){
                         System.out.println("Opção Inválida. Tente novamente: ");
                         option = in.nextInt();
                     }
@@ -186,6 +208,12 @@ public class Main {
                         System.out.println("Número Inválido. Tente novamente: ");
                         novoValor = in.nextInt();
                     }
+
+                    if(inscritos.get(i) < votantes.get(i)){
+                        System.out.println("Número de inscritos inválido.");
+                        return;
+                    }
+
                     if(option == 1) inscritos.set(i, novoValor);
                     if(option == 2) votantes.set(i,novoValor);
                     if(option == 3) nulos.set(i, novoValor);
@@ -200,9 +228,15 @@ public class Main {
                 }
 
             }
-            //volta a fazer as contas para imprimir
-            for (int i = 0; i < distritos.size(); i++){
-                int somaPartidos = nulos.get(i)
+            atualizarValores();
+            imprimirInfo();
+    }
+
+    private static void atualizarValores() {
+        int somaPartidos;
+        for (int i = 0; i < distritos.size(); i++){
+            //soma dos partidos
+            somaPartidos = nulos.get(i)
                     + brancos.get(i)
                     + ad.get(i)
                     + ps.get(i)
@@ -210,39 +244,96 @@ public class Main {
                     + il.get(i)
                     + be.get(i);
 
-                //para saber o numero de votos noutros partidos
-                int outros = votantes.get(i) - somaPartidos;
-                outrosPartidos.add(outros);
-                //total de votantes em cada distrito
-                totalVotos.add(outros + somaPartidos);
+            if(!outrosPartidos.isEmpty()) {
+                somaPartidos += outrosPartidos.get(i);
             }
-        imprimirInfo();
-    }//rever!
 
+
+            //Validaçao
+            if(inscritos.get(i) < somaPartidos) {
+                System.out.println("Número de inscritos inválido.");
+                return;
+            }
+
+            //Altera no array depois de validaçao
+            totalVotos.set(i, somaPartidos);
+            votantes.set(i, somaPartidos);
+        }
+    }
+
+    //ex07
     private static void ordenarDistritos() {
         //Ordenar de forma descrescente do numero de votos no partido que ganhou as eleiçoes
-        System.out.println("OPÇÃO 6- ORDENAR DISTRITOS");
+        System.out.println("OPÇÃO 6- ORDENAR DISTRITOS PELO VENCEDOR");
         ArrayList<String> ordemDistrito = new ArrayList<>(distritos);
-        ArrayList<Integer> ordemAd = new ArrayList<>(ad);
+        ArrayList<Integer> ordemPartido = null;
 
-        //Ordena de forma descrescente os Distritos e os votos da AD
-        for(int i = 0; i < ordemAd.size()-1; i++){
-            for(int j = i+1; j < ordemAd.size(); j++){
-                if(ordemAd.get(i) < ordemAd.get(j)){
+        //Recalcula votos caso houver alteração após atualizar
+        recalcularVotos();
+        System.out.println("Vencedor das eleições: " + vencedor);
+
+        for(int i = 0; i < ordemDistrito.size(); i++) {
+            if(Objects.equals(vencedor, "AD")){
+                ordemPartido = new ArrayList<>(ad);
+            }else if(Objects.equals(vencedor, "PS")){
+                ordemPartido = new ArrayList<>(ps);
+            }else if(Objects.equals(vencedor, "CH")){
+                ordemPartido = new ArrayList<>(ch);
+            }else if(Objects.equals(vencedor, "IL")){
+                ordemPartido = new ArrayList<>(il);
+            }else{
+                ordemPartido = new ArrayList<>(be);
+            }
+        }
+
+        //Ordena de forma descrescente os Distritos e os votos do partido vencedor
+        for(int i = 0; i < ordemPartido.size()-1; i++){
+            for(int j = i+1; j < ordemPartido.size(); j++){
+                if(ordemPartido.get(i) < ordemPartido.get(j)){
                     String temp = ordemDistrito.get(i);
                     ordemDistrito.set(i, ordemDistrito.get(j));
                     ordemDistrito.set(j, temp);
 
-                    int tempAd = ordemAd.get(i);
-                    ordemAd.set(i, ordemAd.get(j));
-                    ordemAd.set(j, tempAd);
+                    int tempAd = ordemPartido.get(i);
+                    ordemPartido.set(i, ordemPartido.get(j));
+                    ordemPartido.set(j, tempAd);
                 }
             }
         }
 
-        System.out.println(ordemDistrito);
+        System.out.println("Ordem Descrescente: ");
+        for(int i = 0; i < ordemPartido.size(); i++) {
+            System.out.println((i+1) + "º - " + ordemDistrito.get(i) + ": " + ordemPartido.get(i) + " Votos");
+        }
     }
 
+    private static void recalcularVotos() {
+        //Recalcula votos para saber o vencedor das eleiçoes
+        int votos1 = 0, votos2 = 0, votos3 = 0, votos4 = 0, votos5 = 0, votos6 = 0, votosTotais = 0;
+        vencedor = " ";
+
+        for (int i = 0; i < votantes.size()-1; i++) {
+            votos1 += ad.get(i);
+            votos2 += ps.get(i);
+            votos3 += ch.get(i);
+            votos4 += il.get(i);
+            votos5 += be.get(i);
+        }
+
+        if (votos1 >= votos2 && votos1 >= votos3 && votos1 >= votos4 && votos1 >= votos5){
+            vencedor = "AD";
+        }else if (votos2 >= votos3 && votos2 >= votos4 && votos2 >= votos5) {
+            vencedor = "PS";
+        }else if (votos3 >= votos4 && votos3 >= votos5) {
+            vencedor = "CH";
+        }else if (votos4 >= votos5) {
+            vencedor = "IL";
+        }else{
+            vencedor = "BE";
+        }
+    }
+
+    //ex06
     private static void distritoPartido() {
         System.out.println("OPÇÃO 5 - DISTRITO E O PARTIDO COM MAIS VOTOS");
         double percAd, percPs, percCh, percIl, percBe;
@@ -286,8 +377,9 @@ public class Main {
         }
     }
 
+    //ex04,ex05
     private static void votosPartido() {
-        System.out.println("OPÇÃO 4- PARTIDO COM MAIS VOTOS");
+        System.out.println("OPÇÃO 4- PARTIDO COM MAIS VOTOS TOTAIS");
         int votos1 = 0, votos2 = 0, votos3 = 0, votos4 = 0, votos5 = 0, votos6 = 0, votosTotais =0;
 
         for (int i = 0; i < votantes.size()-1; i++) {
@@ -296,7 +388,7 @@ public class Main {
             votos3 += ch.get(i);
             votos4 += il.get(i);
             votos5 += be.get(i);
-            votos6 += outrosPartidos.get(i);//averiguar se mantenho para dar quebrar
+            votos6 += outrosPartidos.get(i);
             votosTotais += votantes.get(i);
         }
 
@@ -334,45 +426,37 @@ public class Main {
             System.out.printf("%.2f", percBe);
             System.out.println("%");
         }
-
     }
 
-    private static void totalVotantes() {//rever
-        System.out.println("OPÇÃO 3 - TOTAL DE VOTOS POR DISTRITO");
-        int somaPartidos, outros;
-        String maiorDistrito = "";
+    //ex03
+    private static void totalVotantes() {
+        System.out.println("OPÇÃO 3 - TOTAL DE VOTANTES POR DISTRITO");
+        ArrayList<String> maiorDistritos = new ArrayList<>();
 
+        recalcularVotos();
 
-        //Calculo: Soma partidos + Outros
-        for (int i = 0; i < distritos.size(); i++){
-
-            //soma dos partidos
-            somaPartidos = nulos.get(i)
-                    + brancos.get(i)
-                    + ad.get(i)
-                    + ps.get(i)
-                    + ch.get(i)
-                    + il.get(i)
-                    + be.get(i);
-
-            //para saber o numero de votos noutros partidos
-            outros = votantes.get(i) - somaPartidos;
-            outrosPartidos.add(outros);
-            //total de votantes em cada distrito
-            totalVotos.add(outros + somaPartidos);
+        for (int i = 0; i < totalVotos.size(); i++){
+            System.out.println("Total Votos do distrito de " + distritos.get(i) + ": " + totalVotos.get(i));
         }
 
         //Distrito com mais votos
-        for (int i = 0; i < totalVotos.size()-1; i++){
-            for (int j = 1; j < totalVotos.size(); j++){
-                if(totalVotos.get(i) >= totalVotos.get(j)){
-                    maiorDistrito = distritos.get(i);
-                }
-            }
+        if(totalVotos.get(0) >= totalVotos.get(1) && totalVotos.get(0) >= totalVotos.get(2) && totalVotos.get(0) >= totalVotos.get(3)) {
+            maiorDistritos.add(distritos.get(0));
+        }else if(totalVotos.get(1)>= totalVotos.get(2) && totalVotos.get(1) >= totalVotos.get(3)) {
+            maiorDistritos.add(distritos.get(1));
+        }else if(totalVotos.get(2)>= totalVotos.get(3)) {
+            maiorDistritos.add(distritos.get(2));
+        }else{
+            maiorDistritos.add(distritos.get(3));
         }
-        System.out.println("O distrito com maior número de votos é: " + maiorDistrito);
+
+        System.out.print("O(s) distrito(s) com maior número de votos é/são: ");
+        for(int i = 0;i<maiorDistritos.size();i++) {
+            System.out.println(maiorDistritos.get(i));
+        }
     }
 
+    //ex02
     private static void imprimirInfo() {
         System.out.println("OPÇÃO 2- VIZUALIZAR RESULTADOS");
 
@@ -390,13 +474,18 @@ public class Main {
             ch.get(i),
             il.get(i),
             be.get(i),
-                    (!outrosPartidos.isEmpty() ? outrosPartidos.get(i) : "-"),
-                    (!totalVotos.isEmpty() ? totalVotos.get(i) : "-"));
+            outrosPartidos.get(i),
+            totalVotos.get(i));
         }
 
     }
 
+    //ex01
     private static void lerFicheiro() {
+        System.out.println("OPÇÃO 1- LER FICHEIRO");
+        limpezaArrays();
+        int somaPartidos, outros;
+
         //Leitura do ficheiro .txt
         try {
             List<String> linhas = Files.readAllLines(Path.of("distritos.txt"));
@@ -415,13 +504,63 @@ public class Main {
                         il.add(Integer.parseInt(params[8]));
                         be.add(Integer.parseInt(params[9]));
                     } catch (NumberFormatException e) {
-                        System.out.println("Nota no formato incorreto");
+                        System.out.println("Erro ao ler o ficheiro.");
                     }
                 }
             }
         } catch (IOException e) {
             System.out.println("Erro ao ler ficheiro");
         }
+
+        //Calculo: Soma partidos + Outros
+        for (int i = 0; i < distritos.size(); i++){
+
+            //soma dos partidos
+            somaPartidos = nulos.get(i)
+                    + brancos.get(i)
+                    + ad.get(i)
+                    + ps.get(i)
+                    + ch.get(i)
+                    + il.get(i)
+                    + be.get(i);
+
+            //para saber o numero de votos noutros partidos
+            outros = votantes.get(i) - somaPartidos;
+
+            //Validaçao
+            if(inscritos.get(i) < votantes.get(i)) {
+                System.out.println("Número de inscritos inválido.");
+                return;
+            }
+
+            if(!Objects.equals((outros + somaPartidos), votantes.get(i))) {
+                System.out.println("Total de votos inválido");
+                return;
+            }
+
+            //Adiciona aos arrays
+            outrosPartidos.add(outros);
+            //total de votantes em cada distrito
+            totalVotos.add(outros + somaPartidos);
+        }
+        //para saber vencedor das eleiçoes inicial
+        recalcularVotos();
+
         System.out.println("Dados lidos com sucesso");
+    }
+
+    private static void limpezaArrays() {
+        distritos.clear();
+        inscritos.clear();
+        votantes.clear();
+        nulos.clear();
+        brancos.clear();
+        ad.clear();
+        ps.clear();
+        ch.clear();
+        il.clear();
+        be.clear();
+        outrosPartidos.clear();
+        totalVotos.clear();
     }
 }

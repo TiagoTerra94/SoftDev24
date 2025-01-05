@@ -1,5 +1,0 @@
-Nome Jogador | Nº JOGOS | Nº VITORIAS 
-Joao	3	0
-Ruben	3	0
-Rui	2	0
-Tiago	1	0
