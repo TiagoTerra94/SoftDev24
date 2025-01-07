@@ -1,4 +1,4 @@
-/*const nome = prompt("Nome do Utilizador: ")
+const nome = prompt("Nome do Utilizador: ")
 document.body.innerHTML += `<p>Chamo-me ${nome}</p>`
 document.body.innerHTML += `<p>O ${nome} tem ${nome.length} letras</p>`
 document.body.innerHTML += `<p>A segunda letra do meu nome é: ${nome.charAt(1)}</p>`
@@ -20,15 +20,14 @@ else console.log("NOT numero")//NaN
 
 
 
-let n1 = "5"
+/* let n1 = "5"
 let n2 = 5
 
 if(n1 === n2) console.log("Iguais")
-else console.log("Diferentes")     
+else console.log("Diferentes")      */
 
 // = (atribuir) == comparar valor === comparar valor E Tipo (recomendavel)
 //!= diff de !== diff de tipo
 
-*/
 
 
