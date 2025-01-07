@@ -4,3 +4,8 @@ Introdução à linguagem PHP
 Instalação do Xampp
 Iterações, ciclos, if else
 Formulários e validaçoes
+
+07/01/25
+
+Realização de um formulário
+Implementação de validações
