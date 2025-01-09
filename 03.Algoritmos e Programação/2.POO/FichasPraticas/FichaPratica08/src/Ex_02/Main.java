@@ -7,8 +7,18 @@ public class Main {
         Cao Cocas = new Cao("Cocas", "Bulldog");
         Cao Nicas = new Cao("Nicas", "Yorkshire");
 
-        Dino.setLatido("woof");
+        Nicas.ladrar();
+        Cocas.ladrar();
         Dino.ladrar();
+        System.out.println("------------");
+        Nicas.setLatido("AU AU");
+        Cocas.setLatido("Ruff Ruff");
+        Dino.setLatido("woof");
+
+        Nicas.ladrar();
+        Cocas.ladrar();
+        Dino.ladrar();
+
 
 
     }

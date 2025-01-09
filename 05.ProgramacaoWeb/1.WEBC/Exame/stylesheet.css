@@ -1,0 +1,8 @@
+#row{
+    display: flex;
+}
+
+#col-sm-4 mb-3 mb-sm-0{
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

@@ -5,6 +5,9 @@ public class Main {
 
         Retangulo rect = new Retangulo(10,15);
 
+        System.out.println("Perimetro: " + rect.perimetro());
+
+        System.out.println("Area: " + rect.Area());
 
     }
 }

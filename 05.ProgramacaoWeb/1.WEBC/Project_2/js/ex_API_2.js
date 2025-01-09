@@ -4,10 +4,6 @@ const resultado = document.querySelector("#resultado")
     const addRecipe = (data) => {
         resultado.innerHTML=`
         <h2>${data.name}</h2>
-
-        <p><strong>Cuisine:</strong> ${data.cuisine}</p>
-        <p>
-        <strong>Instructions:</strong> 
             <ul>
             ${data.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
             </ul>
@@ -19,8 +15,7 @@ const resultado = document.querySelector("#resultado")
             <ul>
                 ${data.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
             </ul>
-        </p>
-        <p><strong>Image:</strong> <img src='${data.image}' alt=img ></p>
+        
         `
     }
 
