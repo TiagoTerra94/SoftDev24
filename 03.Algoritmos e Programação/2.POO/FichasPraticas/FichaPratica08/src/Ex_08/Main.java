@@ -3,10 +3,10 @@ package Ex_08;
 public class Main {
     public static void main(String[] args) {
 
-        Aluno Joao = new Aluno("Joao",15,"Informática",15.6);
-        Aluno Rita = new Aluno("Rita",18,"Hotelaria",8.5);
+        Aluno Joao = new Aluno("Joao",15,"Informática",15);
+        Aluno Rita = new Aluno("Rita",18,"Hotelaria",8);
 
-        Joao.Aprovado();
-        Rita.Aprovado();
+        System.out.println(Joao.Aprovacao());
+        System.out.println(Rita.Aprovacao());
     }
 }

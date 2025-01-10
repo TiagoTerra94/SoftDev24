@@ -18,9 +18,8 @@ public class Funcionario {
 
 
     //Metodos de instancia
-   public double aumentarSalario(double percentagem){
+   public void aumentarSalario(double percentagem){
         this.salario = this.salario + (this.salario * (percentagem/100));
-        return this.salario;
    }
 
    public void exibirDados(){

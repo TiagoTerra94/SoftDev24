@@ -7,35 +7,34 @@ public class Produto {
     private int quantidade = 0;
 
     //Metodos construtores
-    public Produto( String nome, double preco, int quantidade) {
+    public Produto( String nome, double preco) {
         this.nome = nome;
         this.preco = preco;
-        this.quantidade = quantidade;
     }
 
     //Metodos de acesso
     public int getQuantidade() {
+
         return quantidade;
     }
 
     //Metodos de instancia
-    public double comprar(int quantidade) {
-        if(quantidade > this.quantidade){
-            System.out.println("Não há stock disponível");
-        }else {
-            System.out.println("Compra efetuada com sucesso.");
-            return this.quantidade += quantidade;
-        }
-        return 0;
+    public void comprar(int quantidade) {
+        this.quantidade += quantidade;
+        System.out.println("Compra efetuada com sucesso. \nQuantidade: " + quantidade + " unidades de " + this.nome);
+
     }
 
-    public double vender(int quantidade){
+    public void vender(int quantidade){
         if(quantidade > this.quantidade){
             System.out.println("Não há stock disponível.");
         }else{
             System.out.println("Venda efetuada com sucesso.");
-        return this.quantidade -= quantidade;
+        this.quantidade -= quantidade;
         }
-        return 0;
+    }
+
+    public void exibirDetalhes(){
+        System.out.println("Produto: " + this.nome + " Preco: " + this.preco + " Stock: " + this.quantidade);
     }
 }

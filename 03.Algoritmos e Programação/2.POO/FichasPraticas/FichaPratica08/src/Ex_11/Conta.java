@@ -2,15 +2,14 @@ package Ex_11;
 
 public class Conta {
     //Atributos de instancia
-    private int numeroconta;
-    private double saldo;
+    private String numeroconta;
+    private double saldo = 0;
     private String titular;
 
 
     //Metodos Construtores
-    public Conta(int numeroconta, double saldo, String titular) {
+    public Conta(String numeroconta, String titular) {
         this.numeroconta = numeroconta;
-        this.saldo = saldo;
         this.titular = titular;
     }
 
@@ -19,13 +18,20 @@ public class Conta {
 
 
     //Métodos de Instancia
-    public void transferir(double valor, Conta destino) {
+    public void transferir(double valor, Conta contaDestino) {//interação entre objetos
+        if(this.saldo >= valor){
+            this.saldo -= valor;
+            contaDestino.saldo += valor; //adiciona o dinheiro ao destinatario. O saldo do objeto é alterado.
+            System.out.println("Transferencia efetuada de " + this.numeroconta + " para " + contaDestino.numeroconta);
+        }else{
+            System.out.println("Saldo insuficiente.");
+        }
 
     }
 
     public void deposito(double valor) {
         this.saldo += valor;
-        System.out.println("Depósito com sucesso!");
+        System.out.println("Depósito na conta nº" + this.numeroconta + " realizado com sucesso!");
     }
 
     public void levantar(double valor) {
@@ -33,7 +39,7 @@ public class Conta {
             this.saldo -= valor;
             System.out.println("Levantamento com sucesso!");
         }else{
-            System.out.println("Saldo insuficiente");
+            System.out.println("Saldo insuficiente!");
         }
     }
 
