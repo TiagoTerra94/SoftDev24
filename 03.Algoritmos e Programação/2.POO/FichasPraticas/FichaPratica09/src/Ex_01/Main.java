@@ -19,7 +19,15 @@ public class Main {
         }
 
 
-        System.out.println(mercedes.consumoCarro(97));
+        System.out.println("O " + mercedes.getMarca() + " gastou " + mercedes.consumoCarro(97) + " L");
+        System.out.println("O " + bmw.getMarca() + " gastou " + bmw.consumoCarro(97) + " L");
+
+        System.out.print("O automóvel que consumiu mais combustivel foi: ");
+        if(mercedes.consumoCarro(97)< bmw.consumoCarro(97)){
+            System.out.println(mercedes.getMarca());
+        } else
+            System.out.println(bmw.getMarca());
+        }
+
 
     }
-}

@@ -20,7 +20,9 @@ public class Carro {
     }
 
     //Metodo de acesso
-
+    public String getMarca() {
+        return marca;
+    }
 
     //Metodo de instancia
     public int idade(){
@@ -85,4 +87,6 @@ public class Carro {
     public double consumoCarro(int distancia){
         return this.consumoL100km * distancia / 100;
     }
+
+
 }
