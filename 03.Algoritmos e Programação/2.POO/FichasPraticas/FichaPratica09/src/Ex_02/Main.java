@@ -32,7 +32,7 @@ public class Main {
         cont3.mostrarSaldo();
 
         cont1.pedirEmprestimo(300);
-        cont2.pedirEmprestimo(10);
+        cont2.pedirEmprestimo(100);
 
         cont1.mostrarSaldo();
         cont2.mostrarSaldo();

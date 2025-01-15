@@ -6,7 +6,6 @@ public class Conta {
     private double saldo = 0;
     private String titular;
     private int anoAbertura = 2023;
-    private double margemEmprestimo = 0.9;
     private double valorDivida = 0;
 
 
@@ -18,7 +17,9 @@ public class Conta {
 
 
     //Metodos de Acesso
-
+    public double getMargemEmprestimo() {
+        return this.saldo * 0.9;
+    }
 
     //Métodos de Instancia
     public void transferir(double valor, Conta contaDestino) {//interação entre objetos
@@ -47,20 +48,18 @@ public class Conta {
     }
 
     public void mostrarSaldo(){
-        System.out.println("Saldo da conta nº" + this.numeroconta + ": " + this.saldo + " EUR");
+        System.out.println("Saldo da conta nº" + this.numeroconta + ": " + this.saldo + " EUR | Margem de Empréstimo: " + this.getMargemEmprestimo());
     }
 
-    public boolean pedirEmprestimo(double valor){
+    public boolean pedirEmprestimo(double valorPedir){
 
-        if(this.valorDivida != 0){
-            System.out.println("Já efetuou um empréstimo.");
-            return false;
-        }else if (valor > (margemEmprestimo * this.saldo)){
-            System.out.println("O valor ultrapassa o limite permitido");
+        if(this.valorDivida != 0 || valorPedir > (this.getMargemEmprestimo())){
+            System.out.println("Não foi possível efetuar a operação.");
             return false;
         }else{
-            this.saldo += valor;
-            this.valorDivida = valor;
+            System.out.println("Empréstimo efetuado com sucesso.");
+            this.saldo += valorPedir;
+            this.valorDivida = valorPedir;
             return true;
         }
 

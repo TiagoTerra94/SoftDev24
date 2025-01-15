@@ -6,8 +6,8 @@ public class Animal {
     private String nome;
     private String especie;
     private String paisOrigem;
-    private int peso;
-    private String[] Alimentacao;
+    private double peso;
+    private String[] alimentacao;
 
 
     //Metodo Construtor
@@ -17,31 +17,31 @@ public class Animal {
         this.especie = especie;
         this.paisOrigem = paisOrigem;
         this.peso = peso;
-        Alimentacao = alimentacao;
+        this.alimentacao = alimentacao;
     }
 
 
     //Metodo de acesso(getter setter)
 
     //Metodo de instancia
-    public void comerAlimento(String alimento, int peso) {
+    public boolean comerAlimento(String alimento, double peso) {
 
-        for (int i = 0; i < this.Alimentacao.length; i++) {
+        for (int i = 0; i < this.alimentacao.length; i++) {
 
-            if (Objects.equals(alimento, Alimentacao[i])) {
-                this.peso += peso;
+            if (Objects.equals(alimento, this.alimentacao[i])) {
+                this.peso += peso/1000;
                 System.out.println("O animal comeu: " + alimento);
-                return;
+                return true;
             }
         }
-
-        if(!Objects.equals(alimento, Alimentacao)){
+        //Só executa se o alimento nao estiver no array
             System.out.println("O animal recusou: " + alimento);
-        }
+            return false;
+
     }
 
     public void exibirDetalhes(){
-            System.out.println("Nome: " + this.nome + " | Espécie: " + this.especie + " | Novo Peso: " + this.peso + " KG");
+            System.out.println("Nome: " + this.nome + " | Espécie: " + this.especie + " | País: " +this.paisOrigem + " | Novo Peso: " + this.peso + " KG");
 
     }
 
