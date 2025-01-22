@@ -5,6 +5,12 @@ public class Peixe {
     private double peso;
     private double precoKg;
 
+    /**
+     * Metodo construtor do <b>Peixe</b>
+     * @param especie
+     * @param peso
+     * @param precoKg
+     */
     public Peixe(String especie, double peso, double precoKg) {
         this.especie = especie;
         this.peso = peso;
@@ -18,5 +24,13 @@ public class Peixe {
 
     public double getPrecoKg() {
         return precoKg;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void exibirDetalhes(){
+        System.out.println(this.especie + " | Peso: " + this.getPeso() + " | Preco(Kg): " + this.getPrecoKg() + "€");
     }
 }

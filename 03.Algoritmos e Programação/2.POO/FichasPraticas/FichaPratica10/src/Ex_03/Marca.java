@@ -1,5 +1,5 @@
 package Ex_03;
 
 public enum Marca {
-    Bentz, Devlind, Mazury, Quicksilver, Saver, Smartilner, Voraz, Woolridge
+    BENTZ, DEVLIND, MAZURY, QUICKSILVER, SAVER, SMARTILNER, VORAZ, WOOLRIDGE
 }
