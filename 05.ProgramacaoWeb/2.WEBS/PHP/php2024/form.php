@@ -301,6 +301,7 @@ if (file_exists($jsonFile)) {
                 <th>Data de Nascimento</th>
                 <th>Foto</th>
             </tr>
+
             <?php
 
             foreach ($data as $key => $user) {
