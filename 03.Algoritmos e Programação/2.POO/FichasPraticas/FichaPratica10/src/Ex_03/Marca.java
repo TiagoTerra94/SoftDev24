@@ -1,0 +1,5 @@
+package Ex_03;
+
+public enum Marca {
+    BENTZ, DEVLIND, MAZURY, QUICKSILVER, SAVER, SMARTILNER, VORAZ, WOOLRIDGE
+}

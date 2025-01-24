@@ -1,0 +1,179 @@
+--------PROGRAMAÇÃO EM SQL. . . . HELPER.SQL . . . -------
+
+----- Criar base de dados
+CREATE DATABASE name_DB;
+
+----- Eliminar
+DROP DATABASE name_DB; 
+
+---------------------------------------------
+----- Usar base de dados
+use nome_DB;
+
+---------------------------------------------
+
+----- Criar uma tabela
+CREATE TABLE name(
+
+
+);
+
+DROP TABLE name_table;
+
+---------------------------------------------
+
+----- Para pôr a PK
+CONSTRAINT PK_name PRIMARY KEY(atribute); 
+
+---------------------------------------------
+
+----- Para colocar o campo na tabela
+atributo type 
+
+int
+smallInt
+bigInt
+text
+varchar()
+time
+
+*double
+*float
+
+*evitar usar estes dois
+
+---------------------------------------------
+----- Para abrir tabela
+SELECT * FROM table_name; 
+
+---------------------------------------------
+
+**(Criar primeiro, sempre, tabelas que não tem FK)**
+
+---------------------------------------------
+
+**Quando a cardinalidade é de pelo menos 1:N, precisamos de aplicar o NOT NULL ao campo**
+
+---------------------------------------------
+
+----- Associar PK e FK, já existentes na tabela
+PRIMARY KEY(numero),
+FOREIGN KEY(tipo)
+
+---------------------------------------------
+
+----- Para aplicar FK(idtipo) e ligar a PK(id) de outra tabela
+FOREIGN KEY(idTipo) REFERENCES TipoMaquina(id) 
+
+---------------------------------------------
+
+----- Para colocar default
+dataHora dateTime DEFAULT NOW(), 
+
+---------------------------------------------
+
+----- Constraints serve para melhor manipulação CONSTRAINT
+CONSTRAINT PK_SERVICO PRIMARY KEY(codFatura),
+CONSTRAINT FK_SERVICO_NUMMAQUINA FOREIGN KEY(numMaquina) REFERENCES Maquina(numero) 
+
+---------------------------------------------
+----- Alterar tipo campo ALTER
+ALTER TABLE Utilizador
+MODIFY COLUMN password VARCHAR(50)
+
+----- Alterar nome do campo
+ALTER TABLE Utilizador
+CHANGE COLUMN password passwordOnly VARCHAR(50)
+
+----- Adicionar campo
+ALTER TABLE Cliente
+ADD dataNascimento DATE
+
+----- Eliminar campo
+ALTER TABLE Client
+DROP DOWN dataNascimento 
+
+----- Para aplicar PK
+ALTER TABLE Utilizador
+ADD CONSTRAINT PK_Utilizador PRIMARY KEY (idUtilizador)
+
+----- Elimina PK
+ALTER TABLE Utilizador
+DROP PRIMARY KEY 
+
+----- Para aplicar FK
+ALTER TABLE Utilizador
+ADD CONSTRAINT FK_Utilizador_TIPO FORGEIGN KEY (tipo) REFERENCES TipoUtilizador (idTipo) 
+
+---------------------------------------------
+
+----- inserir valores num campo, podemos inserir vários ao mesmo tempo INSERT INTO
+INSERT INTO Table_Name (field)
+VALUES ('value'); 
+
+INSERTO INTO Table_Name (field1, field2, field3)
+VALUES ("value1","value2",null);
+
+----- Atualiza dados onde(WHERE) o field é igual a 1 UPDATE
+UPDATE Table_Name
+SET field = "value", field = "value" WHERE field = 1; 
+
+----- Eliminar dados onde o field é igual a 1 DELETE
+DELETE FROM Table_Name WHERE field = '1';
+
+----- Eliminar TODOS os dados
+DELETE * FROM Table_Name;
+
+--------------------------------------------
+
+----- Escolher tabela e coluna para pesquisar SELECT FROM
+SELECT * FROM Table_Name;
+SELECT field1,field2 FROM Table_Name WHERE field = 1:
+
+SELECT field FROM Table_Name WHERE field<650;
+
+-------------------------------------------
+
+//Valor incluso BETWEEN
+SELECT * FROM TABLE_NAME WHERE field BETWEEN 10 AND 15;
+
+//Valo não incluso
+WHERE dataUltimaManut > '2025-01-01' AND dataUltimaManut > '2025-01-31' -> 
+
+//Busca o texto SELECT WHERE
+SELECT 
+* 
+FROM `tipomaquina`
+WHERE nome LIKE "lava%" 
+
+//Busca texto e numero de caracteres a seguir
+-- WHERE nome LIKE "lav_" (1 caracter)
+
+--------------------------------------------
+
+//Para Ordenar por field ORDER BY
+ORDER BY field1, field2
+
+//is (not) null
+SELECT * FROM `maquina` 
+where dataUltimaManut is null
+ORDER BY dataUltimaManut DESC;
+
+-------------------------------------------
+
+WHERE `dataUltimaManut` <= DATE_SUB(NOW(), INTERVAL 30 DAY)
+
+-------------------------------------------
+
+//Para fazer Count das linhas
+SELECT 
+COUNT(*) 
+FROM `maquina`
+
+-------------------------------------------
+
+SELECT concat( format(AVG(valor), 2), '€') 
+FROM serviço
+
+//Retorna apenas os valores distintos
+SELECT DISTINCT field FROM table_name
