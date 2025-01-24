@@ -169,3 +169,11 @@ WHERE `dataUltimaManut` <= DATE_SUB(NOW(), INTERVAL 30 DAY)
 SELECT 
 COUNT(*) 
 FROM `maquina`
+
+-------------------------------------------
+
+SELECT concat( format(AVG(valor), 2), '€') 
+FROM serviço
+
+//Retorna apenas os valores distintos
+SELECT DISTINCT field FROM table_name
