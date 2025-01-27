@@ -1,0 +1,95 @@
+=>Criar Projeto PHP:
+
+	-composer create-project Laravel/Laravel ServerSideSD
+	**Configurar .env**
+
+				||
+			       \  /
+				\/
+
+	-php artisan migrate **Cria estrutura em tabelas para BD**
+
+				||
+			       \  /
+				\/
+
+	-php artisan serve **Abre o servidor**
+
+
+=>Criar Route: 
+
+**Uma route é a rota/caminho (URL) onde o utilizador navega, cada rota tem o seu nome(/home, /about, /form), encontra-se em /routes/**
+
+**Para ver rotas - php artisan route:list
+
+		- Route::get('/hello_world', function(){
+			return "<h1>Hello World</h1>"		
+		});
+
+
+		- Route::get('/hello_world/{$id}', function($id){
+			return "<h1>Hello World</h1>".$id;		
+		});
+
+		- Route::get('/hello_world/{$id}', function($id){
+			return "<h1>Hello World</h1>".$id;		
+		});->name('hello')
+
+
+				||
+			       \  /
+				\/
+
+
+=>Criar a View
+
+**A view é basicamente a parte estética, essencial para o utilizador interagir. Encontra-se na pasta /resources/views. Podemos depois embelezar a pagina e a mesma tem que ter o mesmo nome que a route para funcionar
+
+**Pode ser em extensão .php ou blade.php**
+
+
+=> Criar Layout Page
+
+**Muitas páginas repetem código, desnecessariamente, então cria-se um layout page. Uma página única que pode ser simplesmente enviada para as outras pages. Aplica-se na pasta resources/components/*layout.blade.php**
+
+	->no ficheiro layout:
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+    		<meta charset="UTF-8">
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    		<title>Home Page</title>
+	</head>
+	<body>
+    		<nav>
+        		<a href="/home">Home</a>
+        		<a href="/about">About</a>
+        		<a href="/contact">Contact</a>
+    		</nav>
+
+    	{{ $slot }}
+	</body>
+	</html>
+
+				||
+			       \  /
+				\/
+			
+
+
+	->No ficheiro blade normal:
+	<x-layout>
+		**CÓDIGO QUE NÃO ESTÁ NO LAYOUT**
+	</x-layout>
+
+
+
+
+
+		
+
+
+
+
+
