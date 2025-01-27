@@ -111,7 +111,7 @@ ADD CONSTRAINT FK_Utilizador_TIPO FORGEIGN KEY (tipo) REFERENCES TipoUtilizador 
 INSERT INTO Table_Name (field)
 VALUES ('value'); 
 
-INSERTO INTO Table_Name (field1, field2, field3)
+INSERT INTO Table_Name (field1, field2, field3)
 VALUES ("value1","value2",null);
 
 ----- Atualiza dados onde(WHERE) o field é igual a 1 UPDATE
@@ -134,27 +134,27 @@ SELECT field FROM Table_Name WHERE field<650;
 
 -------------------------------------------
 
-//Valor incluso BETWEEN
+----- Valor incluso BETWEEN
 SELECT * FROM TABLE_NAME WHERE field BETWEEN 10 AND 15;
 
-//Valo não incluso
+----- Valor não incluso
 WHERE dataUltimaManut > '2025-01-01' AND dataUltimaManut > '2025-01-31' -> 
 
-//Busca o texto SELECT WHERE
+----- Busca o texto SELECT WHERE
 SELECT 
 * 
 FROM `tipomaquina`
 WHERE nome LIKE "lava%" 
 
-//Busca texto e numero de caracteres a seguir
+----- Busca texto e numero de caracteres a seguir
 -- WHERE nome LIKE "lav_" (1 caracter)
 
 --------------------------------------------
 
-//Para Ordenar por field ORDER BY
+----- Para Ordenar por field ORDER BY
 ORDER BY field1, field2
 
-//is (not) null
+----- is (not) null
 SELECT * FROM `maquina` 
 where dataUltimaManut is null
 ORDER BY dataUltimaManut DESC;
@@ -165,7 +165,7 @@ WHERE `dataUltimaManut` <= DATE_SUB(NOW(), INTERVAL 30 DAY)
 
 -------------------------------------------
 
-//Para fazer Count das linhas
+----- Para fazer Count das linhas
 SELECT 
 COUNT(*) 
 FROM `maquina`
@@ -175,5 +175,17 @@ FROM `maquina`
 SELECT concat( format(AVG(valor), 2), '€') 
 FROM serviço
 
-//Retorna apenas os valores distintos
+----- Retorna apenas os valores distintos
 SELECT DISTINCT field FROM table_name
+
+-------------------------------------------
+
+----- Fazer Join
+SELECT 
+* 
+FROM servico, maquina, tipomaquina
+WHERE 
+maquina.idTipo = tipomaquina.id 
+AND 
+servico.numMaquina = maquina.numero
+

@@ -1,0 +1,29 @@
+/*Retorna o nome e cidade da secção nº 70
+SELECT s.nome, s.cidade
+from seccao s 
+WHERE s.numSec=70;*/
+
+/*Retorna as linhas ONDE a comissão é maior que o salário
+select e.posto, e.salario, e.comissao
+from empregado e
+where e.COMISSAO > e.salario*/
+
+/*Retorna o nome da secção que estejam na cidade PORTO
+select s.nome
+from seccao s
+where s.cidade like 'Porto'*/
+
+/*Retorna os empregados que tenham o salário maior/igual que 20*Comissao OU salario igual a 2000
+select e.nome, e.salario, e.comissao
+from empregado e
+where e.salario>=20*e.comissao or e.salario=2000*/
+
+/*Retorna os diferentes postos existentes
+select distinct e.posto
+from empregado e */
+
+/*Retorna empregados que nao estejam na secçao 70
+select e.nome, e.posto, e.salario
+from empregado e
+where e.seccao!=70
+order by e.posto, e.salario desc*/
