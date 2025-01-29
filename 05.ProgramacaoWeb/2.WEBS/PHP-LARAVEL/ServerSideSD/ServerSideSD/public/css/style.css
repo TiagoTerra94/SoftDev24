@@ -1,0 +1,38 @@
+body{
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+}
+
+.container{
+    background-color: #ffffffa2;
+    border-radius: 5px;
+    width: 50%;
+    padding: 15px;
+}
+
+nav{
+    background-color: #c4c4c4;
+    border-color: black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 60px;
+}
+
+h1,h2,h3,h5{
+    padding: 5px;
+    margin: 5px;
+}
+
+li{
+    padding: 5px;
+
+}
+
+img{
+    width: 10%;
+    margin: 1rem;
+}
+
+form{
+    padding: 10px;
+}
