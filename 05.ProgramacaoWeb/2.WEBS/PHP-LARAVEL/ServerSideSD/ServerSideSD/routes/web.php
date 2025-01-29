@@ -50,12 +50,27 @@ Route::get('/add-task', [TaskController::class, 'addTask'])->name('tasks.add');
 //Página para fazer POST para o server das Tasks
 Route::post('/create-task', [TaskController::class, 'createTask'])->name('tasks.create');
 
+//Remover utilizador (to do)
 Route::get('/remove-user', [UserController::class, 'removeUser'])->name('users.remove');
 
+//Página de tasks
 Route::get('/tasks', [TaskController::class, 'showTasks'])->name('tasks');
 
+//Página para inserir utilizador
 Route::get('/insert-user', [UserController::class, 'inserirUserIntoDB'])->name('users.insert');
 
+//Página de prendas
 Route::get('/gifts', [GiftsController::class, 'showGifts'])->name('gifts');
 
+//Página para ver gifts separadamente
+Route::get('/tasks/{id}', [GiftsController::class, 'viewGift'])->name('gifts.view');
+
+//Página para deletar gifts
+Route::get('delete-gift/{id}', [GiftsController::class, 'deleteGift'])->name('gifts.delete');
+
+//Página para adicionar gifts
+Route::get('/add-gifts', [GiftsController::class, 'addGifts'])->name('gifts.add');
+
+//Página para fazer POST para o server das Tasks
+Route::post('/create-gift', [GiftsController::class, 'createGift'])->name('gifts.create');
 
