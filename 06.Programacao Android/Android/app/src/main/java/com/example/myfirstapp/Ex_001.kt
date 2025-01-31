@@ -7,8 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myfirstapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-
+class Ex_001 : AppCompatActivity() {
     private val binding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
     }
