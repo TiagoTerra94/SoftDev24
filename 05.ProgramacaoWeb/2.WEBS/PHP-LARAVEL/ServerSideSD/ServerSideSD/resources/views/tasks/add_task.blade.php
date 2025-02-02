@@ -35,5 +35,6 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <br>
     <h5><a href="{{route('home')}}">Voltar</a></h5>
 @endsection

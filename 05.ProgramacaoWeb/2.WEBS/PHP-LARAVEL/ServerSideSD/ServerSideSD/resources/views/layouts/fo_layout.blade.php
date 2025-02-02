@@ -12,44 +12,56 @@
 <body>
     <nav id="nav" class="navbar navbar-expand-lg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">BD XPTO</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.show') }}">All Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.add')}}">Add Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('users.remove')}}">Remove Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('tasks')}}">Tasks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('tasks.add')}}">Add Tasks</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('gifts')}}">Gifts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('gifts.add')}}">Gifts Add</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            <a class="navbar-brand" href="#">BD XPTO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                    </li>
+
+                    <!-- Dropdown para Users -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Users
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+                            <li><a class="dropdown-item" href="{{ route('users.show') }}">All Users</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.add') }}">Add Users</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dropdown para Tasks -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tasksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tasks
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tasksDropdown">
+                            <li><a class="dropdown-item" href="{{ route('tasks') }}">Tasks</a></li>
+                            <li><a class="dropdown-item" href="{{ route('tasks.add') }}">Add Tasks</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dropdown para Gifts -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="giftsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gifts
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="giftsDropdown">
+                            <li><a class="dropdown-item" href="{{ route('gifts') }}">Gifts</a></li>
+                            <li><a class="dropdown-item" href="{{ route('gifts.add') }}">Gifts Add</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
         </div>
-      </nav>
+    </nav>
+
 
       <div class="container">
 
@@ -57,7 +69,6 @@
 
         </div>
       <!--ScriptJs-->
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

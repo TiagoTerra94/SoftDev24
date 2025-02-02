@@ -6,7 +6,7 @@
 </div>
 @endif
 
-<h5>Tasks List:</h5>
+<h1>Tasks List</h1>
 <table class="table">
     <thead>
       <tr>
@@ -21,22 +21,16 @@
     <tbody>
         @foreach ($allTasksDB as $allTask)
         <tr>
-        <th scope="row">{{$allTask->id}}</th>
+            <td>{{$allTask->id}}</td>
             <td>{{$allTask->name}}</td>
             <td>{{$allTask->user_id}}</td>
             <td>{{$allTask->user_name}}</td>
-            <td><a class="btn btn-info" href="{{route('tasks.view', $allTask->id)}}">More</a></td>
+            <td><a class="btn btn-info" href="{{route('tasks.view', $allTask->id)}}">View</a></td>
             <td><a class="btn btn-danger" href="{{route('tasks.delete', $allTask->id)}}">Delete</a></td>
         </tr>
         @endforeach
     </tbody>
   </table>
-
-<h5>Available Tasks:</h5>
-<ul>
-    @foreach ($availableTasks as $availabletask)
-    <li>{{$availabletask}}</li>
-    @endforeach
-</ul>
-
+  <br>
+  <h5><a href="{{route('home')}}">Voltar</a></h5>
 @endsection

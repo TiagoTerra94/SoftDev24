@@ -2,8 +2,24 @@
 
 @section('content')
 <h4>Gift Info: </h4>
-<h6>Name: {{$gift->name}}</h6>
-<h6>Predicted Value: {{$gift->valor_previsto}}</h6>
-<h6>Spent Value: {{$gift->valor_gasto}}</h6>
-<h6>To: {{$gift->username}}</h6>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Gift Name</th>
+        <th scope="col">Predicted Value</th>
+        <th scope="col">Spent Value</th>
+        <th scope="col">To</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{$gift->name}}</td>
+            <td>{{$gift->valor_previsto}}</td>
+            <td>{{$gift->valor_gasto}}</td>
+            <td>{{$gift->username}}</td>
+            <td><a class="btn btn-info" href="{{route('gifts.edit', $gift->id)}}">Edit</a></td>
+        </tr>
+    </tbody>
+  </table>
 @endsection

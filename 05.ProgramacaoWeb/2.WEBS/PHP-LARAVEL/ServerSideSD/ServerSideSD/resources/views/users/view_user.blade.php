@@ -2,7 +2,22 @@
 
 @section('content')
 <h4>User Info: </h4>
-<h6>Name: {{$user->name}}</h6>
-<h6>Address: {{$user->address}}</h6>
-<h6>Nif:  {{$user->nif}}</h6>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Nif</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{$user->name}}</td>
+            <td>{{$user->address}}</td>
+            <td>{{$user->nif}}</td>
+        </tr>
+    </tbody>
+  </table>
 @endsection

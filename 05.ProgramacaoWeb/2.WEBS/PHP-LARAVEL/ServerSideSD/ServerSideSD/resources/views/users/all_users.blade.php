@@ -27,10 +27,10 @@
 
             @foreach ($allUsers as $user)
             <tr>
-            <th scope="row">{{$user->id}}</th>
+                <td>{{$user->id}}</ts>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td><a class="btn btn-info" href="{{route('users.view', $user->id)}}">More</a></td>
+                <td><a class="btn btn-info" href="{{route('users.view', $user->id)}}">View</a></td>
                 <td><a class="btn btn-danger" href="{{route('users.delete', $user->id)}}">Delete</a></td>
             </tr>
             @endforeach
@@ -38,5 +38,6 @@
 
         </tbody>
       </table>
+      <br>
     <h5><a href="{{route('home')}}">Voltar</a></h5>
 @endsection
