@@ -101,7 +101,7 @@ class GiftsController extends Controller
             'users_id'=>$request->users_id,
         ]);
 
-        return redirect()->route('gifts')->with('message', 'Gift atualizado com sucesso!');
+        return redirect()->route('gifts')->with('message', 'Gift updated with success!');
     }
 
 }
