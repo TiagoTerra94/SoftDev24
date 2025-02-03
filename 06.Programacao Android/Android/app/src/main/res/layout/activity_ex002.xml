@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ex_002">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conversor de Moeda"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/edit_valor_euros"
+        android:hint="Insira o valor em Euros"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp">
+    </EditText>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        >
+
+        <Button
+            android:id="@+id/button_converter_dolar"
+            android:text="DOLAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+        <Button
+            android:id="@+id/button_converter_real"
+            android:text="REAL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp">
+        </Button>
+        <Button
+            android:id="@+id/button_converter_peso"
+            android:text="PESO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultado_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Resultado"
+        android:gravity="center"
+        android:textSize="30sp">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Desenvolvido por Tiago"
+        android:gravity="center"
+        android:textSize="30sp">
+    </TextView>
+
+
+</LinearLayout>

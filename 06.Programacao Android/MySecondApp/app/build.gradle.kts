@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myfirstapp"
-    compileSdk = 34
+    namespace = "com.example.mysecondapp"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.myfirstapp"
+        applicationId = "com.example.mysecondapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -34,11 +34,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    /**
-     * Dependencias para funcionalidades extras para Android
-     */
     buildFeatures{
-        viewBinding = true;
+        viewBinding = true
     }
 }
 
