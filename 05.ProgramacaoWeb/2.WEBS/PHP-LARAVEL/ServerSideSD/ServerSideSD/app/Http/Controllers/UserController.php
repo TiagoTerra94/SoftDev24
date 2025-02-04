@@ -19,13 +19,20 @@ class UserController extends Controller
         //Update values on DB
         //$this->updateUserAtDB();
 
+        /**Pesquisa quando existe campo preenchido */
+        /*if($request()->query('search')){
+            $search = request()->query('search');
+        }else{
+            $search=null;
+        }*/
+        /**Operação ternaria */
+        $search = request()->query('search')? request()->query('search') :null;
         //Print all users
-        $allUsers = $this -> getAllUsersFromDB();
+        $allUsers = $this -> getAllUsersFromDB($search);
 
 
         //debug para saber se tem dados
         //dd($allUsers);
-
 
         return view('users.all_users', compact('cesaeInfo', 'allContacts', 'allUsers'));
     }
@@ -76,9 +83,17 @@ class UserController extends Controller
 
     }
 
-    protected function getAllUsersFromDB(){
-        $users = DB::table('users')
-                ->get();
+    protected function getAllUsersFromDB($search){
+
+        $users = DB::table('users');
+
+        if($search){
+            //dd($search);
+            $users = $users->where('name','LIKE',"%{$search}%")
+            ->orWhere('email', $search);
+        }
+
+        $users=$users->get();
 
         return $users;
     }
@@ -106,6 +121,25 @@ class UserController extends Controller
     public function createUser(Request $request){
         //dd($request->all());
 
+        /**Update User */
+        if(isset($request->id)){
+
+            $request->validate([
+                'name'=> 'required|string|min:3',
+                'address'=>'max:100',
+                'nif'=>'max:15'
+            ]);
+
+            User::where('id', $request->id )
+            ->update([
+                'name' => $request->name,
+                'address' =>$request->address,
+                'nif' =>$request->nif
+            ]);
+
+            return redirect()->route('users.show')->with('message','User has been updated with success!');
+        }else{
+
         $request->validate([
             'name'=> 'required|string|min:3|max:10',
             'email'=>'required|email|unique:users',
@@ -115,9 +149,10 @@ class UserController extends Controller
         User::insert([
             'name'=> $request->name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->password),
+            'password'=>Hash::make($request->password)
         ]);
 
         return redirect()->route('users.show')->with('message','User has been added with success!');
+    }
     }
 }

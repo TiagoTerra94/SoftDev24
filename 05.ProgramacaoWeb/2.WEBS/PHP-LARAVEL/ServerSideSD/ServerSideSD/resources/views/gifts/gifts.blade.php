@@ -33,5 +33,5 @@
     </tbody>
   </table>
   <br>
-    <h5><a href="{{route('home')}}">Voltar</a></h5>
+  <h5><a class="btn btn-secondary" href="{{route('home')}}">Voltar</a></h5>
 @endsection

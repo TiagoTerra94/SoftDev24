@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GiftsController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,7 +24,7 @@ Route::get('/users/{id}', [UserController::class, 'viewUser'])->name('users.view
 Route::get('/delete-user/{id}', [UserController::class, 'deleteUser'])->name('users.delete');
 
 //Página para ver tasks separadamente
-Route::get('/tasks/{id}', [TaskController::class, 'viewTask'])->name('tasks.view');
+Route::get('/tasks/{id}', [TaskController::class, 'viewTask'])->name('tasks.view')->middleware('auth');
 
 //Página para deletar task
 Route::get('delete-task/{id}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
@@ -45,13 +46,13 @@ Route::get('/add-user', [UserController::class, 'addUsers'])->name('users.add');
 Route::post('/create-user', [UserController::class, 'createUser'])->name('users.create');
 
 //Página para adicionar tasks
-Route::get('/add-task', [TaskController::class, 'addTask'])->name('tasks.add');
+Route::get('/add-task', [TaskController::class, 'addTask'])->name('tasks.add')->middleware('auth');
 
 //Página para fazer POST para o server das Tasks
-Route::post('/create-task', [TaskController::class, 'createTask'])->name('tasks.create');
+Route::post('/create-task', [TaskController::class, 'createTask'])->name('tasks.create')->middleware('auth');
 
 //Página de tasks
-Route::get('/tasks', [TaskController::class, 'showTasks'])->name('tasks');
+Route::get('/tasks', [TaskController::class, 'showTasks'])->name('tasks')->middleware('auth');
 
 //Página para inserir utilizador
 Route::get('/insert-user', [UserController::class, 'inserirUserIntoDB'])->name('users.insert');
@@ -76,4 +77,7 @@ Route::get('/edit-gift/{id}', [GiftsController::class, 'editGift'])->name('gifts
 
 //Página para fazer update para o server das gifts
 Route::put('/edit-gift/{id}/update', [GiftsController::class, 'updateGift'])->name('gifts.update');
+
+//Página para o dashboard
+Route::get('/dashboard', [DashboardController::class, 'viewDashboard'])->name('dashboard')->middleware('auth');
 

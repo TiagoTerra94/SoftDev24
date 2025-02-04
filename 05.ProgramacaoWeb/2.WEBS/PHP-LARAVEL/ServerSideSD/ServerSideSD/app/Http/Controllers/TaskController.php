@@ -10,8 +10,9 @@ class TaskController extends Controller
 {
     public function showTasks(){
 
+        $search = request()->query('search')? request()->query('search') :null;
         $allTasks = $this -> getTasksInfo();
-        $allTasksDB = $this ->getAllTasks();
+        $allTasksDB = $this ->getAllTasks($search);
         $availableTasks = $this ->getAvailableTasks();
 
         //dd($allTasksDB);
@@ -40,9 +41,15 @@ class TaskController extends Controller
         return $availableTasks;
     }
 
-    public function getAllTasks(){
-        $allTasks = DB::table('tasks')
-            ->join ('users', 'users.id', '=', 'tasks.user_id' )
+    public function getAllTasks($search){
+        $allTasks = DB::table('tasks');
+
+        if($search){
+            //dd($search);
+            $allTasks = $allTasks->where('tasks.name','LIKE',"%{$search}%");
+        }
+
+        $allTasks=$allTasks->join ('users', 'users.id', '=', 'tasks.user_id' )
             ->select('tasks.*', 'tasks.id','users.name as user_name')
             ->get();
 

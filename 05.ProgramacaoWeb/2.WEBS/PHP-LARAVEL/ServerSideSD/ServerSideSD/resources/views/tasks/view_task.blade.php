@@ -19,4 +19,5 @@
         </tr>
     </tbody>
   </table>
+  <h5><a class="btn btn-secondary" href="{{route('home')}}">Voltar</a></h5>
 @endsection

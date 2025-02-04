@@ -1,43 +1,57 @@
 @extends('layouts.fo_layout')
 @section('content')
-
-@if (session('message'))
-<div class="alert alert-sucess" style="text-success">
-    {{ session('message') }}
-</div>
-@endif
+    @if (session('message'))
+        <div class="alert alert-sucess" style="text-success">
+            {{ session('message') }}
+        </div>
+    @endif
 
     <h1>All Users</h1>
     <hr>
-    <h6>{{$cesaeInfo['name']}}</h6>
-    <h6>{{$cesaeInfo['address']}}</h6>
-    <h6>{{$cesaeInfo['email']}}</h6>
+    <h6>{{ $cesaeInfo['name'] }}</h6>
+    <h6>{{ $cesaeInfo['address'] }}</h6>
+    <h6>{{ $cesaeInfo['email'] }}</h6>
     <hr>
+
+    <form action="">
+        <input type="text" id="" name="search">
+        <button type="submit" class="btn btn-secondary" value="{{ request()->query('search') }}">Search</button>
+    </form>
+    <br>
     <table class="table">
         <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Nif</th>
+                <th scope="col"></th>
+
+            </tr>
         </thead>
         <tbody>
 
             @foreach ($allUsers as $user)
-            <tr>
-                <td>{{$user->id}}</ts>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td><a class="btn btn-info" href="{{route('users.view', $user->id)}}">View</a></td>
-                <td><a class="btn btn-danger" href="{{route('users.delete', $user->id)}}">Delete</a></td>
-            </tr>
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->address }}</td>
+                    <td>{{ $user->nif }}</td>
+                    <td><a class="btn btn-info" href="{{ route('users.view', $user->id) }}">View/Edit</a>
+
+                        @auth
+                            @if (Auth::user()->email == 'ruicruz@email.com')
+                                <a class="btn btn-danger" href="{{ route('users.delete', $user->id) }}">Delete</a>
+                            @endif
+                        @endauth
+
+                    </td>
+                </tr>
             @endforeach
 
 
         </tbody>
-      </table>
-      <br>
-    <h5><a href="{{route('home')}}">Voltar</a></h5>
+    </table>
+    <br>
+    <h5><a class="btn btn-secondary" href="{{ route('home') }}">Voltar</a></h5>
 @endsection
