@@ -10,7 +10,7 @@ public class Mota extends Veiculo{
 
     //Metodo Construtor
     public Mota(String marca, String modelo, int anoFabrico, int potencia, int cc, TipoCombustivel combustivel, int litroskm) {
-        super(marca, modelo, anoFabrico, potencia, cc, combustivel, litroskm);
+        super(modelo, marca, anoFabrico, potencia, cc, combustivel, litroskm);
     }
 
     //Metodo de Acesso

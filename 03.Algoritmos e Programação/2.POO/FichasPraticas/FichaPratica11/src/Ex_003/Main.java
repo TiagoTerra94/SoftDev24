@@ -16,7 +16,7 @@ public class Main {
 
 
 
-        Pizza pizzaCaprichosa = new Pizza("Cap001", "Caprichosa", "Pizza tradicional com ingredientes regionais", 10.99, Tamanho.GRANDE);
+        Pizza pizzaCaprichosa = new Pizza("Cap001", "Caprichosa", "Pizza tradicional com ingredientes regionais", 10, Tamanho.GRANDE);
         pizzaCaprichosa.adicionarIng(new IngredientePizza(presuntobaby,200));
         pizzaCaprichosa.adicionarIng(new IngredientePizza(rubenscarinooo,100));
         pizzaCaprichosa.adicionarIng(new IngredientePizza(cogumelos,10));

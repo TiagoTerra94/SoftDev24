@@ -11,18 +11,19 @@ public class Pizza {
     protected String codigo;
     protected String nome;
     protected String descricao;
-    protected double preco;
+    protected float preco;
     protected Tamanho tamanho;
     protected ArrayList<IngredientePizza> ingPizza;
 
     //Metodo Construtor
-    public Pizza(String codigo, String nome, String descricao, double preco, Tamanho tamanho) {
+    public Pizza(String codigo, String nome, String descricao, float preco, Tamanho tamanho) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.tamanho = tamanho;
         this.ingPizza = new ArrayList<IngredientePizza>();
+        System.out.println("pizza" + preco);
     }
 
     //Metodos de Acesso
