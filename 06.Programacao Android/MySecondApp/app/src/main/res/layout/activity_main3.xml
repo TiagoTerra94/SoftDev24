@@ -24,11 +24,13 @@
         android:id="@+id/text_resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@+id/btn_resultado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_resultado" />
 
     <Button
@@ -36,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Clicar"
+        android:text="Resultado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_numero" />
@@ -45,9 +47,23 @@
         android:id="@+id/text_primo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="35dp"
         android:text="TextView"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@+id/text_resultado"
-        app:layout_constraintTop_toBottomOf="@+id/text_resultado" />
+        app:layout_constraintBottom_toTopOf="@+id/voltar_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_resultado"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <Button
+        android:id="@+id/voltar_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

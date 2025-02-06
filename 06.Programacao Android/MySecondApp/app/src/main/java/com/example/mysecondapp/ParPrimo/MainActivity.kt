@@ -1,7 +1,9 @@
 package com.example.mysecondapp.ParPrimo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mysecondapp.Form.LoginOkActivity
 import com.example.mysecondapp.databinding.ActivityMain3Binding
 
 class MainActivity : AppCompatActivity() {
@@ -57,6 +59,11 @@ class MainActivity : AppCompatActivity() {
             } else {
                 binding.textPrimo.text = "Numero Não Primo"
             }
+        }
+
+        binding.voltarBtn.setOnClickListener{
+            val intent = Intent(this, LoginOkActivity::class.java)
+            startActivity(intent)
         }
     }
 }

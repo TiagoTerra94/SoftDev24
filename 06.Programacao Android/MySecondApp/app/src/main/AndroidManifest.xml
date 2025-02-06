@@ -13,26 +13,34 @@
         android:theme="@style/Theme.MySecondApp"
         tools:targetApi="31">
         <activity
+            android:name=".PersonalInfo.Resultado_Form"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalInfo.Info_Form"
+            android:exported="false" />
+        <activity
+            android:name=".Hello.Alterar_Nome"
+            android:exported="false" />
+        <activity
+            android:name=".Hello.Hello_User"
+            android:exported="false" />
+        <activity
             android:name=".ConversorHoras.MainActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ParPrimo.MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".SplashScreen.MainActivity2"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".SplashScreen.SplashScreen"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Form.LoginErradoActivity"
@@ -42,8 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".Form.MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

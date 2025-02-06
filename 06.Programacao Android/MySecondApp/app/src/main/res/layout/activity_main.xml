@@ -11,60 +11,80 @@
         android:id="@+id/text_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
         android:text="Username:"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="384dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/username"
+        app:layout_constraintEnd_toStartOf="@+id/username"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/text_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="10dp"
         android:text="Password:"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="431dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintEnd_toStartOf="@+id/password"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="316dp"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="370dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_Username" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="415dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_Password"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
         android:id="@+id/login_Enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         android:text="Enter"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="508dp" />
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/bem_vindo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="Bem-vindo"
         android:textColor="#2196F3"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="88dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="111dp"
-        android:layout_height="201dp"
-        app:srcCompat="@drawable/user"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="146dp" />
+        android:layout_height="0dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bem_vindo"
+        app:srcCompat="@drawable/user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.example.mysecondapp.ConversorHoras
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mysecondapp.Form.LoginOkActivity
 import com.example.mysecondapp.databinding.ActivityMain4Binding
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +26,11 @@ class MainActivity : AppCompatActivity() {
 
             binding.resultado.text = "$semanas semanas\n $dias dias\n $restantesHoras horas"
 
+        }
+
+        binding.voltarLog.setOnClickListener{
+            val intent = Intent(this, LoginOkActivity::class.java)
+            startActivity(intent)
         }
     }
 }

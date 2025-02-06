@@ -11,10 +11,91 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Primeira Activity"
-        android:textSize="34sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Bem-vindo"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/options_view"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/par_primo_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="17dp"
+        android:text="Par Primo"
+        app:layout_constraintBottom_toTopOf="@+id/converter_horas_btn"
+        app:layout_constraintEnd_toEndOf="@+id/converter_horas_btn"
+        app:layout_constraintTop_toBottomOf="@+id/options_view" />
+
+    <Button
+        android:id="@+id/converter_horas_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:text="Converter Horas"
+        app:layout_constraintBottom_toTopOf="@+id/hello_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/par_primo_btn"
+        app:strokeColor="#EDEDED" />
+
+    <TextView
+        android:id="@+id/options_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Escolhe uma das opções"
+        app:layout_constraintBottom_toTopOf="@+id/par_primo_btn"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="Desenvolvido por Tiago Terra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_info_form" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="203dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/welcome" />
+
+    <Button
+        android:id="@+id/hello_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="Hello User"
+        app:layout_constraintBottom_toTopOf="@+id/btn_info_form"
+        app:layout_constraintStart_toStartOf="@+id/btn_info_form"
+        app:layout_constraintTop_toBottomOf="@+id/converter_horas_btn" />
+
+    <Button
+        android:id="@+id/btn_info_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="26dp"
+        android:text="Info Form"
+        app:layout_constraintBottom_toTopOf="@+id/developer"
+        app:layout_constraintStart_toStartOf="@+id/developer"
+        app:layout_constraintTop_toBottomOf="@+id/hello_user" />
 </androidx.constraintlayout.widget.ConstraintLayout>

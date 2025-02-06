@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             var username: String = binding.username.text.toString()
             var password: String = binding.password.text.toString()
 
-            if (username == "user" && password == "password"){
+            if (username == "Tiago" && password == "12345"){
                 val intent = Intent(this, LoginOkActivity::class.java)
                 startActivity(intent)
             }else{
