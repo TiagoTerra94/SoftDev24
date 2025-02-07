@@ -1,0 +1,84 @@
+package Main_Entity;
+
+import Items.Consumable;
+import Items.MainWeapon;
+
+import java.util.Scanner;
+
+public class Wizard extends Hero {
+    static Scanner in = new Scanner(System.in);
+
+    public Wizard(String name, int maxHealth, int currentHealth, int strength, int level, int gold, MainWeapon mainWeapon) {
+        super(name, maxHealth, currentHealth, strength, level, gold, mainWeapon);
+    }
+
+    @Override
+    public void attack(NPC npc) {
+        int counter = 0;
+        int op;
+        int attack = this.mainWeapon.getAttack() + this.strength;
+
+        do {
+            //Turno do Heroi
+            System.out.println("Choose an attack:\n" +
+                    "1- Normal\n" +
+                    "2- Special\n" +
+                    "3- Combat Consumable");
+
+            System.out.println("Opção: ");
+
+            try {
+                op = in.nextInt();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            if (op == 1) {
+                System.out.println(this.name + "used Normal Attack!" + "DMG: " + attack);
+                npc.currentHealth -= attack;
+            }
+            if (op == 2 && counter == 0) {
+                counter++;
+                System.out.println(this.name + "used Special Attack!" + "DMG: " + attack);
+                npc.currentHealth -= attack;
+            } else {
+                System.out.println("Can't use that.");
+            }
+            if (op == 3) {
+                for (Consumable item : this.inventory) {
+                    item.showStatus();
+                }
+
+                int option;
+                do {
+                    System.out.println("Which do you want to use?\n" +
+                            "0- Back");
+                    option = in.nextInt();
+                    if (option == 0) break;
+                    while (!this.inventory.contains(option)) {//rever
+                        System.out.print("Not available. Pick another: ");
+                        option = in.nextInt();
+                    }
+                } while (option != 0);
+            }
+
+            //Turno NPC
+            System.out.println("The enemy has attacked!" + "DMG: " + npc.strength);
+            this.currentHealth -= npc.strength;
+
+        }while(npc.currentHealth <= 0 || this.currentHealth <= 0);
+
+        if (npc.currentHealth <= 0) {
+            System.out.println("You won!");
+            this.level += 1;
+            this.maxHealth += 10;
+            this.strength += 1;
+            this.gold += npc.gold;
+        } else {
+            System.out.println("Game Over! You lost!");
+            return;
+        }
+    }
+
+}
+

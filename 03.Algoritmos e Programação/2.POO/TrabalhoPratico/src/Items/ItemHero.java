@@ -12,8 +12,14 @@ public abstract class ItemHero {
         return priceCoinGold;
     }
 
-    protected void showStatus(){
+    //Metodo de Instancia
+
+    /**
+     * Mostrar detalhes dos items disponiveis
+     */
+    public void showStatus(){
         System.out.println("*******Item********");
         System.out.println("Name: " + name + " | Price: " + priceCoinGold + " | Heroes: " + permitedHeroes);
     }
+
 }
