@@ -1,8 +1,11 @@
 package Items;
 
-public abstract class Consumable extends ItemHero {
+import java.util.ArrayList;
 
-    public Consumable() {
+public abstract class Consumable extends ItemHero {
+    //Metodo Construtor
+    public Consumable(String name, int priceCoinGold) {
+        super(name, priceCoinGold);
     }
 
     public void showDetails(){

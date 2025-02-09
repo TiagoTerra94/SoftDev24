@@ -8,6 +8,9 @@ public class Main {
         Game game1 = new Game();
         Hero hero = game1.createCharacter();
         System.out.println("You have chosen: " + hero.getClass().getSimpleName());
+
+        //Inicio do jogo
+        game1.hauntedCastle(hero);
     }
 
 }

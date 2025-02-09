@@ -1,4 +1,4 @@
-import Items.MainWeapon;
+import Items.*;
 import Main_Entity.*;
 
 import java.util.Scanner;
@@ -10,9 +10,9 @@ public class Game {
     protected Archer archer;
 
     //Armas
-    MainWeapon Sword = new MainWeapon(40,60);
-    MainWeapon Wand = new MainWeapon(35,70);
-    MainWeapon Bow = new MainWeapon(55,80);
+    MainWeapon Sword = new MainWeapon("Blade Sword",60,15,22);
+    MainWeapon Wand = new MainWeapon("Funil Wand",50,17,25);
+    MainWeapon Bow = new MainWeapon("Simple Bow",53,20,27);
 
     //Metodo de Instancia
     static int difficulty;
@@ -97,7 +97,43 @@ public class Game {
 
     }
 
+    /**
+     * Metodo  para criar o ambiente de jogo
+     * @param hero que vai jogar
+     */
     public void hauntedCastle(Hero hero){
+        //Instanciar 14 items para adicionar a uma instancia Seller
+        Seller seller = new Seller();
+
+        //Herois permitidos
+
+        //Items
+        Consumable potion = new Potion("Life Potion",10,5,0);
+        Consumable upStrenght = new Potion("Up Strenght",10,0,5);
+        CombatConsumable bombReckt = new CombatConsumable("Reckt Bomb",15,15);
+        CombatConsumable megaBomb = new CombatConsumable("Mega Bomb",25,25);
+        //Weapons
+        MainWeapon sabugueiro = new MainWeapon("Sabugueiro",100,120,150);
+        MainWeapon excalibur = new MainWeapon("Excalibur",110,120,160);
+        MainWeapon besta = new MainWeapon("Besta",130,120,170);
+
+        potion.addHero("Knight");
+        upStrenght.addHero("Wizard");
+        sabugueiro.addHero("Archer");
+
+        //Main Story
+        System.out.println("Welcome to the The Haunted Castle Game");
+        System.out.println("Villager: - After a terrible monster attacked our city, our people has been terrified.\n" +
+                "- Our beloved King tried to kill the beast to bring peace, but no luck...\n" +
+                "- The beast imprisioned the King and every single knight who tried to beat him.\n" +
+                "- I don't know what to do... Please help us.");
+
+        System.out.println("To win the game, you have to beat the the beast and save the king.\n" +
+                "Once you enter the Haunted Castle, you will pass each room by beating the beast's subordinates...\n" +
+                "Be careful, some rooms have others surprises. Good luck!");
+
+
+
 
     }
 }

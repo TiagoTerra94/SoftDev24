@@ -4,15 +4,14 @@ import Items.Consumable;
 import Items.ItemHero;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Seller {
     //Atributos de instancia
-    protected int maxItems = 10;
     protected ArrayList<ItemHero> loja;
 
     //Metodo Construtor
-    public Seller(int maxItems) {
-        this.maxItems = maxItems;
+    public Seller() {
         this.loja = new ArrayList<ItemHero>();
     }
 
@@ -24,8 +23,17 @@ public class Seller {
     public void showCatalog(){
         System.out.println("******Catalog Item******");
 
+
         for (ItemHero item : this.loja){
-            item.showStatus();
+
+            Random rnd = new Random();
+            int random = rnd.nextInt(this.loja.size());
+
+            if(!this.loja.contains(item)){//rever
+                item.showStatus();
+            }else{
+            }
+
         }
     }
 
