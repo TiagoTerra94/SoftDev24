@@ -23,7 +23,6 @@ public class Pizza {
         this.preco = preco;
         this.tamanho = tamanho;
         this.ingPizza = new ArrayList<IngredientePizza>();
-        System.out.println("pizza" + preco);
     }
 
     //Metodos de Acesso
