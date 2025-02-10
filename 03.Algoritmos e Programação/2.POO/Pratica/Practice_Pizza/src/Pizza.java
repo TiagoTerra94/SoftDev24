@@ -44,7 +44,8 @@ public class Pizza {
         //se na lista de ingredientes existir o id, remove
         for (IngredientesPizza ingrediente : this.ingredientes) {
             if(id == ingrediente.getIngredientes().getCodigo()){
-                this.ingredientes.remove(id);
+                this.ingredientes.remove(ingrediente);
+                return;
             }else{//caso não existir o id
                 System.out.println("Erro ao remover ingrediente");
             }
@@ -71,9 +72,9 @@ public class Pizza {
 
         int counter = 1;
         for(IngredientesPizza ingAtual: this.ingredientes){
-            System.out.println("Ingrediente: " + counter++ + "["+ this.codigo + "|" + ingAtual.getIngredientes().getNome() + " | " + ingAtual.getIngredientes().getUnidadeMedida() + " | " + ingAtual.getIngredientes().getKcal() + " Kcal]: " + ingAtual.getQuantidade() + "g");
+            System.out.print("Ingrediente " + counter++ + ":[");
+            ingAtual.getIngredientes().exibirDetalhes();
+            System.out.println(ingAtual.getQuantidade() + "g ]");
         }
-
     }
-
 }

@@ -8,13 +8,13 @@ public class Main {
         Pizza calabresa = new Pizza(003, "Calabresa", "Com bastante calabresa e cebola", Tamanho.GRANDE, 9.99);
 
 
-        Ingredientes queijo = new Ingredientes(0,"Queijo", UnidadeMedida.GRAMAS,5);
-        Ingredientes tomate = new Ingredientes(1, "Tomate", UnidadeMedida.GRAMAS, 3);
-        Ingredientes cebola = new Ingredientes(2, "Cebola", UnidadeMedida.GRAMAS, 2);
-        Ingredientes presunto = new Ingredientes(3, "Presunto", UnidadeMedida.GRAMAS, 4);
-        Ingredientes oregano = new Ingredientes(4, "Orégano", UnidadeMedida.GRAMAS, 1);
-        Ingredientes azeitona = new Ingredientes(5, "Azeitona", UnidadeMedida.GRAMAS, 2);
-        Ingredientes bacon = new Ingredientes(6, "Bacon", UnidadeMedida.GRAMAS, 6);
+        Ingredientes queijo = new Ingredientes(0,"Queijo", UnidadeMedida.GRAMAS,115);
+        Ingredientes tomate = new Ingredientes(1, "Tomate", UnidadeMedida.GRAMAS, 31);
+        Ingredientes cebola = new Ingredientes(2, "Cebola", UnidadeMedida.GRAMAS, 21);
+        Ingredientes presunto = new Ingredientes(3, "Presunto", UnidadeMedida.GRAMAS, 41);
+        Ingredientes oregano = new Ingredientes(4, "Orégano", UnidadeMedida.GRAMAS, 11);
+        Ingredientes azeitona = new Ingredientes(5, "Azeitona", UnidadeMedida.GRAMAS, 21);
+        Ingredientes bacon = new Ingredientes(6, "Bacon", UnidadeMedida.GRAMAS, 61);
 
 
         caprichosa.addIngrediente(new IngredientesPizza(100,queijo));
@@ -29,6 +29,8 @@ public class Main {
         caprichosa.editQuantidade("Queijo",70);
         System.out.println("------------");
         caprichosa.removeIngrediente(2);
+        System.out.println("----------------");
+        caprichosa.exibirDetalhes();
 
     }
 }
