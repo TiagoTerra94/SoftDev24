@@ -1,6 +1,8 @@
 package com.example.mysecondapp.Form
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mysecondapp.databinding.ActivityMainBinding
@@ -14,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val sharedPreferences = this.getSharedPreferences("chave", Context.MODE_PRIVATE)
+        val valor = sharedPreferences.getString("chave","").toString()
+
+        binding.username.setText(valor)
+        binding.password.setText(valor)
 
 
         binding.loginEnter.setOnClickListener{
@@ -27,6 +34,11 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, LoginErradoActivity::class.java)
                 startActivity(intent)
             }
+
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("chave",binding.username.text.toString())
+            editor.putString("chave",binding.password.text.toString())
+            editor.apply()
 
         }
     }

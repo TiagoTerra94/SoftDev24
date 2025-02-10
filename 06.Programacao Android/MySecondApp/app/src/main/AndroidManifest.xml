@@ -13,6 +13,33 @@
         android:theme="@style/Theme.MySecondApp"
         tools:targetApi="31">
         <activity
+            android:name=".Audio.Audio"
+            android:exported="true" >
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".Note.Notes"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".ConstraintEx.Constraint"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".Alunos.Aluno"
+            android:exported="false" />
+        <activity
+            android:name=".Alunos.ListaAlunos"
+            android:exported="false" />
+        <activity
+            android:name=".ListaNomes.ListaNomes"
+            android:exported="false" />
+        <activity
             android:name=".PersonalInfo.Resultado_Form"
             android:exported="false" />
         <activity
@@ -35,13 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen.SplashScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".Form.LoginErradoActivity"
             android:exported="false" />

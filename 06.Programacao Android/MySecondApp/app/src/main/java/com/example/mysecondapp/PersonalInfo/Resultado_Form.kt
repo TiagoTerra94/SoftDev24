@@ -3,7 +3,6 @@ package com.example.mysecondapp.PersonalInfo
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mysecondapp.databinding.ActivityResultadoFormBinding
 
@@ -22,6 +21,12 @@ class Resultado_Form : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+                nome = intent.getStringExtra("nome").toString()
+                morada = intent.getStringExtra("morada").toString()
+                telefone = intent.getStringExtra("telefone").toString()
+                email = intent.getStringExtra("email").toString()
+                binding.result.text = "O $nome mora na $morada,\n tem o telefone $telefone e\n o email $email."
+
         binding.btnDados.setOnClickListener{
             val i = Intent(this, Info_Form::class.java)
             i.putExtra("nome", nome)
@@ -29,16 +34,6 @@ class Resultado_Form : AppCompatActivity() {
             i.putExtra("telefone", telefone)
             i.putExtra("email", email)
             result.launch(i)
-        }
-
-        result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if(it.data != null && it.resultCode == 1){
-                nome = it.data?.getStringExtra("nome").toString()
-                morada = it.data?.getStringExtra("morada").toString()
-                telefone = it.data?.getStringExtra("telefone").toString()
-                email = it.data?.getStringExtra("email").toString()
-                binding.result.text = "O $nome mora na $morada, tem o telefone $telefone e o email $email."
-            }
         }
     }
 }

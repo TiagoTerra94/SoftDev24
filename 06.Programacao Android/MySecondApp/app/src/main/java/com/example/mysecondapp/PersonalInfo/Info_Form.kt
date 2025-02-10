@@ -23,13 +23,12 @@ class Info_Form : AppCompatActivity() {
 
 
         binding.btnSendInfo.setOnClickListener{
-            val i = Intent(this, Resultado_Form::class.java)
-            i.putExtra("nome",binding.nomeEdit.text.toString())
-            i.putExtra("morada",binding.moradaEdit.text.toString())
-            i.putExtra("telefone",binding.telefoneEdit.text.toString())
-            i.putExtra("email",binding.emailEdit.text.toString())
-            setResult(1,i)
-            finish()
+            val resultIntent = Intent(this, Resultado_Form::class.java)
+            resultIntent.putExtra("nome",binding.nomeEdit.text.toString())
+            resultIntent.putExtra("morada",binding.moradaEdit.text.toString())
+            resultIntent.putExtra("telefone",binding.telefoneEdit.text.toString())
+            resultIntent.putExtra("email",binding.emailEdit.text.toString())
+            startActivity(resultIntent)
         }
 
 
