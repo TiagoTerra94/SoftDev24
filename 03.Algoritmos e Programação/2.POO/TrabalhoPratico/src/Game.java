@@ -107,19 +107,44 @@ public class Game {
 
         //Herois permitidos
 
-        //Items
+        //Items curaHp
         Consumable potion = new Potion("Life Potion",10,5,0);
+        Consumable knightPotion = new Potion ("Dragon Life",15,10,0);
+        Consumable archerPotion = new Potion ("Pointy Drink",16,12,0);
+        Consumable wizardPotion = new Potion ("Druid Sip",10,8,0);
+
+        //Item aumento força
         Consumable upStrenght = new Potion("Up Strenght",10,0,5);
+        Consumable upMana = new Potion("Up Mana",15,0,15);
+        Consumable upBow = new Potion("Up Bow",14,0,18);
+
+        //Items Combate
         CombatConsumable bombReckt = new CombatConsumable("Reckt Bomb",15,15);
         CombatConsumable megaBomb = new CombatConsumable("Mega Bomb",25,25);
+        CombatConsumable setaPoison = new CombatConsumable("Venom Arrow",20,22);
+        CombatConsumable cloudAcid = new CombatConsumable("Cloud Acid",22,25);
         //Weapons
         MainWeapon sabugueiro = new MainWeapon("Sabugueiro",100,120,150);
         MainWeapon excalibur = new MainWeapon("Excalibur",110,120,160);
         MainWeapon besta = new MainWeapon("Besta",130,120,170);
 
-        potion.addHero("Knight");
-        upStrenght.addHero("Wizard");
-        sabugueiro.addHero("Archer");
+        //adiciono objetos ao vendedor
+        seller.addItem(potion);
+        seller.addItem(knightPotion);
+        seller.addItem(archerPotion);
+        seller.addItem(wizardPotion);
+        seller.addItem(upStrenght);
+        seller.addItem(upMana);
+        seller.addItem(upBow);
+        seller.addItem(bombReckt);
+        seller.addItem(megaBomb);
+        seller.addItem(setaPoison);
+        seller.addItem(cloudAcid);
+        seller.addItem(sabugueiro);
+        seller.addItem(excalibur);
+        seller.addItem(besta);
+        //Vendedor mostra catalogo
+        seller.showCatalog();
 
         //Main Story
         System.out.println("Welcome to the The Haunted Castle Game");

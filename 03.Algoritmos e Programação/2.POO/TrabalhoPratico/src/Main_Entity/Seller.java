@@ -2,12 +2,14 @@ package Main_Entity;
 
 import Items.Consumable;
 import Items.ItemHero;
+import Items.MainWeapon;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Seller {
     //Atributos de instancia
+    protected int MAX_ITEMS = 10;
     protected ArrayList<ItemHero> loja;
 
     //Metodo Construtor
@@ -16,6 +18,14 @@ public class Seller {
     }
 
     //Metodos de instancia
+
+    /**
+     * Adiciona o item à loja
+     * @param item
+     */
+    public void addItem(ItemHero item){
+        this.loja.add(item);
+    }
     /**
      * Mostrar 10 items random ao Heroi
      *
@@ -23,15 +33,18 @@ public class Seller {
     public void showCatalog(){
         System.out.println("******Catalog Item******");
 
-
-        for (ItemHero item : this.loja){
+        //Adiciona 10 items aleatoriamente
+        for (int i = 0; i < MAX_ITEMS; i++) {
 
             Random rnd = new Random();
             int random = rnd.nextInt(this.loja.size());
 
-            if(!this.loja.contains(item)){//rever
-                item.showStatus();
-            }else{
+            //Busca um item aleatoriamente e se não estiver na loja adiciona
+            if(!this.loja.contains(this.loja.get(random))){//rever
+                this.loja.add(this.loja.get(random));
+                this.loja.get(random).showStatus();
+            }else{//caso já estiver na loja, volta um ciclo atrás e randomiza
+                i--;
             }
 
         }
@@ -46,8 +59,10 @@ public class Seller {
             if (hero.getGold()>=item.getPriceCoinGold()){
                 if (item instanceof Consumable) {
                     hero.inventory.add((Consumable) item);
-                }else if(hero.mainWeapon != null){
+                    hero.gold -= item.getPriceCoinGold();
+                }else if(item instanceof MainWeapon){
                     hero.mainWeapon = (Items.MainWeapon) item;
+                    hero.gold -= item.getPriceCoinGold();
                 }
             }else{
                 System.out.println("Stop right there! You don't have enough gold!");
