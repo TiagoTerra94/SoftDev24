@@ -21,10 +21,12 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Photo</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
                 <th scope="col">Nif</th>
+
                 <th scope="col"></th>
 
             </tr>
@@ -33,10 +35,12 @@
 
             @foreach ($allUsers as $user)
                 <tr>
+                    <td><img style="width: 50px; height:50px" src="{{$user->photo? asset('storage/'.$user->photo) : asset('images/no_photo.jpg')}}" alt=""></td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->address }}</td>
                     <td>{{ $user->nif }}</td>
+
                     <td><a class="btn btn-info" href="{{ route('users.view', $user->id) }}">View/Edit</a>
 
                         @auth

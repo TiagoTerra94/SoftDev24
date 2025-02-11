@@ -10,6 +10,9 @@
       <label for="exampleInputPassword1" class="form-label">Password</label>
       <input name="password" type="password" class="form-control" id="exampleInputPassword1">
     </div>
+    <div>
+        <a href="{{route('password.request')}}">Forgot Password</a>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 @endsection

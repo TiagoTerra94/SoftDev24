@@ -1,7 +1,7 @@
 @extends('layouts.fo_layout')
 @section('content')
 <h1>Edit User</h1>
-<form action="{{route('users.create')}}" method="POST">
+<form action="{{route('users.create')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
     <input type="hidden" name="id" value="{{ $user->id }}">
@@ -26,9 +26,16 @@
         <label for="exampleInputPassword1" class="form-label">NIF</label>
         <input type="text" class="form-control" name="nif" value="{{$user->nif}}">
         @error('nif')
-        Invalid nif
+            Invalid nif
         @enderror
       </div>
+      <div class="mb-5">
+        <input type="file" name="photo" accept="image/">
+        @error('photo')
+            Error photo
+        @enderror
+      </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <h5><a class="btn btn-secondary" href="{{route('home')}}">Voltar</a></h5>
