@@ -80,7 +80,6 @@ public class Archer extends Hero{
             this.gold += npc.gold;
         } else {
             System.out.println("Game Over! You lost!");
-            return;
         }
     }
 }
