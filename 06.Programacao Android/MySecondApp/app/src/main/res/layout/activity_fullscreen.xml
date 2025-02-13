@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/fullscreenBackgroundColor"
+    android:theme="@style/ThemeOverlay.MySecondApp.FullscreenContainer"
+    tools:context=".FullScreen.FullscreenActivity">
+
+    <TextView
+        android:id="@+id/text_nivel_bateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:text="@string/nivel_bateria">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/image_preferencias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="20dp"
+        android:src="@android:drawable/ic_menu_preferences">
+    </ImageView>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+<TextClock
+    android:id="@+id/clock_horas_minutos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:format12Hour="hh:mm"
+    android:format24Hour="hh:mm"
+    android:text="00:00"
+    android:textSize="100sp"/>
+
+    <TextClock
+        android:id="@+id/clock_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="ss"
+        android:format24Hour="ss"
+        android:text="00"
+        android:textSize="30sp">
+    </TextClock>
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#007fa9">
+
+        <CheckBox
+            android:id="@+id/check_nivel_bateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/nivel_bateria">
+        </CheckBox>
+
+        <ImageView
+            android:id="@+id/image_view_fechar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="20dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel">
+        </ImageView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

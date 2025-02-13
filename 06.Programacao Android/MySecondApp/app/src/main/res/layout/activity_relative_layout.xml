@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelativeLayout.RelativeLayout">
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:background="#F0F000"
+        android:gravity="center"
+        android:text="A"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="false"
+        android:layout_centerInParent="true"
+        android:textSize="30sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/textview1"
+        android:background="#00FFFF"
+        android:text="B"
+        android:gravity="center"
+        android:textSize="30sp">
+
+    </TextView>
+
+
+</RelativeLayout>
