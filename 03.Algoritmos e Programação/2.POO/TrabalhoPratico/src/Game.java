@@ -1,9 +1,13 @@
 import Items.*;
 import Main_Entity.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+    Scanner sc = new Scanner(System.in);
     //Classes de Personagem
     protected Knight knight;
     protected Wizard wizard;
@@ -97,11 +101,7 @@ public class Game {
 
     }
 
-    /**
-     * Metodo  para criar o ambiente de jogo
-     * @param hero que vai jogar
-     */
-    public void hauntedCastle(Hero hero){
+    public void sellerEncounter(Hero hero){
         //Instanciar 14 items para adicionar a uma instancia Seller
         Seller seller = new Seller();
 
@@ -144,7 +144,14 @@ public class Game {
         seller.addItem(excalibur);
         seller.addItem(besta);
         //Vendedor mostra catalogo
-        seller.showCatalog();
+        seller.imprimirLoja();
+    }
+
+    /**
+     * Metodo  para criar o ambiente de jogo
+     * @param hero que vai jogar
+     */
+    public void hauntedCastle(Hero hero){
 
         //Main Story
         System.out.println("Welcome to the The Haunted Castle Game");
@@ -157,6 +164,52 @@ public class Game {
                 "Once you enter the Haunted Castle, you will pass each room by beating the beast's subordinates...\n" +
                 "Be careful, some rooms have others surprises. Good luck!");
 
+
+        System.out.println("You entered the Haunted Castle Game");
+        System.out.println("There is a rusty door at your left and a cleaned door at your right. Which one do you choose?\n" +
+                "1- Rusty Door\n" +
+                "2- Cleaned Door");
+
+        int option = sc.nextInt();
+
+        /**
+         * Caso jogador escolha a primeira opção encontrará um chest
+         */
+        if(option == 1){
+            try {
+                File arquivo = new File("src/assets/chest.txt"); // Caminho do arquivo
+                Scanner scanner = new Scanner(arquivo);
+
+                while (scanner.hasNextLine()) { // Lê linha por linha
+                    String linha = scanner.nextLine();
+                    System.out.println(linha);
+                }
+
+                scanner.close(); // Fechar o scanner após a leitura
+            } catch (FileNotFoundException e) {
+                System.out.println("Arquivo não encontrado!");
+                e.printStackTrace();
+            }
+
+            System.out.println("Open chest?\n" +
+                    "1- Yes" +
+                    "2- No");
+            int chestOpen = sc.nextInt();
+            if(chestOpen == 1){
+                Random rnd = new Random();
+                int itemSorted = rnd.nextInt();//REVER
+            }
+            if(option == 2){
+                System.out.println("You chose not to open the chest.");
+            }
+        }
+        if(option == 2){
+            System.out.println("There is a battle ahead, a rat appeared!");
+
+        }
+
+
+        System.out.println("");
 
 
 

@@ -1,5 +1,7 @@
 package Items;
 
+import Main_Entity.Hero;
+
 public class Potion extends Consumable {
     //Atributos de instancia
     protected int cureHp;
@@ -10,5 +12,32 @@ public class Potion extends Consumable {
         super(name, priceCoinGold);
         this.cureHp = cureHp;
         this.upStrength = upStrength;
+    }
+
+    //Metodo de Acesso
+    public int getCureHp() {
+        return cureHp;
+    }
+
+    public int getUpStrength() {
+        return upStrength;
+    }
+
+    //Metodos de instancia
+    public void showDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Price: " + priceCoinGold);
+        if (cureHp > 0) {
+            System.out.println("Cure hp: " + cureHp);
+        }
+        if (upStrength > 0) {
+            System.out.println("Up strength: " + upStrength);
+        }
+        System.out.println("Hero Permitted: " + permitedHeroes);//rever
+    }
+
+    @Override
+    public void use(Hero heroi) {
+
     }
 }

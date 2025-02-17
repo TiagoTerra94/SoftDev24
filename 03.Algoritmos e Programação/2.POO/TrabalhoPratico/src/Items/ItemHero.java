@@ -26,7 +26,20 @@ public abstract class ItemHero {
         return name;
     }
 
+    public ArrayList<String> getPermitedHeroes() {
+        return permitedHeroes;
+    }
+
     //Metodo de Instancia
+
+    /**
+     * Metodo para adicionar Herois à lista
+     * @param hero nome do Heroi
+     */
+    public void addHero(String hero){
+    this.permitedHeroes.add(hero);
+    }
+
     /**
      * Mostrar detalhes dos items disponiveis
      */
@@ -35,12 +48,6 @@ public abstract class ItemHero {
         System.out.println("Name: " + name + " | Price: " + priceCoinGold + " | Heroes: " + permitedHeroes);
     }
 
-    /**
-     * Adiciona os herois e estes permitidos pelos items
-     * @param hero
-     */
-    public void addHero(String hero){
-        this.permitedHeroes.add(hero);
-    }
 
+    public abstract void use(Hero heroi);
 }

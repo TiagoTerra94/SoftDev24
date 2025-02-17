@@ -2,6 +2,7 @@ package Main_Entity;
 
 import Items.Consumable;
 import Items.MainWeapon;
+import Items.Potion;
 
 import java.util.Scanner;
 
@@ -39,8 +40,8 @@ public class Wizard extends Hero {
             }
             if (op == 2 && counter == 0) {
                 counter++;
-                System.out.println(this.name + "used Special Attack!" + "DMG: " + attack);
-                npc.currentHealth -= attack;
+                System.out.println(this.name + "used Special Attack!" + "DMG: " + this.mainWeapon.getSpecialAttack());
+                npc.currentHealth -= this.mainWeapon.getSpecialAttack();
             } else {
                 System.out.println("Can't use that.");
             }
@@ -70,13 +71,39 @@ public class Wizard extends Hero {
 
         if (npc.currentHealth <= 0) {
             System.out.println("You won!");
-            this.level += 1;
+            this.level ++;
             this.maxHealth += 10;
             this.strength += 1;
             this.gold += npc.gold;
+            System.out.println("Player Level: " + this.level);
         } else {
             System.out.println("Game Over! You lost!");
-            return;
+        }
+    }
+
+    @Override
+    public void use(Hero hero) {
+        for(Consumable item: this.inventory){
+            if (item instanceof Potion){
+                item.showStatus();
+            }
+        }
+
+        if(this.inventory.isEmpty()){
+            System.out.println("No potions available");
+        }else{
+            System.out.println("Which one do you want to use, Hero?");
+
+            int op = in.nextInt();
+
+            for(int i = 0; i < this.inventory.size(); i++){
+                if(i+1 == op ){
+                    System.out.println("You used: " + this.inventory.get(i).getName());
+                    this.inventory.remove(i);
+                    System.out.println("Status applied: " + this.inventory.get(i).getName());
+                }
+            }
+
         }
     }
 

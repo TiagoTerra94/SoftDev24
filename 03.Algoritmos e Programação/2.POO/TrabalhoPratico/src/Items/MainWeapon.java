@@ -1,5 +1,7 @@
 package Items;
 
+import Main_Entity.Hero;
+
 import java.util.ArrayList;
 
 public class MainWeapon extends ItemHero {
@@ -25,5 +27,16 @@ public class MainWeapon extends ItemHero {
 
 
     //Metodo de Instancia
+    public void mostrarDetalhes(){
+        System.out.println("*****Main Weapon*****");
+        System.out.println("Name: " + name);
+        System.out.println("Price: " + priceCoinGold);
+        System.out.println("Attack " + attack);
+        System.out.println("Special Attack " + specialAttack);
+    }
 
+    @Override
+    public void use(Hero heroi) {
+
+    }
 }

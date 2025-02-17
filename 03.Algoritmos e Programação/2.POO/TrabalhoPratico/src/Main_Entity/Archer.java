@@ -43,8 +43,8 @@ public class Archer extends Hero{
             }
             if(op==2 && counter == 0){
                 counter++;
-                System.out.println(this.name + "used Special Attack!" + "DMG: " + attack);
-                npc.currentHealth -= attack;
+                System.out.println(this.name + "used Special Attack!" + "DMG: " + this.mainWeapon.getSpecialAttack());
+                npc.currentHealth -= this.mainWeapon.getSpecialAttack();
             }else{
                 System.out.println("Can't use that.");
             }
@@ -74,12 +74,18 @@ public class Archer extends Hero{
 
         if (npc.currentHealth <= 0) {
             System.out.println("You won!");
-            this.level += 1;
+            this.level ++;
             this.maxHealth += 10;
             this.strength += 1;
             this.gold += npc.gold;
+            System.out.println("Player Level: " + this.level);
         } else {
             System.out.println("Game Over! You lost!");
         }
+    }
+
+    @Override
+    public void use(Hero hero) {
+
     }
 }

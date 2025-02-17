@@ -17,6 +17,15 @@ public class Seller {
         this.loja = new ArrayList<ItemHero>();
     }
 
+    //Metodos de Acesso
+    public int getMAX_ITEMS() {
+        return MAX_ITEMS;
+    }
+
+    public ArrayList<ItemHero> getLoja() {
+        return loja;
+    }
+
     //Metodos de instancia
 
     /**
@@ -30,8 +39,9 @@ public class Seller {
      * Mostrar 10 items random ao Heroi
      *
      */
-    public void showCatalog(){
+    public void imprimirLoja(){
         System.out.println("******Catalog Item******");
+        ArrayList<ItemHero> bagSeller = new ArrayList<>();
 
         //Adiciona 10 items aleatoriamente
         for (int i = 0; i < MAX_ITEMS; i++) {
@@ -40,13 +50,12 @@ public class Seller {
             int random = rnd.nextInt(this.loja.size());
 
             //Busca um item aleatoriamente e se não estiver na loja adiciona
-            if(!this.loja.contains(this.loja.get(random))){//rever
-                this.loja.add(this.loja.get(random));
+            if(!bagSeller.contains(this.loja.get(random))){//rever
+                bagSeller.add(this.loja.get(random));
                 this.loja.get(random).showStatus();
             }else{//caso já estiver na loja, volta um ciclo atrás e randomiza
                 i--;
             }
-
         }
     }
 

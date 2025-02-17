@@ -5,8 +5,10 @@ import Items.MainWeapon;
 import Items.Potion;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Hero extends Entity {
+    Scanner in = new Scanner(System.in);
     //Atributos de instancia
     protected int level;
     protected int gold;
@@ -44,18 +46,7 @@ public abstract class Hero extends Entity {
      */
     public abstract void attack(NPC npc);
 
-    /**
-     * Metodo para usar Poção (curar/add força)
-     */
-    public void usePotion(){
-        for(Consumable item: this.inventory){
-            if (item instanceof Potion){
-                item.showStatus();
-            }
-        }
+    public abstract void use(Hero hero);
 
-        System.out.println("Which one do you want to use, Hero?");
-
-    }
 
 }
