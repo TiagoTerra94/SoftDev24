@@ -40,11 +40,14 @@ public class Archer extends Hero{
             if(op==1){
                 System.out.println(this.name + "used Normal Attack!" + "DMG: " + attack);
                 npc.currentHealth -= attack;
+                npc.currentHP();
             }
+
             if(op==2 && counter == 0){
                 counter++;
                 System.out.println(this.name + "used Special Attack!" + "DMG: " + this.mainWeapon.getSpecialAttack());
                 npc.currentHealth -= this.mainWeapon.getSpecialAttack();
+                npc.currentHP();
             }else{
                 System.out.println("Can't use that.");
             }
@@ -70,7 +73,9 @@ public class Archer extends Hero{
             System.out.println("The enemy has attacked!" + "DMG: " + plusDmg);
             this.currentHealth -= (int) plusDmg;
 
-        }while(npc.currentHealth <= 0 || this.currentHealth <= 0);
+
+
+        }while(npc.currentHealth > 0 && this.currentHealth > 0);
 
         if (npc.currentHealth <= 0) {
             System.out.println("You won!");
@@ -85,7 +90,28 @@ public class Archer extends Hero{
     }
 
     @Override
-    public void use(Hero hero) {
+    public void use(Hero hero) {//REVER
+        for(Consumable item: this.inventory){
+            if (item instanceof Potion){
+                item.showStatus();
+            }
+        }
 
+        if(this.inventory.isEmpty()){//REVER
+            System.out.println("No potions available");
+        }else{
+            System.out.println("Which one do you want to use, Hero?");
+
+            int op = in.nextInt();
+
+            for(int i = 0; i < this.inventory.size(); i++){
+                if(i+1 == op ){
+                    System.out.println("You used: " + this.inventory.get(i).getName());
+                    this.inventory.remove(i);
+                    System.out.println("Status applied: " + this.inventory.get(i).getName());
+                }
+            }
+
+        }
     }
 }

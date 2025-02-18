@@ -31,15 +31,6 @@ public abstract class ItemHero {
     }
 
     //Metodo de Instancia
-
-    /**
-     * Metodo para adicionar Herois à lista
-     * @param hero nome do Heroi
-     */
-    public void addHero(String hero){
-    this.permitedHeroes.add(hero);
-    }
-
     /**
      * Mostrar detalhes dos items disponiveis
      */

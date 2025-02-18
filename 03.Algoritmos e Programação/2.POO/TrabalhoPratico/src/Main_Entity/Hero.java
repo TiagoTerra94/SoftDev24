@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Hero extends Entity {
-    Scanner in = new Scanner(System.in);
     //Atributos de instancia
     protected int level;
     protected int gold;

@@ -15,4 +15,18 @@ public class NPC extends Entity {
         return gold;
     }
 
+
+
+    //Metodos de instancia
+    public void showDetails(){
+        System.out.println("Name: " + this.name);
+        System.out.println("HP: " + this.currentHealth);
+        System.out.println("Strength: " + this.strength);
+        System.out.println("Gold: " + this.gold);
+    }
+
+    public void currentHP(){
+        System.out.println("HP: " + this.currentHealth + "/" + this.maxHealth);
+    }
+
 }
