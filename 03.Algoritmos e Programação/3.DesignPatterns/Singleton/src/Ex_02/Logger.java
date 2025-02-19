@@ -1,5 +1,6 @@
 package Ex_02;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -19,15 +20,13 @@ public class Logger {
         return instance;
     }
 
-    public void log(String message){
-        try (FileWriter writer = new FileWriter(nomeFicheiro,true)) {
-            writer.write(message + "\n");
+    public void log(String message) throws  IOException{
+
+            FileWriter writer = new FileWriter(new File(this.nomeFicheiro),true);//o append incrementa
+            writer.append(message+"\n");
 
             System.out.println("Data written to the file successfully.");
             writer.close();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
