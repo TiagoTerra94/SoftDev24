@@ -5,7 +5,7 @@
     android:id="@+id/text_resultado2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Form.MainActivity">
+    tools:context=".views.MainActivityForm">
 
     <TextView
         android:id="@+id/text_Username"

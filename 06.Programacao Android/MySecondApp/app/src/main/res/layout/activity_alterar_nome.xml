@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hello.Alterar_Nome">
+    tools:context=".views.Alterar_Nome">
 
     <EditText
         android:id="@+id/et_novo_nome"

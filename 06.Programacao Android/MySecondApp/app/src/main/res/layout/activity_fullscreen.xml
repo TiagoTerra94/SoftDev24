@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/fullscreenBackgroundColor"
     android:theme="@style/ThemeOverlay.MySecondApp.FullscreenContainer"
-    tools:context=".FullScreen.FullscreenActivity">
+    tools:context=".views.FullscreenActivity">
 
     <TextView
         android:id="@+id/text_nivel_bateria"

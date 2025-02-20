@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonalInfo.Info_Form">
+    tools:context=".views.Info_Form">
 
     <TextView
         android:id="@+id/fill_form_edit"

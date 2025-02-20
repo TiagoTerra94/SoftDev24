@@ -13,79 +13,82 @@
         android:theme="@style/Theme.MySecondApp"
         tools:targetApi="31">
         <activity
-            android:name=".FullScreen.FullscreenActivity"
+            android:name=".views.RecyclerView"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".views.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_fullscreen"
-            android:theme="@style/Theme.MySecondApp.Fullscreen" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.MySecondApp.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".CicloVida.SecondPage"
+            android:name=".views.SecondPage"
             android:exported="false" />
         <activity
-            android:name=".CicloVida.FirstPage"
+            android:name=".views.FirstPage"
             android:exported="false">
         </activity>
         <activity
-            android:name=".RelativeLayout.RelativeLayout"
+            android:name=".views.RelativeLayout"
             android:exported="false">
-
         </activity>
         <activity
-            android:name=".Audio.Audio"
+            android:name=".views.Audio"
             android:exported="false" />
         <activity
-            android:name=".Note.Notes"
+            android:name=".views.Notes"
             android:exported="false" />
         <activity
-            android:name=".ConstraintEx.Constraint"
-            android:exported="true" />
-        <activity
-            android:name=".Alunos.Aluno"
+            android:name=".views.Constraint"
             android:exported="false" />
         <activity
-            android:name=".Alunos.ListaAlunos"
+            android:name=".views.Aluno"
             android:exported="false" />
         <activity
-            android:name=".ListaNomes.ListaNomes"
+            android:name=".views.ListaAlunos"
             android:exported="false" />
         <activity
-            android:name=".PersonalInfo.Resultado_Form"
+            android:name=".views.ListaNomes"
             android:exported="false" />
         <activity
-            android:name=".PersonalInfo.Info_Form"
+            android:name=".views.Resultado_Form"
             android:exported="false" />
         <activity
-            android:name=".Hello.Alterar_Nome"
+            android:name=".views.Info_Form"
             android:exported="false" />
         <activity
-            android:name=".Hello.Hello_User"
+            android:name=".views.Alterar_Nome"
             android:exported="false" />
         <activity
-            android:name=".ConversorHoras.MainActivity"
+            android:name=".views.Hello_User"
             android:exported="false" />
         <activity
-            android:name=".ParPrimo.MainActivity"
+            android:name=".views.MainActivityHoras"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen.MainActivity2"
+            android:name=".views.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen.SplashScreen"
+            android:name=".views.MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".Form.LoginErradoActivity"
+            android:name=".views.SplashScreen"
             android:exported="false" />
         <activity
-            android:name=".Form.LoginOkActivity"
+            android:name=".views.LoginErradoActivity"
             android:exported="false" />
         <activity
-            android:name=".Form.MainActivity"
+            android:name=".views.LoginOkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.MainActivityForm"
             android:exported="false" />
     </application>
 

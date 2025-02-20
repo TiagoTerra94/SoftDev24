@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConversorHoras.MainActivity">
+    tools:context=".views.MainActivityHoras">
 
     <Button
         android:id="@+id/btn_convert"
