@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mysecondapp"
+    namespace = "com.example.androidmvvm"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.mysecondapp"
+        applicationId = "com.example.androidmvvm"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -35,7 +35,7 @@ android {
     }
 
     buildFeatures{
-        viewBinding = true
+        viewBinding = true;
     }
 }
 
@@ -46,11 +46,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.play.services.ads.lite)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.google.android.gms:play-services-ads:23.6.0")
 }
