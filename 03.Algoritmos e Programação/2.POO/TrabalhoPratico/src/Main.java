@@ -10,7 +10,7 @@ public class Main {
         System.out.println("You have chosen: " + hero.getClass().getSimpleName());
 
         //Inicio do jogo
-        game1.hauntedCastle(hero);
+            game1.hauntedCastle(hero);
     }
 
 }
