@@ -27,9 +27,4 @@ public class CombatConsumable extends Consumable {
         System.out.println("Price: " + priceCoinGold);
     }
 
-    @Override
-    public void use(Hero hero){
-        System.out.println("You used " + this.name + "!");
-        System.out.println("Caused DMG: " + this.instaAttack);
-    }
 }

@@ -1,9 +1,6 @@
 package Main_Entity;
 
-import Items.Consumable;
-import Items.ItemHero;
-import Items.MainWeapon;
-import Items.Potion;
+import Items.*;
 
 import java.util.Scanner;
 
@@ -52,19 +49,37 @@ public class Archer extends Hero{
                 System.out.println("Can't use that.");
             }
             if(op==3){
+                System.out.println("Consumable available:");
                 for (Consumable item : this.inventory){
-                    item.showStatus();
+                    if(item instanceof CombatConsumable) {
+                        System.out.println(++counter + ":");
+                        item.showStatus();
+                    }else{
+                        System.out.println("No combat consumable not available");
+                        return;
+                    }
                 }
+
 
                 int option;
                 do {
                     System.out.println("Which do you want to use?\n" +
                             "0- Back");
+
                     option = in.nextInt();
+
                     if (option == 0) break;
-                    while (!this.inventory.contains(option)) {//rever
-                        System.out.print("Not available. Pick another: ");
-                        option = in.nextInt();
+
+                    if (option < 1 && option > this.inventory.size()) {
+                        System.out.println("Not available. Pick another: ");
+                    } else {
+                        // Consumir o item escolhido
+                        if(inventory.get(option-1) instanceof CombatConsumable){
+                        CombatConsumable selectedItem = (CombatConsumable) inventory.get(option - 1);
+                        npc.currentHealth -= selectedItem.getInstaAttack();//checkar vida
+                        this.inventory.remove(selectedItem);
+                        System.out.println("You used " + selectedItem.getName() + "!");
+                        }
                     }
                 }while(option !=0);
             }
@@ -72,7 +87,7 @@ public class Archer extends Hero{
             //Turno do NPC
             System.out.println("The enemy has attacked!" + "DMG: " + plusDmg);
             this.currentHealth -= (int) plusDmg;
-
+            checkHeroHP(this);
 
 
         }while(npc.currentHealth > 0 && this.currentHealth > 0);
@@ -85,33 +100,11 @@ public class Archer extends Hero{
             this.gold += npc.gold;
             System.out.println("Player Level: " + this.level);
         } else {
-            System.out.println("Game Over! You lost!");
+            checkHeroHP(this);
         }
     }
 
-    @Override
-    public void use(Hero hero) {//REVER
-        for(Consumable item: this.inventory){
-            if (item instanceof Potion){
-                item.showStatus();
-            }
-        }
 
-        if(this.inventory.isEmpty()){//REVER
-            System.out.println("No potions available");
-        }else{
-            System.out.println("Which one do you want to use, Hero?");
 
-            int op = in.nextInt();
 
-            for(int i = 0; i < this.inventory.size(); i++){
-                if(i+1 == op ){
-                    System.out.println("You used: " + this.inventory.get(i).getName());
-                    this.inventory.remove(i);
-                    System.out.println("Status applied: " + this.inventory.get(i).getName());
-                }
-            }
-
-        }
-    }
 }

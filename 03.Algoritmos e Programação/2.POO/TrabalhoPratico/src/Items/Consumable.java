@@ -13,4 +13,6 @@ public abstract class Consumable extends ItemHero {
         System.out.println("Price: " + priceCoinGold);
     }
 
+
+
 }

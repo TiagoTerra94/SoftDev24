@@ -36,8 +36,4 @@ public class Potion extends Consumable {
         System.out.println("Hero Permitted: " + permitedHeroes);//rever
     }
 
-    @Override
-    public void use(Hero heroi) {
-
-    }
 }

@@ -35,10 +35,7 @@ public abstract class ItemHero {
      * Mostrar detalhes dos items disponiveis
      */
     public void showStatus(){
-        System.out.println("*******Item********");
-        System.out.println("Name: " + name + " | Price: " + priceCoinGold + " | Heroes: " + permitedHeroes);
+        System.out.println("Name: " + this.name + " | Price: " + this.priceCoinGold +  " \uD83D\uDCB0 | Hero: " + this.permitedHeroes);
     }
 
-
-    public abstract void use(Hero heroi);
 }

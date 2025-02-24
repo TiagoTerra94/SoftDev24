@@ -46,7 +46,7 @@ public abstract class Entity {
         this.strength = strength;
     }
 
-    public void exibirDetalhes(){
+    public void exibirDetalhes() {
         System.out.println("*********Hero Status**********");
         System.out.println("Name: " + this.name);
         System.out.println("Max Health: " + this.maxHealth);
