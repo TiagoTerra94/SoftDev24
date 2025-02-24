@@ -1,0 +1,57 @@
+public void usePotion() {
+        ArrayList<Consumable> potions = new ArrayList<>();
+        System.out.println("\nAvailable Potions:");
+
+        // Find all potions in inventory
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) instanceof Potion) {
+                potions.add(inventory.get(i));
+                System.out.println((potions.size()) + ". " + inventory.get(i).getName());
+            }
+        }
+
+        if (potions.isEmpty()) {
+            System.out.println("No potions available!");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Select potion to use (0 to cancel): ");
+        int choice = scanner.nextInt();
+
+        if (choice > 0 && choice <= potions.size()) {
+            Potion selectedPotion = (Potion) potions.get(choice - 1);
+
+            // Calculate healing
+            int currentHp = this.getHp();
+            int maxHp = this.getMaxHp();
+            int healAmount = selectedPotion.getHealAmount();
+            int excess = 0;
+
+            if (currentHp + healAmount > maxHp) {
+                excess = (currentHp + healAmount) - maxHp;
+                healAmount = maxHp - currentHp;
+            }
+
+            if (excess > 0) {
+                System.out.println("Warning: " + excess + " HP will be wasted. Continue? (1: Yes, 2: No)");
+                int confirm = scanner.nextInt();
+                if (confirm != 1) {
+                    return;
+                }
+            }
+
+            // Apply potion effects
+            this.setHp(currentHp + healAmount);
+            this.setStrength(this.getStrength() + selectedPotion.getStrengthBoost());
+
+            System.out.println("Used " + selectedPotion.getName() + "!");
+            System.out.println("Healed " + healAmount + " HP!");
+            if (selectedPotion.getStrengthBoost() > 0) {
+                System.out.println("Gained " + selectedPotion.getStrengthBoost() + " Strength!");
+            }
+
+            // Remove used potion
+            inventory.remove(selectedPotion);
+        }
+    }

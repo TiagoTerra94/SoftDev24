@@ -188,6 +188,9 @@ public class Game {
         int opcont = 0;
 
         do {
+            //Função para saber se o Heroi morreu
+            boolean gameOver = false;
+
             //Main Story
             System.out.println("Welcome to the The Haunted Castle Game");
             System.out.println("Villager: - After a terrible monster attacked our city, our people has been terrified.\n" +

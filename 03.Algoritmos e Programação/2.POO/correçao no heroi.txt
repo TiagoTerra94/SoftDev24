@@ -1,0 +1,15 @@
+if (npc.currentHealth <= 0) {
+    System.out.println("You won!");
+    this.level++;
+    this.maxHealth += 10;
+    this.strength += 1;
+    this.gold += npc.gold;
+    System.out.println("Player Level: " + this.level);
+    return false; // Return false to indicate player didn't die
+} else if (this.currentHealth <= 0) {
+    System.out.println("Game Over! You lost!");
+    return true; // Return true to indicate player died and needs retry
+} else {
+    System.out.println("Battle continues..."); // If neither player nor NPC is dead
+    return false;
+}

@@ -1,0 +1,217 @@
+int opcont = 0;
+
+do {
+    // Hero initialization should be here
+    // Hero hero = new Hero(); // Uncomment and modify as needed
+    
+    boolean gameOver = false;
+    
+    //Main Story
+    System.out.println("Welcome to the The Haunted Castle Game");
+    System.out.println("Villager: - After a terrible monster attacked our city, our people has been terrified.\n" +
+            "- Our beloved King tried to kill the beast to bring peace, but no luck...\n" +
+            "- The beast imprisioned the King and every single knight who tried to beat him.\n" +
+            "- I don't know what to do... Please help us.");
+
+    System.out.println("To win the game, you have to beat the the beast and save the king.\n" +
+            "Once you enter the Haunted Castle, you will pass each room by beating the beast's subordinates...\n" +
+            "Be careful, some rooms have others surprises. Good luck!");
+
+    System.out.println("You entered the Haunted Castle Game");
+    System.out.println("There is a rusty door at your left and a cleaned door at your right. Which one do you choose?\n" +
+            "1- Rusty Door\n" +
+            "2- Cleaned Door");
+
+    int option = sc.nextInt();
+
+    // Main game paths
+    if (option == 1) {
+        // Rusty Door path
+        gameOver = handleRustyDoorPath(hero, sc);
+    } else if (option == 2) {
+        // Cleaned Door path
+        gameOver = handleCleanedDoorPath(hero, sc);
+    }
+    
+    // If hero died in any room, offer to retry
+    if (gameOver) {
+        System.out.println("GAME OVER! Do you want to try again? 1- Yes; 2-No");
+        opcont = sc.nextInt();
+        
+        // Reset hero health if player wants to retry
+        if (opcont == 1) {
+            hero.resetHealth(); // You need to implement this method in your Hero class
+        }
+    } else {
+        // Game completed successfully
+        System.out.println("Congratulations! You have completed the game and saved the kingdom!");
+        System.out.println("Do you want to play again? 1- Yes; 2-No");
+        opcont = sc.nextInt();
+    }
+} while (opcont == 1);
+
+// New method to handle the Rusty Door path
+private static boolean handleRustyDoorPath(Hero hero, Scanner sc) {
+    chestRoom();
+    hero.exibirDetalhes();
+    int doorAction = 0;
+    
+    //CICLO PARA REPETIR CASO O JOGADOR NAO QUEIRA PROSSEGUIR
+    do {
+        System.out.println("As you walk towards the corridor, you heard the noise of bats... you start to shiver... ");
+        System.out.println("there is no source of light near you and the air");
+        System.out.println("seems thinner. You tap the walls, you can feel the coldness even with your gloves.");
+        System.out.println("Finally you touch a door, it seems the only way to go forward." +
+                "Should you open the door?\n" +
+                "1- Let's go!" +
+                "2- Nope.");
+
+        doorAction = sc.nextInt();
+        if (doorAction == 1) {
+            // Room 2 battle
+            boolean died = Room2(hero);
+            if (died) return true; // Player died, return to main loop for retry option
+            
+            hero.exibirDetalhes();
+            System.out.println("You sense that you are very near to your final battle, no easy task until now.");
+            System.out.println(" You found a breach in the wall and a door at your right, what is your next move?\n" +
+                    "1- Sneak to the breach\n" +
+                    "2- Open door");
+
+            sc.nextLine(); // Clear buffer
+            doorAction = sc.nextInt();
+
+            if (doorAction == 1) {
+                sellerEncounter(hero);
+                hero.exibirDetalhes();
+                System.out.println("You go back the room, the smell of blood is fresh and your next move is just to go ahead the door. ");
+                System.out.println("You only have one way to procceed, let's go traveller!");
+                System.out.println("There is a battle ahead, it's the final boss!");
+                
+                // Final boss battle
+                boolean died = Room3(hero);
+                return died; // Return death status to main loop
+            }
+            if (doorAction == 2) {
+                System.out.println("There is a battle ahead, it's the final boss!");
+                
+                // Final boss battle
+                boolean died = Room3(hero);
+                return died; // Return death status to main loop
+            }
+        } else if (doorAction == 2) {
+            hero.exibirDetalhes();
+            System.out.println("Want to cure?");
+            hero.use(hero);
+        }
+    } while (doorAction != 1);
+    
+    return false; // This line should never be reached
+}
+
+// New method to handle the Cleaned Door path
+private static boolean handleCleanedDoorPath(Hero hero, Scanner sc) {
+    System.out.println("There is a battle ahead, a enemy appeared!");
+    
+    // First battle
+    boolean died = Room1(hero);
+    if (died) return true; // Player died, return to main loop for retry option
+    
+    hero.exibirDetalhes();
+    System.out.println("You never thought that behind that door was a terrible rat monster like that, even now you are frightened with such face, with those big eyes and that red fur all around it." +
+            "You try to forget that image as you continue to investigate the castle, you saw bodies of soldiers near a corridor as you walk... You see at the end of it a big door, maybe it's there that the King is imprisoned." +
+            "You are walking step by step, but you think there is no time to be cautious... you try walk faster towards the door and you you found stairs at your right... Should you go for the door or the stair?\n" +
+            "1- Big Door\n" +
+            "2- Stairs");
+
+    int doorAction = sc.nextInt();
+    if (doorAction == 1) {
+        hero.exibirDetalhes();
+        sellerEncounter(hero);
+        System.out.println("Seems that no one is here, the crown of the King was laying down in the throne. Hope that he is okay. We need to save him and the knights as well. Our kingdom relies on us right now." +
+                "You saw a tiny door with some cloth beside, maybe it's from the King... you must hurry!\n" +
+                "You climb a couple stairs, until you found... another monster");
+        
+        // Another battle
+        died = Room4(hero);
+        if (died) return true; // Player died, return to main loop for retry option
+        
+        hero.exibirDetalhes();
+        System.out.println("You are feeling the end is coming near, you heard noises behind a red door, some screams as well... you run towards it and smash the door.");
+        System.out.println("There is a battle ahead, it's the final boss!");
+        
+        // Final boss battle
+        died = Room3(hero);
+        return died; // Return death status to main loop
+    } else if (doorAction == 2) {
+        chestRoom();
+        hero.exibirDetalhes();
+        System.out.println("There is a battle ahead, it's the final boss!");
+        
+        // Final boss battle
+        boolean died = Room3(hero);
+        return died; // Return death status to main loop
+    }
+    
+    return false; // This line should never be reached
+}
+
+// Modified battle room methods that return a boolean indicating if the hero died
+private static boolean Room1(Hero hero) {
+    // Implement battle logic here
+    // ...
+    
+    // Check if hero died during battle
+    if (hero.getCurrentHealth() <= 0) {
+        return true; // Hero died
+    }
+    return false; // Hero survived
+}
+
+private static boolean Room2(Hero hero) {
+    // Implement battle logic here
+    // ...
+    
+    // Check if hero died during battle
+    if (hero.getCurrentHealth() <= 0) {
+        return true; // Hero died
+    }
+    return false; // Hero survived
+}
+
+private static boolean Room3(Hero hero) {
+    // Implement final boss battle logic here
+    // ...
+    
+    // Check if hero died during battle
+    if (hero.getCurrentHealth() <= 0) {
+        return true; // Hero died
+    }
+    return false; // Hero survived
+}
+
+private static boolean Room4(Hero hero) {
+    // Implement battle logic here
+    // ...
+    
+    // Check if hero died during battle
+    if (hero.getCurrentHealth() <= 0) {
+        return true; // Hero died
+    }
+    return false; // Hero survived
+}
+
+// Hero class needs a method to reset health for retry
+// Example implementation:
+/*
+public class Hero {
+    private int maxHealth;
+    private int currentHealth;
+    
+    // ... other attributes and methods
+    
+    public void resetHealth() {
+        this.currentHealth = this.maxHealth;
+    }
+}
+*/
