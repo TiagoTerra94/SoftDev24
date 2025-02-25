@@ -5,16 +5,18 @@ import Main_Entity.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Classe onde se ocorre o jogo
+ * Classe onde é configurado os métodos do Jogo
  */
 public class Game {
     static Scanner sc = new Scanner(System.in);
+
 
     //Classes de Personagem Disponiveis
     protected Knight knight;
@@ -28,6 +30,9 @@ public class Game {
 
     //Metodo de Instancia
     static int difficulty;
+    static int points = 0;
+    static int newStrenght;
+    static int newHp;
     static Scanner in = new Scanner(System.in);
 
     /**
@@ -82,7 +87,7 @@ public class Game {
     public void distributePoints(Hero character) {
         //1 de vida = 1 ponto criação
         //1 de força = 5 pontos criaçao
-        int points = 0;
+
 
         if (difficulty == 1) {
             points = 300;
@@ -96,22 +101,32 @@ public class Game {
 
         System.out.println("Points available: " + points);
         System.out.println("Distribute the creation points to your Hero: ");
-        System.out.print("Points of strength: ");
-        int strenght = in.nextInt();
+        System.out.print("Points of strength (1 Strenght = 5 points): ");
 
-        //Validação caso o valor seja 0 ou maior que o permitido
-        while (strenght > points || strenght == 0) {
-            System.out.println("Invalid value. Try again: ");
-            strenght = in.nextInt();
+        int hp = in.nextInt();
+
+        while (hp > points || hp < 1) {
+            System.out.println("Invalid value. You must assign at least 1 HP. Try again: ");
+            hp = in.nextInt();
         }
 
-        character.setStrength(strenght);
+        character.setMaxHealth(hp);
+        character.setCurrentHealth(hp);
 
-        //Por casa 5 de criação, 1 de Força
-        points -= strenght * 5;
-        System.out.println("The " + points + " points available goes to your Max Health.");
-        character.setMaxHealth(points);
-        character.setCurrentHealth(points);
+        points -= hp;
+
+        int strength = points / 5;
+
+        character.setStrength(strength);
+
+        System.out.println("Final Stats: ");
+        System.out.println("HP ❤️: " + character.getMaxHealth());
+        System.out.println("Strength 💪: " + character.getStrength());
+
+        //Atributos base do heroi
+        newStrenght = strength;
+        newHp = character.getMaxHealth();
+
 
     }
 
@@ -126,20 +141,20 @@ public class Game {
         //Herois permitidos
 
         //Items curaHp
-        Consumable potion = new Potion("Life Potion", 10, 5, 0);
+        Consumable potion = new Potion("Life Potion", 10, 25, 0);
         potion.getPermitedHeroes().add("Knight");
         potion.getPermitedHeroes().add("Wizard");
         potion.getPermitedHeroes().add("Archer");
 
-        Consumable knightPotion = new Potion("Dragon Life", 15, 10, 0);
+        Consumable knightPotion = new Potion("Dragon Life", 15, 20, 0);
         knightPotion.getPermitedHeroes().add("Knight");
-        Consumable archerPotion = new Potion("Pointy Drink", 16, 12, 0);
+        Consumable archerPotion = new Potion("Pointy Drink", 16, 22, 0);
         archerPotion.getPermitedHeroes().add("Archer");
-        Consumable wizardPotion = new Potion("Druid Sip", 10, 8, 0);
+        Consumable wizardPotion = new Potion("Druid Sip", 10, 18, 0);
         wizardPotion.getPermitedHeroes().add("Wizard");
 
         //Item aumento força
-        Consumable upStrenght = new Potion("Up Strenght", 10, 0, 5);
+        Consumable upStrenght = new Potion("Up Strenght", 10, 0, 15);
         upStrenght.getPermitedHeroes().add("Knight");
         upStrenght.getPermitedHeroes().add("Archer");
         Consumable upMana = new Potion("Up Mana", 15, 0, 15);
@@ -191,11 +206,6 @@ public class Game {
      * @param hero que vai jogar
      */
     public void hauntedCastle(Hero hero) {
-        int opcont = 0;
-        //Hero baseHero = hero.clone();
-        //baseHero.reviveHero(hero);
-
-
             //Main Story
             System.out.println("Welcome to the The Haunted Castle Game");
             System.out.println("Villager: - After a terrible monster attacked our city, our people has been terrified.\n" +
@@ -223,26 +233,29 @@ public class Game {
 
             int option = sc.nextInt();
 
-            //Caso jogador escolha a PRIMEIRA PORTA encontrará um chest
+            //Caso jogador escolha a [RUSTY DOOR] encontrará um chest
             if (option == 1) {
                 chestRoom(hero);
                 chanceEnemy(hero);
+                checkHeroHP(hero);
                 hero.exibirDetalhes();
                 checkPotion(hero);
                 int doorAction;
                 int counterRoom5 = 0;
 
                 do {
-                    //USAR AQUI FUNÇAO PARA O HEROI IR AO INVENTARIO OU CURAR-SE
-                    System.out.println("As you walk towards the corridor, you heard the noise of bats... you start to shiver... ");
-                    System.out.println("there is no source of light near you and the air");
-                    System.out.println("seems thinner. You tap the walls, you can feel the coldness even with your gloves.");
-                    System.out.println("Finally you touch a door, it seems the only way to go forward. But you felt something behind you and..." +
-                            "There is someone there in the mid of the corridor..." +
-                            "Should you open the door?\n" +
-                            "1- Let's go!");
-                    if(counterRoom5 == 0) {
+                    if (counterRoom5 == 0) {
+                        System.out.println("As you walk towards the corridor, you heard the noise of bats... you start to shiver... ");
+                        System.out.println("there is no source of light near you and the air");
+                        System.out.println("seems thinner. You tap the walls, you can feel the coldness even with your gloves.");
+                        System.out.println("Finally you touch a door, it seems the only way to go forward. But you felt something behind you and..." +
+                                "There is someone there in the mid of the corridor...");
+                        System.out.println("Should you open the door?\n" +
+                                "1- Let's go!");
                         System.out.println("2- Try to see who is there.");
+                    } else {
+                        System.out.println("Should you open the door?\n" +
+                                "1- Let's go!");
                     }
 
 
@@ -250,57 +263,60 @@ public class Game {
 
                     if (doorAction == 1) {
                         Room2(hero);
+                        checkHeroHP(hero);
                         hero.exibirDetalhes();
                         checkPotion(hero);
-                        System.out.println("You sense that you are very near to your final battle, no easy task until now.");
                         System.out.println("You found a person in the way, very terrified, it seems one of the knights of the King");
                         System.out.println("- Hey, you! Did you come to defeat the beast, I tried to help but I got cold feet and hide in a corner right when we entered... here you can have my money at least...");
+                        System.out.println("**Hero received 30 gold");
+                        hero.setGold(hero.getGold()+30);
                         System.out.println("I will stay here waiting for you when you beat that monster");
-                        hero.setGold(+30);
                         System.out.println("You continue and found a breach in the wall and a door at your right, what is your next move?\n" +
-                                "1- Sneak to the breach" +
+                                "1- Sneak to the breach\n" +
                                 "2- Open door");
 
                         in.nextLine();
 
                         doorAction = in.nextInt();
 
+                        //Caso o jogador escolha [SNEAK TO THE BREACH]
                         if (doorAction == 1) {
                             sellerEncounter(hero);
                             chanceEnemy(hero);
+                            checkHeroHP(hero);
                             hero.exibirDetalhes();
                             checkPotion(hero);
                             System.out.println("You go back the room, the smell of blood is fresh and your next move is just to go ahead the door. ");
-                            System.out.println("You only have one way to procceed, let's go traveller!");
-                            System.out.println("There is a battle ahead, it's the final boss!");
+                            System.out.println("You only have one way to proceed, let's go traveller!");
                             Room3(hero);
                             return;//FIM
                         }
+                        //Caso o jogador escolha [OPEN DOOR]
                         if (doorAction == 2) {
                             Room3(hero);
                             return;//FIM
                         }
                     }
 
+                    //Caso o jogador escolha [TRY TO SEE WHO IS THERE]
                     if (doorAction == 2) {
                         counterRoom5++;
                         System.out.println("You follow a shadow and discovered a new corridor... something is not right... you are surprised by a man");
                         Room5(hero);
+                        checkHeroHP(hero);
                         hero.exibirDetalhes();
                         checkPotion(hero);
-                        System.out.println("You go back to the door and quickly opened it");
+                        System.out.println("You go back to the door...");
                     }
                 }while(doorAction == 2);
-
-
-
             }
 
 
-            //Caso o Jogador escolha a SEGUNDA PORTA
+            //Caso o Jogador escolha a [CLEANED DOOR]
             if (option == 2) {
                 System.out.println("There is a battle ahead, a enemy appeared!");
                 Room1(hero);
+                checkHeroHP(hero);
                 hero.exibirDetalhes();
                 System.out.println("You never thought that behind that door was a terrible rat monster like that, even now you are frightened with such face, with those big eyes and that red fur all around it." +
                         "You try to forget that image as you continue to investigate the castle, you saw bodies of soldiers near a corridor as you walk... You see at the end of it a big door, maybe it's there that the King is imprisoned." +
@@ -309,7 +325,10 @@ public class Game {
                         "2- Stairs");
 
                 int doorAction;
+
                 doorAction = in.nextInt();
+
+                //Caso o jogador escolha [BIG DOOR]
                 if (doorAction == 1) {
                     hero.exibirDetalhes();
                     sellerEncounter(hero);
@@ -317,17 +336,20 @@ public class Game {
                             "You saw a tiny door with some cloth beside, maybe it's from the King... you must hurry!\n" +
                             "You climb a couple stairs, until you found... another monster");
                     Room4(hero);
+                    checkHeroHP(hero);
                     hero.exibirDetalhes();
                     checkPotion(hero);
                     System.out.println("You are feeling the end is coming near, you heard noises behind a red door, some screams as well... you run towards it and suddenly you fell...\n" +
                             "You felt dizzy for a couple seconds, you take a look at the ceiling... there is a hole... now you have to search a way to get out of here\n" +
                             "It seems every door is blocked... you search for boxes to help you get at the ceiling until...");
                     Room6(hero);
+                    checkHeroHP(hero);
                     hero.exibirDetalhes();
                     checkPotion(hero);
                     Room3(hero);//FIM
 
                 }
+                //Caso o jogador escolha [STAIRS]
                 if (doorAction == 2) {
                     chestRoom(hero);
                     chanceEnemy(hero);
@@ -337,6 +359,10 @@ public class Game {
             }
     }
 
+    /**
+     * Método para perguntar ao Heroi se quer curar
+     * @param hero
+     */
     private void checkPotion(Hero hero) {
         System.out.println("\nWould you like to use a potion?\n" +
                 " 1 - Yes" +
@@ -418,7 +444,7 @@ public class Game {
         }
 
         System.out.println("Open chest?\n" +
-                "1- Yes" +
+                "1- Yes\n" +
                 "2- No");
         int chestOpen = sc.nextInt();
         if (chestOpen == 1) {
@@ -469,11 +495,11 @@ public class Game {
      * @param hero
      */
     public void Room2(Hero hero) {
-        NPC MagicFox = new NPC("MagicFox", 60, 60, 12, 15);
+        System.out.println("A new mob appeared");
+        NPC MagicFox = new NPC("MagicFox", 60, 60, 22, 15);
         MagicFox.showDetails();
         hero.attack(MagicFox);
 
-        System.out.println("You are sense that you are very near to your final battle, no easy task until now. You found...");//VAI PARA A SALA SELLER E OUTRA ROOM 3(FINAL BATTLE)
     }
 
     /**
@@ -483,11 +509,12 @@ public class Game {
      */
     public void Room3(Hero hero) {
         System.out.println("There is a battle ahead, it's the final boss!");
-        NPC VitorSanchez = new NPC("VitorSanchez", 40, 50, 35, 35);
+        NPC VitorSanchez = new NPC("VitorSanchez", 60, 60, 75, 35);
         VitorSanchez.showDetails();
         hero.attack(VitorSanchez);
+        checkHeroHP(hero);
 
-        System.out.println("Congratulations! You saved the day!");
+        System.out.println("\uD83C\uDF89Congratulations! You saved the day! The King is safe and sound! Hurray!\uD83C\uDF89");
     }
 
     /**
@@ -496,7 +523,7 @@ public class Game {
      * @param hero
      */
     public void Room4(Hero hero) {
-        NPC Frodo = new NPC("Corrupted Frodo", 55, 55, 40, 50);
+        NPC Frodo = new NPC("Corrupted Frodo", 55, 55, 50, 50);
         Frodo.showDetails();
         hero.attack(Frodo);
     }
@@ -552,11 +579,14 @@ public class Game {
             System.out.println("Oh.. ohh... funny boy...YOU SNITCH! GO AWAY!");
             System.out.println("Smeagol attacked 10DMG.");
             hero.setCurrentHealth(hero.getCurrentHealth() -10);
-            System.out.println("I leave you for now");
         }else if(item == 2){
             System.out.println("I KNEW IT! I'M GONNA KILL YOU! IT'S MY PRECIOUSSSSSSS RINGGGG!");
             NPC Gollum = new NPC("Smeagol",100,100,40,40);
             hero.attack(Gollum);
+            if(hero.getCurrentHealth() > 0){
+                System.out.println("You got THE RING from Smeagol, you receive 30 Strength");
+                hero.setStrength(hero.getStrength() + 30);
+            }
         }else if(item == 3){
             System.out.println("GO AWAYYY!");
         }
@@ -573,19 +603,25 @@ public class Game {
         System.out.println("-So big boy, let me ask you? Do you like rolling dice?");
         System.out.println("-Let's make this fun, shall we?");
         System.out.println("If you roll well, I'll let you go.. but if you lose... oh boy...");
-        System.out.println("I'm in good mood today, I'll let you try 3 times.. if by chance you get a 6 or a 12...");
+        System.out.println("I'm in good mood today, you shall do it 3 times huehuehuehue... if by chance you get a 6 or a 12...");
         System.out.println("Just pray to your gods, boy!");
 
-        System.out.println("Roll Dice? (You have 3 tries)");
+        System.out.println("Rolling dice....");
         Random random = new Random();
 
         int numRollDice = 0;
-        System.out.println("-1....2....3... let's seee");
+        System.out.println("-1....2....3... let's seee...");
         while(numRollDice < 3) {
             int deathPenalty =  random.nextInt(13);
+            System.out.println("Dice " + (numRollDice+1) + "\uD83C\uDFB2");
+            System.out.println("Number: " + deathPenalty);
+            System.out.println();
             if(deathPenalty == 6 || deathPenalty == 12){
                 hero.setCurrentHealth(0);
-                return;//FIM
+                System.out.println("YOU LOST! TIME TO DIE!");
+                System.out.println("GAME OVER");
+                hero.setCurrentHealth(0);
+                checkHeroHP(hero);
             }
             numRollDice++;
         }
@@ -596,38 +632,106 @@ public class Game {
         //New Weapon
         MainWeapon BeastSword = new MainWeapon("Blade Sword", 160, 65, 92);
         MainWeapon DrCane = new MainWeapon("DrCane", 150, 78, 115);
-        MainWeapon LegolasBow = new MainWeapon("Simple Bow", 153, 120, 147);
+        MainWeapon LegolasBow = new MainWeapon("Legolas Bow", 153, 120, 147);
 
         if(hero instanceof Knight){
             hero.setMainWeapon(BeastSword);
+            System.out.println("You got " + BeastSword.getName());
         }
         if(hero instanceof Wizard){
             hero.setMainWeapon(DrCane);
+            System.out.println("You got " + DrCane.getName());
         }
         if (hero instanceof Archer){
             hero.setMainWeapon(LegolasBow);
+            System.out.println("You got " + LegolasBow.getName());
         }
 
     }
 
-
-    /*//REVER
-    public void retryAgain(Hero hero){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Do you want to try again?\n" +
-                "1 - Yes\n" +
-                "2 - No");
-        System.out.print("Choice: ");
-
-        int choice = in.nextInt();
-
-        if (choice == 1) {
-            hauntedCastle(hero); // Reinicia o jogo sem criar um novo herói
-        } else {
-            System.out.println("Thanks for playing! See you next time.");
-            System.exit(0); // Encerra o jogo
+    /**
+     * Checka a vida do heroi e se estiver morto abre o metodo menu
+     * @param hero
+     * @return
+     */
+    public boolean checkHeroHP(Hero hero){
+        if (hero.getCurrentHealth() <= 0) {
+            System.out.println("\uD83D\uDC94Game Over! You lost!\uD83D\uDC94");
+            menuGameOver(hero);
+            return false;
+        }else{
+            return true;
         }
-    }*/
+    }
 
+    /**
+     * Menu depois de morrer, com 3 opções (Voltar a jogar com o mesmo heroi, criar um novo ou terminar)
+     * @param hero
+     */
+    public void menuGameOver(Hero hero){
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("What do you want to do now? ");
+            System.out.println("1- Restart with same hero");
+            System.out.println("2- Create new hero and restart");
+            System.out.println("3- Exit game");
+
+
+            try {
+                int input = sc.nextInt();
+                if (input == 1) {
+                    resetHero(hero);
+                    validInput = true;
+                    startNewGame(hero);
+                    break;
+                } else if (input == 2) {
+                    Hero newHero = createCharacter();
+                    validInput = true;
+                    startNewGame(newHero);
+                    break;
+                } else if (input == 3) {
+                    System.out.println("\uD83D\uDEA9THE END! THANKS FOR PLAYING!\uD83D\uDEA9");
+                    System.exit(0);
+                    break;
+                } else {
+                    System.out.println("Invalid Choice! Try again");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Invalid Input! Try Again");
+                sc.nextLine();
+            }
+        }
+    }
+
+    /**
+     * Começar o jogo de novo
+     * @param hero
+     */
+    private void startNewGame(Hero hero) {
+        hauntedCastle(hero);
+    }
+
+    /**
+     * Reseta o Heroi com os stats/atributos iniciais
+     * @param hero
+     */
+    private void resetHero(Hero hero) {
+
+        hero.setMaxHealth(newHp);
+        hero.setCurrentHealth(newHp);
+        hero.setStrength(newStrenght);
+        hero.setLevel(0);
+
+        if (difficulty == 1) {
+            hero.setGold(20);
+        }
+
+        if (difficulty == 2) {
+            hero.setGold(15);
+        }
+        System.out.println("Someone revived you, traveller!");
+    }
 
 }

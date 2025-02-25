@@ -2,6 +2,9 @@ package Items;
 
 import Main_Entity.Hero;
 
+/**
+ * Classe dos Items de Combate
+ */
 public class CombatConsumable extends Consumable {
     //Atributos de instancia
     protected int instaAttack;

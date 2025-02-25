@@ -4,6 +4,9 @@ import Main_Entity.Hero;
 
 import java.util.ArrayList;
 
+/**
+ * Classe da ArmaPrincipal
+ */
 public class MainWeapon extends ItemHero {
     //Atributos de instancia
     protected int attack;
@@ -28,6 +31,10 @@ public class MainWeapon extends ItemHero {
 
 
     //Metodo de Instancia
+
+    /**
+     * Mostra os detalhes da ArmaPrincipal
+     */
     public void showStatus(){
         System.out.println("Name: " + name + " | Price: " + priceCoinGold + "\uD83D\uDCB0  | Attack " + attack + "\uD83D\uDDE1\uFE0F | Special Attack " + specialAttack + "\uD83D\uDCA5 | Hero: " + permitedHeroes);
 

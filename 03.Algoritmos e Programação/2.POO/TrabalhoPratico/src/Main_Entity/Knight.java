@@ -1,5 +1,6 @@
 package Main_Entity;
 
+import Game.Game;
 import Items.CombatConsumable;
 import Items.Consumable;
 import Items.MainWeapon;
@@ -7,6 +8,9 @@ import Items.Potion;
 
 import java.util.Scanner;
 
+/**
+ * Classe Cavaleiro
+ */
 public class Knight extends Hero {
     static Scanner in = new Scanner(System.in);
 
@@ -25,10 +29,17 @@ public class Knight extends Hero {
 
         do {
             //Turno do NPC
-            System.out.println("The enemy has attacked!" + "DMG: " + shield);
-            this.currentHealth -= (int) (npc.strength - shield);
+            System.out.println("The enemy has attacked!" + "Attack Dmg: " + (npc.strength - shield) + "\uD83D\uDCA5");
+            System.out.print("Hero HP ❤\uFE0F");
+            System.out.print(this.currentHealth -= (int) (npc.strength - shield));
+            System.out.print("/");
+            System.out.println(this.maxHealth);
 
-            this.exibirDetalhes();
+            //Caso o heroi morra do ataque, retorna
+            if(this.currentHealth <= 0) {
+                return;
+            }
+
 
             //Turno do Heroi
             System.out.println("Choose an attack:\n" +
@@ -36,7 +47,7 @@ public class Knight extends Hero {
                     "2- Special\n" +
                     "3- Combat Consumable");
 
-            System.out.println("Opção: ");
+            System.out.print("Opção: ");
 
             try {
                 op = in.nextInt();
@@ -44,20 +55,22 @@ public class Knight extends Hero {
                 throw new RuntimeException(e);
             }
 
-            if (op == 1) {
-                System.out.println(this.name + "used Normal Attack!" + "DMG: " + attack);
+            //Normal Attack
+            if(op==1){
+                System.out.println(this.name + " used Normal Attack!" + "Attack Dmg: " + attack + "\uD83D\uDCA5");
                 npc.currentHealth -= attack;
                 npc.currentHP();
-            }
-            if (op == 2 && counter == 0) {
+            }else if(op==2 && counter == 0){
                 counter++;
-                System.out.println(this.name + "used Special Attack!" + "DMG: " + this.mainWeapon.getSpecialAttack());
+                System.out.println(this.name + "used Special Attack!" + "Attack Dmg: " + this.mainWeapon.getSpecialAttack() + "\uD83D\uDCA5");
                 npc.currentHealth -= this.mainWeapon.getSpecialAttack();
                 npc.currentHP();
-            } else {
+            }else{//Caso não conseguir
                 System.out.println("Can't use that.");
             }
-            if (op == 3) {
+
+            //Item de Combate
+            if(op==3){
                 System.out.println("Consumable available:");
                 for (Consumable item : this.inventory){
                     if(item instanceof CombatConsumable) {
@@ -90,20 +103,18 @@ public class Knight extends Hero {
                             System.out.println("You used " + selectedItem.getName() + "!");
                         }
                     }
-                } while (option != 0);
+                }while(option !=0);
             }
         } while (npc.currentHealth > 0 && this.currentHealth > 0);
 
 
         if (npc.currentHealth <= 0) {
-            System.out.println("You won!");
+            System.out.println("You won!\uD83C\uDFC6");
             this.level ++;
             this.maxHealth += 10;
             this.strength += 1;
             this.gold += npc.gold;
             System.out.println("Player Level: " + this.level);
-        } else {
-            checkHeroHP(this);
         }
     }
 

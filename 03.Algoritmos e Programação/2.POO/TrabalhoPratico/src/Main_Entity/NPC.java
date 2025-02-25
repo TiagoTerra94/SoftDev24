@@ -1,5 +1,8 @@
 package Main_Entity;
 
+/**
+ * Classe do NPC
+ */
 public class NPC extends Entity {
     //Atributos de Instancia
     protected int gold;
@@ -25,8 +28,15 @@ public class NPC extends Entity {
         System.out.println("Gold: " + this.gold);
     }
 
+    /**
+     * Retorna a vida do NPC
+     */
     public void currentHP(){
-        System.out.println("HP: " + this.currentHealth + "/" + this.maxHealth);
+        if (this.currentHealth < 0) {
+            this.currentHealth = 0;
+        }
+
+        System.out.println("NPC HP \uD83D\uDC9A " + this.currentHealth + "/" + this.maxHealth);
     }
 
 }

@@ -1,5 +1,8 @@
 package Items;
 
+/**
+ * Classe dos Consumiveis
+ */
 public abstract class Consumable extends ItemHero {
     //Metodo Construtor
     public Consumable(String name, int priceCoinGold) {

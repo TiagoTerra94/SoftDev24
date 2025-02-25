@@ -5,6 +5,9 @@ import Main_Entity.Hero;
 
 import java.util.ArrayList;
 
+/**
+ * Classe dos Items
+ */
 public abstract class ItemHero {
     protected String name;
     protected int priceCoinGold;

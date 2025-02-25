@@ -2,9 +2,12 @@ package Main_Entity;
 
 import Items.*;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
-
+/**
+ * Classe do Arqueiro
+ */
 public class Archer extends Hero{
     static Scanner in = new Scanner(System.in);
     //Metodo Construtor
@@ -26,7 +29,7 @@ public class Archer extends Hero{
                     "2- Special\n" +
                     "3- Combat Consumable");
 
-            System.out.println("Opção: ");
+            System.out.print("Opção: ");
 
             try {
                 op = in.nextInt();
@@ -34,20 +37,21 @@ public class Archer extends Hero{
                 throw new RuntimeException(e);
             }
 
+            //Normal Attack
             if(op==1){
-                System.out.println(this.name + "used Normal Attack!" + "DMG: " + attack);
+                System.out.println(this.name + " used Normal Attack!" + "Attack Dmg: " + attack + "\uD83D\uDCA5");
                 npc.currentHealth -= attack;
                 npc.currentHP();
-            }
-
-            if(op==2 && counter == 0){
+            }else if(op==2 && counter == 0){
                 counter++;
-                System.out.println(this.name + "used Special Attack!" + "DMG: " + this.mainWeapon.getSpecialAttack());
+                System.out.println(this.name + "used Special Attack!" + "Attack Dmg: " + this.mainWeapon.getSpecialAttack() + "\uD83D\uDCA5");
                 npc.currentHealth -= this.mainWeapon.getSpecialAttack();
                 npc.currentHP();
-            }else{
+            }else{//Caso não conseguir
                 System.out.println("Can't use that.");
             }
+
+            //Item de Combate
             if(op==3){
                 System.out.println("Consumable available:");
                 for (Consumable item : this.inventory){
@@ -85,26 +89,24 @@ public class Archer extends Hero{
             }
 
             //Turno do NPC
-            System.out.println("The enemy has attacked!" + "DMG: " + plusDmg);
-            this.currentHealth -= (int) plusDmg;
-            checkHeroHP(this);
+            System.out.println("The enemy has attacked!" + "Attack Dmg: " + plusDmg + "\uD83D\uDCA5");
+            System.out.print("Hero HP ❤\uFE0F");
+            System.out.print(this.currentHealth -= (int) plusDmg);
+            System.out.print("/");
+            System.out.println(this.maxHealth);
 
 
         }while(npc.currentHealth > 0 && this.currentHealth > 0);
 
         if (npc.currentHealth <= 0) {
-            System.out.println("You won!");
+            System.out.println("You won \uD83C\uDF1F");
             this.level ++;
             this.maxHealth += 10;
             this.strength += 1;
             this.gold += npc.gold;
             System.out.println("Player Level: " + this.level);
-        } else {
-            checkHeroHP(this);
         }
     }
-
-
 
 
 }

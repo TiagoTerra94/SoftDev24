@@ -1,5 +1,8 @@
 package Main_Entity;
 
+/**
+ * Classe Entidade
+ */
 public abstract class Entity {
     //Atributos de instancia
     protected String name;
@@ -49,8 +52,8 @@ public abstract class Entity {
     public void exibirDetalhes() {
         System.out.println("*********Hero Status**********");
         System.out.println("Name: " + this.name);
-        System.out.println("Max Health: " + this.maxHealth);
-        System.out.println("Current Health: " + this.currentHealth);
-        System.out.println("Strength: " + this.strength);
+        System.out.println("Max Health: " + this.maxHealth + "❤\uFE0F");
+        System.out.println("Current Health: " + this.currentHealth + "❤\uFE0F");
+        System.out.println("Strength: " + this.strength + "\uD83D\uDCAA");
     }
 }

@@ -2,6 +2,9 @@ package Items;
 
 import Main_Entity.Hero;
 
+/**
+ * Classe das Poções
+ */
 public class Potion extends Consumable {
     //Atributos de instancia
     protected int cureHp;
@@ -24,6 +27,10 @@ public class Potion extends Consumable {
     }
 
     //Metodos de instancia
+
+    /**
+     * Mostra os detalhes da Poção
+     */
     public void showDetails() {
         System.out.println("Name: " + name);
         System.out.println("Price: " + priceCoinGold);

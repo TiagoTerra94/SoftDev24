@@ -9,6 +9,9 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Classe do Vendedor
+ */
 public class Vendor {
     static Scanner in = new Scanner(System.in);
     //Atributos de instancia
@@ -102,7 +105,6 @@ public class Vendor {
                 in.nextLine();
             }
         }
-
 
             //Busca o item escolhido
             ItemHero selectedItem = bagSeller.get(option - 1);

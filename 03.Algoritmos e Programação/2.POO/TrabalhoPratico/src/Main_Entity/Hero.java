@@ -7,6 +7,9 @@ import Items.Potion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe Heroi
+ */
 public abstract class Hero extends Entity {
     //Atributos de instancia
     protected int level;
@@ -115,41 +118,15 @@ public abstract class Hero extends Entity {
 
     }
 
-    public void checkHeroHP(Hero hero){
-        if (hero.currentHealth <= 0) {
-            System.out.println("Game Over! You lost!");
-        }
-    }
-
-    //VER PORQUE SO BUSCA ESTE
     public void exibirDetalhes(){
-        System.out.println("Level: " + this.level + "\n" +
-                "Gold: " + this.gold + "\n" +
-                "Main Weapon: " + this.mainWeapon.getName());
+        super.exibirDetalhes();
+        System.out.println("Level: " + this.level + "\uD83C\uDF1F\n" +
+                "Gold: " + this.gold + "\uD83D\uDFE1\n" +
+                "Main Weapon: " + this.mainWeapon.getName() + "\uD83D\uDDE1\uFE0F");
     }
 
     public void addToInventory(Consumable item) {
         inventory.add(item);
     }
 
-    /*public Hero clone(){
-        try {
-            Hero copy = (Hero) super.clone(); // Clona o objeto
-            copy.inventory = new ArrayList<>(this.inventory); // Clona o inventário
-            return copy;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Clone not supported", e);
-        }
-    }
-
-    public void reviveHero(Hero baseHero) {
-        // Restaurando os atributos a partir da cópia original
-        this.maxHealth = baseHero.maxHealth;
-        this.currentHealth = baseHero.maxHealth;
-        this.strength = baseHero.strength;
-        this.level = baseHero.level;
-        this.gold = baseHero.gold;
-        this.inventory.clear();
-        this.inventory.addAll(baseHero.inventory);
-    }*/
 }
