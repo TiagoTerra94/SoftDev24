@@ -31,6 +31,11 @@ class Info_Form : AppCompatActivity() {
             startActivity(resultIntent)
         }
 
+        binding.btnback1.setOnClickListener{
+            val intent = Intent(this, LoginOkActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }
