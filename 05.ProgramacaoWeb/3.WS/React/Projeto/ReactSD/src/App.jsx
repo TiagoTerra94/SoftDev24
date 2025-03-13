@@ -8,13 +8,23 @@ import MainGoal from './components/MainGoal'
 import {userData} from './data/data'
 import CourseGoal from './components/CourseGoal'
 import {TabButton} from './components/TabButton'
+import Discount from './components/Discount'
+import { EXAMPLES } from './data/coreConcepts'
+import Delete from './exercises/delete'
 
+//Variavel inicial do content que vai surgir
+//let initialContent = 'Ainda não selecionaste nada'
 
 function App() {
+  //Hook useState para alterar valor da variavel
+  const [content, setContent] = useState('components')
+
+  //Função que executa  o useState
   function handleSelect(myContent){
-    console.log(myContent)
+    setContent(myContent)
   }
 
+  //Retorno que vai surgir na página
   return (
     <>
       <div>
@@ -37,6 +47,7 @@ function App() {
       <CourseGoal
       title = 'Laravel'
       description='Fazer rotas engraçadas'/>
+
       <Card
       firstName = "Tiago"
       lastName =  "Terra"
@@ -52,19 +63,27 @@ function App() {
       <Card 
       firstName = {userData.firstName}
       title = {userData.title}/>
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
 
       <h3>Eventos Dinâmicos</h3>
       <menu>
-        <TabButton onSelect={()=> handleSelect('js')}>Matéria JS</TabButton>
-        <TabButton onSelect={()=> handleSelect('react')}>Matéria React</TabButton>
-        <TabButton onSelect={()=> handleSelect('sql')}>Matéria SQL</TabButton>
+        <TabButton onSelect={()=>handleSelect('jsx')}>JSX</TabButton>
+        <TabButton onSelect={()=>handleSelect('props')}>Props</TabButton>
+        <TabButton onSelect={()=>handleSelect('state')}>State</TabButton>
+        <div>{content}</div>
       </menu>
-      <div>
-        
-      </div>
+      {!content ?(<p>Pf seleciona um topico</p>) :
+      ( <div id='tab-content'>
+        <h3>{EXAMPLES[content].title}</h3>
+          <p>{EXAMPLES[content].description}</p>
+          <pre>
+            <code>{EXAMPLES[content].code}</code>
+          </pre>
+      </div> )}
+      <Delete/>
     </>
   )
 }

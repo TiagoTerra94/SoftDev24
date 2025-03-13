@@ -33,7 +33,12 @@
   }
 }
 
-
 .read-the-docs {
   color: #888;
+}
+
+#tab-content{
+    border-radius: 3px;
+    background-color: rgb(163, 81, 163);
+    box-shadow: 0px 0px 12px rgb(190, 121, 167);
 }
