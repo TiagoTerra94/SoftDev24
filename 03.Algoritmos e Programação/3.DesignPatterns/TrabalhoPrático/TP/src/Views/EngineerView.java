@@ -23,7 +23,7 @@ public class EngineerView {
         int menuOption;
 
         do{
-            System.out.println("*Engineer Menu!*");
+            System.out.println("*Welcome Engineer*");
             System.out.println("1 - Consulting the next 3 Revisions");
             System.out.println("2 - Consulting last 3 revisions");
             System.out.println("0 - Leave");

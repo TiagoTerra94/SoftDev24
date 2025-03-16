@@ -22,7 +22,7 @@ public class LoginView {
 
         //Menu de Login
         do{
-            System.out.println("Welcome to CesaeLand TematicPark");
+            System.out.println("*Welcome to CesaeLand TematicPark*");
             System.out.println("1- Customer");
             System.out.println("2- Staff Member");
             System.out.println("0- Leave");
@@ -30,11 +30,11 @@ public class LoginView {
             loginOption = input.nextInt();
 
             switch (loginOption){
-                case 1://Customer
+                case 1://Cliente
                     CustomerView customerView = new CustomerView();
                     customerView.menuCustomer();
                     break;
-                case 2://Staff Member (ENG or ADMIN)
+                case 2://Membro (ENG ou ADMIN)
                     System.out.println("Login with your credentials:");
                     System.out.print("Username: ");
                     username = input.next();
@@ -44,7 +44,7 @@ public class LoginView {
 
                     validateLogin(username,password);
                     break;
-                case 0://Leave
+                case 0://Sair
                     break;
                 default://Invalid Option
                     System.out.println("Invalid Option");

@@ -20,16 +20,16 @@ public class AdminView {
             Scanner input = new Scanner(System.in);
 
             System.out.println("*Welcome Dear Admin*");
-            System.out.println("1- Consultar o total de todas as vendas.");
-            System.out.println("2- Consultar o total de lucro.");
-            System.out.println("3- Consultar o total de vendas e lucro por mês, de forma tabelar");
-            System.out.println("4- Consultar a atração mais procurada por adultos (número de bilhetes vendidos).");
-            System.out.println("5- Consultar a atração mais procurada por crianças (número de bilhetes vendidos).");
-            System.out.println("6- Consultar a atração mais procurada (número de bilhetes vendidos).");
-            System.out.println("7- Consultar a atração mais lucrativa (considere o período total).");
-            System.out.println("8- Consultar a atração menos lucrativa (considere o período total).");
-            System.out.println("9- Consultar a atração com melhor preço/tempo. Apresenta a atração que custa menos por segundo.");
-            System.out.println("10- Adicionar novo login");
+            System.out.println("1 - Check the total of all sales.");
+            System.out.println("2 - Check the total profit.");
+            System.out.println("3 - Check the total sales and profit by month, in tabular form");
+            System.out.println("4 - Check the most popular attraction for adults (number of tickets sold).");
+            System.out.println("5 - Check the most popular attraction for children (number of tickets sold).");
+            System.out.println("6 - Check the most popular attraction (number of tickets sold).");
+            System.out.println("7 - Check the most profitable attraction (consider the total period).");
+            System.out.println("8 - Check the least profitable attraction (consider the total period).");
+            System.out.println("9 - Check the attraction with the best price/time. Shows the attraction that costs less per second.");
+            System.out.println("10 - Add new login");
             System.out.println("0 - Leave");
 
             menuOption = input.nextInt();
