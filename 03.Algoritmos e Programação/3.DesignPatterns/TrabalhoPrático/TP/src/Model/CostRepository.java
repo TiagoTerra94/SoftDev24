@@ -9,10 +9,15 @@ import java.util.ArrayList;
 public class CostRepository {
     private ArrayList<Cost> costList;
 
+    //Metodo construtor
     public CostRepository() throws FileNotFoundException {
         this.costList = CSVReader.readCostFileToArray("src/Files/Cesaeland_custos.csv");
     }
 
+    /**
+     * Retorna lista de custos de manutentação
+     * @return
+     */
     public ArrayList<Cost> getCostList() {
         return costList;
     }

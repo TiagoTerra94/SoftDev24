@@ -27,4 +27,12 @@ public class CustomerController {
 
         return listAttractions;
     }
+
+    /**
+     * Retorna as atrações favoritas (Não implementado)
+     * @return
+     */
+    public String getFavouritAttraction(){
+        return "!Not implemented!";
+    }
 }

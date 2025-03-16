@@ -14,6 +14,9 @@ public class CustomerView {
         this.customerController = new CustomerController();
     }
 
+    /**
+     * View/Menu do cliente
+     */
     public void menuCustomer(){
         Scanner input = new Scanner(System.in);
 
@@ -43,6 +46,7 @@ public class CustomerView {
                     System.out.println("---------------------------------|--------------|--------------|---------------");
                     break;
                 case 2://Atrações favoritas
+                    System.out.println(this.customerController.getFavouritAttraction());
                     break;
                 case 0:
                     break;

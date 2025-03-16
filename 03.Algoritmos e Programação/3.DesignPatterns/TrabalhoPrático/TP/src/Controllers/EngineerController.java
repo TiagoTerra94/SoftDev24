@@ -63,4 +63,12 @@ public class EngineerController {
 
         return remainingTickets;
     }
+
+    /**
+     * Metodo para calcular as ultimas 3 revisoes (nao implementado)
+     * @return
+     */
+    public String getLastRevision(){
+        return "!Not implemented!";
+    }
 }

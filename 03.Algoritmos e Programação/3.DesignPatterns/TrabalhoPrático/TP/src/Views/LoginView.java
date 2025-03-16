@@ -12,6 +12,10 @@ public class LoginView {
         this.loginController = new LoginController();
     }
 
+    /**
+     * View de entrada do login
+     * @throws FileNotFoundException
+     */
     public void entryView() throws FileNotFoundException {
 
         Scanner input = new Scanner(System.in);
@@ -53,6 +57,12 @@ public class LoginView {
         }while(loginOption != 0);
     }
 
+    /**
+     * Valida os dados introduzidos para efetuar o login
+     * @param usernameInput
+     * @param passwordInput
+     * @throws FileNotFoundException
+     */
     private void validateLogin(String usernameInput, String passwordInput) throws FileNotFoundException {
         String access = loginController.accessType(usernameInput, passwordInput);
 

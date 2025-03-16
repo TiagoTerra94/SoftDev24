@@ -17,6 +17,10 @@ public class EngineerView {
         this.controller = new EngineerController();
     }
 
+    /**
+     * View/Menu do Engenheiro
+     * @throws FileNotFoundException
+     */
     public void menuEngineer() throws FileNotFoundException {
         Scanner input = new Scanner(System.in);
 
@@ -66,6 +70,7 @@ public class EngineerView {
                     System.out.println("------|--------------------------------|---------------------------");
                     break;
                 case 2://Últimas 3 revisões
+                    System.out.println(this.controller.getLastRevision());
                     break;
                 case 0://Sair
                     break;

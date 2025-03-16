@@ -12,6 +12,9 @@ public class AdminView {
         this.adminController = new AdminController();
     }
 
+    /**
+     * View/Menu do administrador
+     */
     public void adminMenu(){
 
         int menuOption;
@@ -36,6 +39,7 @@ public class AdminView {
 
             switch (menuOption){
                 case 1://Consultar o total de todas as vendas
+                    System.out.println(this.adminController.getTotalSales());
                     break;
                 case 2://Consultar o lucro total
                     System.out.println("******Total Profit******");
@@ -45,20 +49,28 @@ public class AdminView {
                     System.out.println("------------------------");
                     break;
                 case 3://Consultar o total de vendas e lucro por mês, de forma tabelar
+                    System.out.println(this.adminController.getTotalSalesMonthly());
                     break;
                 case 4://Consultar a atração mais procurada por adultos (número de bilhetes vendidos)
+                    System.out.println(this.adminController.getMostPopularAdult());
                     break;
                 case 5://Consultar a atração mais procurada por crianças (número de bilhetes vendidos)
+                    System.out.println(this.adminController.getMostPopularChildren());
                     break;
                 case 6://Consultar a atração mais procurada (número de bilhetes vendidos)
+                    System.out.println(this.adminController.getMostPopularAttraction());
                     break;
                 case 7://Consultar a atração mais lucrativa (considere o período total)
+                    System.out.println(this.adminController.getMostProfitableAttraction());
                     break;
                 case 8://Consultar a atração menos lucrativa (considere o período total)
+                    System.out.println(this.adminController.getLeastProfitableAttraction());
                     break;
                 case 9://Consultar a atração com melhor preço/tempo. Apresenta a atração que custa menos por segundo
+                    System.out.println(this.adminController.getAttractionBestByPriceTime());
                     break;
                 case 10://Adicionar novo login
+                    System.out.println(this.adminController.addNewLogin());
                     break;
                 case 0://Sair
                     break;

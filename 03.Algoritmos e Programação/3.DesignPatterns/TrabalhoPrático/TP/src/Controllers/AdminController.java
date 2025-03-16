@@ -66,4 +66,77 @@ public class AdminController {
 
         return totalProfit;
     }
+
+    /**
+     * Retorna todas as vendas (não implementado)
+     * @return
+     */
+    public String getTotalSales(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna todas as vendas e lucros por mes (não implementado)
+     * @return
+     */
+    public String getTotalSalesMonthly(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração mais popular dos adultos (não implementado)
+     * @return
+     */
+    public String getMostPopularAdult(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração mais popular das crianças (não implementado)
+     * @return
+     */
+    public String getMostPopularChildren(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração mais popular, por bilhetes vendidos (não implementado)
+     * @return
+     */
+    public String getMostPopularAttraction(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração mais lucrativa (não implementado)
+     * @return
+     */
+    public String getMostProfitableAttraction(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração menos lucrativa (não implementado)
+     * @return
+     */
+    public String getLeastProfitableAttraction(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Retorna a atração com melhor preço-tempo (não implementado)
+     * @return
+     */
+    public String getAttractionBestByPriceTime(){
+        return "!Not implemented!";
+    }
+
+    /**
+     * Adiciona um novo login (não implementado)
+     * @return
+     */
+    public String addNewLogin(){
+        return "!Not implemented!";
+    }
+
 }
