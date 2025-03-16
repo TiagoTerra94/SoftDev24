@@ -17,13 +17,14 @@ public class LoginView {
         Scanner input = new Scanner(System.in);
 
         int loginOption;
+        String username;
+        String password;
 
         //Menu de Login
         do{
             System.out.println("Welcome to CesaeLand TematicPark");
             System.out.println("1- Customer");
-            System.out.println("2- Enginneer");
-            System.out.println("3- Administrator");
+            System.out.println("2- Staff Member");
             System.out.println("0- Leave");
 
             loginOption = input.nextInt();
@@ -33,9 +34,15 @@ public class LoginView {
                     CustomerView customerView = new CustomerView();
                     customerView.menuCustomer();
                     break;
-                case 2://Engineer
-                    break;
-                case 3://Admin
+                case 2://Staff Member (ENG or ADMIN)
+                    System.out.println("Login with your credentials:");
+                    System.out.print("Username: ");
+                    username = input.next();
+
+                    System.out.print("Password: ");
+                    password = input.next();
+
+                    validateLogin(username,password);
                     break;
                 case 0://Leave
                     break;
@@ -44,6 +51,26 @@ public class LoginView {
             }
 
         }while(loginOption != 0);
+    }
+
+    private void validateLogin(String usernameInput, String passwordInput) throws FileNotFoundException {
+        String access = loginController.accessType(usernameInput, passwordInput);
+
+        switch (access){
+            case "ADMIN":
+                AdminView adminView = new AdminView();
+                adminView.adminMenu();
+                break;
+
+            case "ENG":
+                EngineerView engineerView = new EngineerView();
+                engineerView.menuEngineer();
+                break;
+
+            case "ERROR":
+                System.out.println("ACCESS DENIED");
+                break;
+        }
     }
 
 }

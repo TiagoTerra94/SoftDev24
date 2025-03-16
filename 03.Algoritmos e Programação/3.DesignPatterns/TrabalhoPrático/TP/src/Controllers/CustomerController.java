@@ -14,6 +14,10 @@ public class CustomerController {
         this.atractionAvailable = new AttractionsRepository();
     }
 
+    /**
+     * Buscar atrações
+     * @return
+     */
     public ArrayList<Attraction> getAttraction(){
         ArrayList<Attraction> listAttractions = new ArrayList<>();
 

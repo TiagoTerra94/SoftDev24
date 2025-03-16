@@ -35,29 +35,32 @@ public class AdminView {
             menuOption = input.nextInt();
 
             switch (menuOption){
-                case 1:
+                case 1://Consultar o total de todas as vendas
                     break;
-                case 2://Consulting total profit
-                    System.out.println("****Total Profit****");
-
+                case 2://Consultar o lucro total
+                    System.out.println("******Total Profit******");
+                    System.out.println("------------------------");
+                        double totalProfit = this.adminController.getTotalProfit();
+                        System.out.printf("Total Profit: %.2f€%n", totalProfit);
+                    System.out.println("------------------------");
                     break;
-                case 3:
+                case 3://Consultar o total de vendas e lucro por mês, de forma tabelar
                     break;
-                case 4:
+                case 4://Consultar a atração mais procurada por adultos (número de bilhetes vendidos)
                     break;
-                case 5:
+                case 5://Consultar a atração mais procurada por crianças (número de bilhetes vendidos)
                     break;
-                case 6:
+                case 6://Consultar a atração mais procurada (número de bilhetes vendidos)
                     break;
-                case 7:
+                case 7://Consultar a atração mais lucrativa (considere o período total)
                     break;
-                case 8:
+                case 8://Consultar a atração menos lucrativa (considere o período total)
                     break;
-                case 9:
+                case 9://Consultar a atração com melhor preço/tempo. Apresenta a atração que custa menos por segundo
                     break;
-                case 10:
+                case 10://Adicionar novo login
                     break;
-                case 0:
+                case 0://Sair
                     break;
             }
         }while (menuOption != 0);
