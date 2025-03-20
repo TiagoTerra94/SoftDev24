@@ -1,3 +1,7 @@
 .btnColor{
     background-color: brown;
 }
+
+.activeBtn{
+    background-color: rgb(28, 153, 28);
+}

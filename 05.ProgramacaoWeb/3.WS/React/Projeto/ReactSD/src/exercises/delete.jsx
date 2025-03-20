@@ -2,23 +2,24 @@ import { useState } from "react"
 import { TabButton } from "../components/TabButton"
 
 export default function Delete(){
-  const [content, setAlert] = useState("")
+  const [showAlert, setShowAlert] = useState(false)
 
-  function showAlert(){
-    setAlert(content)
+  function HandleShowAlert(show){
+    setShowAlert(show)
   }
 
     return (
     <div>
-      {!content ? (<TabButton onSelect={showAlert}>Delete</TabButton>) :
+      {showAlert &&//se o showAlert estiver a true, ele mostra a seguinte mensagem
             (
               <div data-testid="alert" id="alert">
                 <h2>Are you sure?</h2>
                 <p>These changes can't be reverted!</p>
-                <button>Proceed</button>
+                <button onClick={()=>HandleShowAlert(false)}> Proceed</button> 
               </div> 
             )}
-            
+            <TabButton onSelect={()=>HandleShowAlert(true)}>Delete</TabButton>
     </div>
-      )
+ )
+ //quando temos argumentos temos que utilizar arrowfunctions no onClick
 }
