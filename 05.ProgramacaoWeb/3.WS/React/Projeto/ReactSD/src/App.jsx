@@ -18,7 +18,10 @@ import ShoppingList from './pages/ShoppingList'
 import Contacts from './pages/Contacts'
 import LayoutMaster from './components/LayoutMaster'
 import ErrorPage from './pages/ErrorPage'
-import EasterGifts from './pages/EasterGifts'
+import EasterGifts from './pages/EasterGiftsIndex'
+import AvailablePlaces from './pages/PlacesIndex'
+import AvailableFilms from './pages/FilmIndex'
+
 
 //Variavel inicial do content que vai surgir
 //let initialContent = 'Ainda não selecionaste nada'
@@ -33,7 +36,9 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/shopping", element: <ShoppingList /> },
       { path: "/contacts/:name", element: <Contacts /> },
-      { path: "/eastergifts", element: <EasterGifts/>}
+      { path: "/eastergifts", element: <EasterGifts/>},
+      { path: "/places", element: <AvailablePlaces/>},
+      { path: "/starwarsmovies", element: <AvailableFilms/>}
     ],
   },
 ]);

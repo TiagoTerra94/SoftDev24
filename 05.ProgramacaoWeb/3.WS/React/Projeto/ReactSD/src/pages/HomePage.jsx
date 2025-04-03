@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
 
 
 export default function HomePage(){
     return(<div>
         <h5>As Minhas Funcionalidades</h5>
         <ul>
-            <li><a href="/shopping">Lista de Compras</a></li>
-            <li><a href="/contacts/Tiago">Contactos</a></li>
-            <li><a href="/eastergifts">Prendas da Páscoa</a></li>
+            <li><Link to="/shopping">ShoppingList</Link></li>
+            <li><Link to="/contacts/Tiago">Contactos</Link></li>
+            <li><Link to="/eastergifts">Prendas</Link></li>
+            <li><Link to="/places">Places</Link></li>
+            <li><Link to="/starwarsmovies">Star Wars Movies</Link></li>
         </ul>
     </div>);
  

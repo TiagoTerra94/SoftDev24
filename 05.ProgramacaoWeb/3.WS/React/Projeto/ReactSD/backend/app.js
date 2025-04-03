@@ -14,6 +14,14 @@ app.use((req, res, next) => {
   next();
 });
 
+//Rota Gifts
+app.get("/gifts", async (req, res)=>{
+  const fileContent = await fs.readFile("./data/gifts.json");
+  const giftsData = JSON.parse(fileContent);
+  res.status(200).json({ gifts: giftsData });
+})
+
+//Rotas Places
 app.get("/places", async (req, res) => {
   const fileContent = await fs.readFile("./data/places.json");
   const placesData = JSON.parse(fileContent);
