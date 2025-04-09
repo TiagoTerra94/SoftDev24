@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "email": "tiago.t@email.com",
+    "password": "12345678",
+    "firstName": "Tiago",
+    "lastName": "Terra",
+    "role": "student",
+    "termsAccepted": true
+  },
+  {
+    "email": "sara.mon@email.com",
+    "password": "12345",
+    "firstName": "Sara",
+    "lastName": "Monteiro",
+    "role": "teacher",
+    "termsAccepted": true
+  }
+]

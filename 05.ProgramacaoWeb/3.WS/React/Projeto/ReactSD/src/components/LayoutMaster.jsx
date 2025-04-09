@@ -5,7 +5,7 @@ export default function LayoutMaster(){
       <>
         <h4>Layout Master Menu</h4>
         <Outlet></Outlet>
-        <p>Rodapé</p>
+        <p>Desenvolvido por Tiago Terra</p>
       </>
     );
 }

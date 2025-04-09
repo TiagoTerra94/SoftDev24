@@ -21,6 +21,9 @@ import ErrorPage from './pages/ErrorPage'
 import EasterGifts from './pages/EasterGiftsIndex'
 import AvailablePlaces from './pages/PlacesIndex'
 import AvailableFilms from './pages/FilmIndex'
+import Register from './pages/Register'
+import Login from './pages/login'
+import { AuthProvider } from '/src/contexts/AuthContext.jsx'
 
 
 //Variavel inicial do content que vai surgir
@@ -38,7 +41,9 @@ const router = createBrowserRouter([
       { path: "/contacts/:name", element: <Contacts /> },
       { path: "/eastergifts", element: <EasterGifts/>},
       { path: "/places", element: <AvailablePlaces/>},
-      { path: "/starwarsmovies", element: <AvailableFilms/>}
+      { path: "/starwarsmovies", element: <AvailableFilms/>},
+      { path: "/register", element: <Register/> },
+      {path: "/login", element: <Login/>}
     ],
   },
 ]);
@@ -46,7 +51,11 @@ const router = createBrowserRouter([
 
 function App() {
 
-  return <RouterProvider router={router}/>
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 
   //Hook useState para alterar valor da variavel
   const [content, setContent] = useState("components");
