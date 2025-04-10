@@ -24,6 +24,7 @@ import AvailableFilms from './pages/FilmIndex'
 import Register from './pages/Register'
 import Login from './pages/login'
 import { AuthProvider } from '/src/contexts/AuthContext.jsx'
+import OnlyStudents from './protectedRoutes/OnlyStudents'
 
 
 //Variavel inicial do content que vai surgir
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       { path: "/shopping", element: <ShoppingList /> },
       { path: "/contacts/:name", element: <Contacts /> },
       { path: "/eastergifts", element: <EasterGifts/>},
-      { path: "/places", element: <AvailablePlaces/>},
+      { path: "/places", element: <OnlyStudents element = {<AvailablePlaces/>} />},
       { path: "/starwarsmovies", element: <AvailableFilms/>},
       { path: "/register", element: <Register/> },
       {path: "/login", element: <Login/>}
